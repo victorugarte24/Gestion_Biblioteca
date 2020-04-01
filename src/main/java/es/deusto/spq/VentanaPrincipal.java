@@ -19,9 +19,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class ventanaPrincipal extends JFrame {
+public class VentanaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -32,7 +33,7 @@ public class ventanaPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ventanaPrincipal frame = new ventanaPrincipal();
+					VentanaPrincipal frame = new VentanaPrincipal();
 					frame.setSize(1200, 800);
 					frame.setVisible(true);
 					
@@ -46,12 +47,12 @@ public class ventanaPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ventanaPrincipal() {
+	public VentanaPrincipal() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 176, 174));
+		contentPane.setBackground(new Color(127, 92, 26));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -59,12 +60,23 @@ public class ventanaPrincipal extends JFrame {
 		JPanel navBarPanel = new JPanel();
 		navBarPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		navBarPanel.setBounds(-5, -5, 1203, 70);
-		navBarPanel.setBackground(new Color(0, 119, 118));
+		navBarPanel.setBackground(new Color(90, 64, 17));
 		contentPane.add(navBarPanel);
 		navBarPanel.setLayout(null);
 		
+		JButton logobtn = new JButton();
+		logobtn.setBounds(40, 5, 50, 60);
+		logobtn.setBorder(null);
+		logobtn.setFocusPainted(false);
+		logobtn.setFocusable(false);
+		logobtn.setContentAreaFilled(false);		
+		logobtn.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/es/deusto/spq/resources/logoS.png")));
+		navBarPanel.add(logobtn);		
+		
 		JButton loginbtn = new JButton("Login");
+		loginbtn.setForeground(Color.LIGHT_GRAY);
 		loginbtn.setFont(new Font("Rockwell", Font.BOLD, 14));
+		loginbtn.setFocusPainted(false);
 		loginbtn.setBounds(1040, 20, 140, 30);
 		loginbtn.setOpaque(false);
 		loginbtn.setContentAreaFilled(false);
@@ -73,9 +85,11 @@ public class ventanaPrincipal extends JFrame {
 		
 		JPanel loginPanel = new JPanel();
 		loginPanel.setOpaque(false);
-		loginPanel.setBounds(1050, 21, 24, 24);
+		loginPanel.setBounds(1050, 18, 26, 28);
+		loginPanel.setBorder(null);
 		JLabel loginIMG = new JLabel();
-		loginIMG.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/usuario.png")));
+		loginIMG.setBounds(1050, 20, 24, 26);
+		loginIMG.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/user.png")));
 		loginPanel.add(loginIMG);
 		navBarPanel.add(loginPanel);
 		
@@ -87,25 +101,27 @@ public class ventanaPrincipal extends JFrame {
 		JButton searchbtn = new JButton();
 		searchbtn.setOpaque(false);
 		searchbtn.setContentAreaFilled(false);
-		searchbtn.setBounds(850, 20, 30, 30);
-		searchbtn.setLayout(null);
-		searchbtn.setFocusable(false);
+		searchbtn.setBounds(855, 20, 30, 30);
+		searchbtn.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/lupaP.png")));
+		searchbtn.setBorder(null);
+		searchbtn.setFocusable(true);
+		/*
 		JLabel searchIMG = new JLabel();
 		searchIMG.setBounds(0, 0, 30, 30);
 		searchIMG.setFocusable(false);
 		searchIMG.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/lupaP.png")));
-		searchbtn.add(searchIMG);
+		searchbtn.add(searchIMG);*/
 		navBarPanel.add(searchbtn);
 		
-		JPanel bookPanel = new JPanel();
-		bookPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		JScrollPane bookPanel = new JScrollPane();
+		bookPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		bookPanel.setBounds(197, 62, 800, 711);
-		bookPanel.setBackground(new Color(0, 119, 118));
+		bookPanel.setBackground(new Color(90, 64, 17));
 		contentPane.add(bookPanel);
 		bookPanel.setLayout(null);
 		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(781, 0, 17, 709);
+		scrollBar.setBounds(780, 0, 17, 709);
 		bookPanel.add(scrollBar);
 	}
 }
