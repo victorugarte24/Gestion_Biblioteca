@@ -3,12 +3,17 @@ package es.deusto.spq.ventanas;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import es.deusto.spq.db.DB;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Ventana_Login extends JFrame{
@@ -36,6 +41,18 @@ public class Ventana_Login extends JFrame{
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DB database = new DB();
+				try {
+					if (database.comprobarContrasenya(textField_1.getText()).equals(textField.getText())) {
+						JOptionPane.showMessageDialog(null, "Usuario Correcto");
+						dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Usuario Incorrecto");
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton.setBounds(52, 287, 141, 29);
@@ -87,3 +104,4 @@ public class Ventana_Login extends JFrame{
 		v.setVisible(true);
 	}
 }
+

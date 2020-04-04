@@ -2,31 +2,22 @@ package es.deusto.spq.clases;
 
 public class Usuario {
 
-    private int id;
     private String Nombre;
     private String Apellido;
     private String Usuario;
-    private String DNI;
+    private int DNI;
     private String Contrasenya;
 
     public Usuario() {
 
     }
 
-    public Usuario(String Nombre, String Apellido, String Usuario, String DNI, String Contrasenya) {
+    public Usuario(String Nombre, String Apellido, String Usuario, int DNI, String Contrasenya) {
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Usuario = Usuario;
         this.DNI = DNI;
-        this.setContrasenya(Contrasenya);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.Contrasenya = Contrasenya;
     }
 
     public String getNombre() {
@@ -53,12 +44,12 @@ public class Usuario {
 		Usuario = usuario;
 	}
 
-	public String getDNI() {
+	public int getDNI() {
 		return DNI;
 	}
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDNI(int DNI) {
+		DNI = DNI;
 	}
 
 	public String getContrasenya() {
@@ -75,6 +66,7 @@ public class Usuario {
 
 	@Override
     public String toString() {
-        return "ID: " + id + "Usuario: " + Usuario + "Nombre" + Nombre + "Apellido: " + Apellido;
+        return "Usuario: " + Usuario + "Nombre" + Nombre + "Apellido: " + Apellido;
     }
 }
+
