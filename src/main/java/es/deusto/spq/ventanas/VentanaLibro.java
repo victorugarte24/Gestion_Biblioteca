@@ -1,4 +1,4 @@
-package es.deusto.spq;
+package es.deusto.spq.ventanas;
 
 import java.awt.*;
 import java.awt.EventQueue;
@@ -19,9 +19,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.border.LineBorder;
-
-import es.deusto.spq.VentanaPrincipal;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,9 +33,9 @@ public class VentanaLibro extends JFrame{
 	 *
 	 */
 	private final JPanel contentPane;
-	private final JTextField textField;
 	private final JScrollPane scrollpane1;
 	private final JTextArea textarea1;
+	static VentanaLibro frame;
 
 	/**
 	 * Launch the application.
@@ -47,7 +44,7 @@ public class VentanaLibro extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					final VentanaLibro frame = new VentanaLibro();
+					frame = new VentanaLibro();
 					frame.setSize(1200, 800);
 					frame.setVisible(true);
 
@@ -87,45 +84,34 @@ public class VentanaLibro extends JFrame{
 		logobtn.setIcon(new ImageIcon(VentanaLibro.class.getResource("/es/deusto/spq/resources/logoS.png")));
 		navBarPanel.add(logobtn);
 
-		final JButton loginbtn = new JButton("Login");
-		loginbtn.setForeground(Color.LIGHT_GRAY);
-		loginbtn.setFont(new Font("Rockwell", Font.BOLD, 14));
-		loginbtn.setFocusPainted(false);
-		loginbtn.setBounds(1040, 20, 140, 30);
-		loginbtn.setOpaque(false);
-		loginbtn.setContentAreaFilled(false);
-		loginbtn.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		navBarPanel.add(loginbtn);
+		final JButton btnAtras = new JButton("Atras");
+		btnAtras.setForeground(Color.WHITE);
+		btnAtras.setFont(new Font("Rockwell", Font.BOLD, 14));
+		btnAtras.setFocusPainted(false);
+		btnAtras.setBounds(1040, 20, 140, 30);
+		btnAtras.setOpaque(false);
+		btnAtras.setContentAreaFilled(false);
+		btnAtras.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		navBarPanel.add(btnAtras);
+		
+		btnAtras.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaPrincipal p = new VentanaPrincipal();
+				p.setVisible(true);
+				frame.dispose();
+			}
+		});
 
-		final JPanel loginPanel = new JPanel();
-		loginPanel.setOpaque(false);
-		loginPanel.setBounds(1050, 18, 26, 28);
-		loginPanel.setBorder(null);
-		final JLabel loginIMG = new JLabel();
-		loginIMG.setBounds(1050, 20, 24, 26);
-		loginIMG.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/user.png")));
-		loginPanel.add(loginIMG);
-		navBarPanel.add(loginPanel);
-
-		textField = new JTextField();
-		textField.setBounds(347, 20, 500, 30);
-		navBarPanel.add(textField);
-		textField.setColumns(10);
-
-		final JButton searchbtn = new JButton();
-		searchbtn.setOpaque(false);
-		searchbtn.setContentAreaFilled(false);
-		searchbtn.setBounds(855, 20, 30, 30);
-		searchbtn.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/lupaP.png")));
-		searchbtn.setBorder(null);
-		searchbtn.setFocusable(true);
-		/*
-		 * JLabel searchIMG = new JLabel(); searchIMG.setBounds(0, 0, 30, 30);
-		 * searchIMG.setFocusable(false); searchIMG.setIcon(new
-		 * ImageIcon(getClass().getResource("/es/deusto/spq/resources/lupaP.png")));
-		 * searchbtn.add(searchIMG);
-		 */
-		navBarPanel.add(searchbtn);
+		final JPanel atrasPanel = new JPanel();
+		atrasPanel.setOpaque(false);
+		atrasPanel.setBounds(1050, 16, 26, 30);
+		atrasPanel.setBorder(null);
+		final JLabel atrasIMG = new JLabel();
+		atrasIMG.setBounds(1050, 20, 24, 26);
+		atrasIMG.setIcon(new ImageIcon(VentanaLibro.class.getResource("/es/deusto/spq/resources/flechaB.png")));
+		atrasPanel.add(atrasIMG);
+		navBarPanel.add(atrasPanel);
 
 		final JScrollPane bookPanel = new JScrollPane();
 		bookPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
@@ -134,11 +120,6 @@ public class VentanaLibro extends JFrame{
 		contentPane.add(bookPanel);
 		bookPanel.setLayout(null);
 
-		final JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(780, 0, 17, 709);
-		bookPanel.add(scrollBar);
-
-		//
 		// Título
 		final JLabel label1 = new JLabel("Título: ");
 		label1.setBounds(20, 10, 150, 50);
@@ -179,31 +160,6 @@ public class VentanaLibro extends JFrame{
 		scrollpane1=new JScrollPane(textarea1);
 		scrollpane1.setBounds(20, 320, 600, 90);
 		bookPanel.add(scrollpane1);
-
-		// Botón Atrás
-		final JButton boton1 = new JButton("Volver atrás");
-		boton1.setOpaque(false);
-		boton1.setContentAreaFilled(false);
-		boton1.setFont(fuente2);
-		boton1.setForeground(Color.WHITE);
-		boton1.setBounds(500, 400, 250, 180);
-		boton1.setBorder(null);
-		boton1.setFocusable(true);
-		boton1.addActionListener(new ActionListener() {
-			public void actionPerformed(final ActionEvent e) {
-				final VentanaPrincipal v1 = new VentanaPrincipal();
-							v1.setSize(1200, 800);
-							v1.setVisible(true);
-							v1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-							v1.setTitle("Biblioteca");
-							dispose();
-			}
-		}
-		);
-		bookPanel.add(boton1);
-		
-		
-
 
 	}
 }
