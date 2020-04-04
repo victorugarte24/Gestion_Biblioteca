@@ -1,4 +1,4 @@
-package es.deusto.spq;
+package es.deusto.spq.ventanas;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,6 +9,8 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaInicio extends JFrame{
 	private JPanel contentPane;
@@ -63,6 +65,30 @@ public class VentanaInicio extends JFrame{
 		loginIMG.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/user.png")));
 		loginPanel.add(loginIMG);
 		navBarPanel.add(loginPanel);
+		
+		JButton btnRegistro = new JButton("Registro");
+		btnRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnRegistro.setOpaque(false);
+		btnRegistro.setForeground(Color.LIGHT_GRAY);
+		btnRegistro.setFont(new Font("Rockwell", Font.BOLD, 14));
+		btnRegistro.setFocusPainted(false);
+		btnRegistro.setContentAreaFilled(false);
+		btnRegistro.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		btnRegistro.setBounds(876, 20, 140, 30);
+		navBarPanel.add(btnRegistro);
+		
+		JPanel registroPanel = new JPanel();
+		registroPanel.setOpaque(false);
+		registroPanel.setBorder(null);
+		registroPanel.setBounds(883, 19, 26, 27);
+		navBarPanel.add(registroPanel);
+		
+		JLabel registroIMG = new JLabel();
+		registroIMG.setIcon(new ImageIcon(VentanaInicio.class.getResource("/es/deusto/spq/resources/lockB.png")));
+		registroPanel.add(registroIMG);
 		
 		JLabel logolbl = new JLabel("");
 		logolbl.setIcon(new ImageIcon(VentanaInicio.class.getResource("/es/deusto/spq/resources/logoP.png")));
