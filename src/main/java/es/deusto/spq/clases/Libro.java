@@ -1,5 +1,13 @@
-private String sinopsis= "";
-	
+package es.deusto.spq.clases;
+
+public class Libro {
+
+    private String titulo;
+    private String autor;
+    private int numPags;
+    private int ISBN;
+    private String sinopsis;
+
 	public Libro (String titulo, String autor, int numPags, int ISBN, String sinopsis){
 		this.titulo = titulo;
 		this.autor = autor;
