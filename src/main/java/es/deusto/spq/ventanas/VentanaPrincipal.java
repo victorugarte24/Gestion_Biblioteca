@@ -1,8 +1,7 @@
-package es.deusto.spq;
+package es.deusto.spq.ventanas;
 
 import java.awt.*;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -10,40 +9,46 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.border.LineBorder;
-
-
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import es.deusto.spq.clases.Libro;
+
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+
 
 public class VentanaPrincipal extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private boolean escrito1;
-	private boolean escrito2;
-	/**
-	 * Launch the application.
-	 */
+	private JTextField txtField;
+	private JTextArea bookPanel;
+	private ArrayList<Libro> arrayLibros = new ArrayList<Libro>();
+	private File bd;
+	private static VentanaPrincipal frame;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaPrincipal frame = new VentanaPrincipal();
+					frame = new VentanaPrincipal();
 					frame.setSize(1200, 800);
 					frame.setVisible(true);
 					
@@ -54,10 +59,13 @@ public class VentanaPrincipal extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public VentanaPrincipal() {
+		cargarlibros();
+		init();
+	}
+	
+	public void init() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
@@ -80,33 +88,41 @@ public class VentanaPrincipal extends JFrame {
 		logobtn.setFocusPainted(false);
 		logobtn.setFocusable(false);
 		logobtn.setContentAreaFilled(false);		
-		logobtn.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/es/deusto/spq/resources/logoS.png")));
+		logobtn.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/logoS.png")));
 		navBarPanel.add(logobtn);		
 		
-		JButton loginbtn = new JButton("Login");
-		loginbtn.setForeground(Color.LIGHT_GRAY);
-		loginbtn.setFont(new Font("Rockwell", Font.BOLD, 14));
-		loginbtn.setFocusPainted(false);
-		loginbtn.setBounds(1040, 20, 140, 30);
-		loginbtn.setOpaque(false);
-		loginbtn.setContentAreaFilled(false);
-		loginbtn.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		navBarPanel.add(loginbtn);
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaInicio v = new VentanaInicio();
+				v.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		
+		btnSalir.setForeground(Color.WHITE);
+		btnSalir.setFont(new Font("Rockwell", Font.BOLD, 14));
+		btnSalir.setFocusPainted(false);
+		btnSalir.setBounds(1040, 20, 140, 30);
+		btnSalir.setOpaque(false);
+		btnSalir.setContentAreaFilled(false);
+		btnSalir.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		navBarPanel.add(btnSalir);
 		
 		JPanel loginPanel = new JPanel();
 		loginPanel.setOpaque(false);
-		loginPanel.setBounds(1050, 18, 26, 28);
+		loginPanel.setBounds(1050, 17, 26, 29);
 		loginPanel.setBorder(null);
 		JLabel loginIMG = new JLabel();
 		loginIMG.setBounds(1050, 20, 24, 26);
-		loginIMG.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/user.png")));
+		loginIMG.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/flechaB.png")));
 		loginPanel.add(loginIMG);
 		navBarPanel.add(loginPanel);
 		
-		textField = new JTextField();
-		textField.setBounds(347, 20, 500, 30);
-		navBarPanel.add(textField);
-		textField.setColumns(10);
+		txtField = new JTextField();
+		txtField.setBounds(347, 20, 500, 30);
+		navBarPanel.add(txtField);
+		txtField.setColumns(10);
 		
 		JButton searchbtn = new JButton();
 		searchbtn.setOpaque(false);
@@ -115,99 +131,51 @@ public class VentanaPrincipal extends JFrame {
 		searchbtn.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/lupaP.png")));
 		searchbtn.setBorder(null);
 		searchbtn.setFocusable(true);
-		/*
-		JLabel searchIMG = new JLabel();
-		searchIMG.setBounds(0, 0, 30, 30);
-		searchIMG.setFocusable(false);
-		searchIMG.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/lupaP.png")));
-		searchbtn.add(searchIMG);*/
 		navBarPanel.add(searchbtn);
-		
-		JScrollPane bookPanel = new JScrollPane();
-		bookPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		bookPanel.setBounds(197, 62, 800, 711);
+	
+		bookPanel = new JTextArea(arrayLibros.size(),1);
+		bookPanel.setFont(new Font("Rockwell", Font.BOLD, 20));
+		bookPanel.setForeground(new Color(0, 0, 0));
+		filtrarLibros();
+		bookPanel.setEditable(false);
 		bookPanel.setBackground(new Color(90, 64, 17));
-		contentPane.add(bookPanel);
-		bookPanel.setLayout(null);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(780, 0, 17, 709);
-		bookPanel.add(scrollBar);
 		
-		// Buscar por título
-		final JLabel label1 = new JLabel("Buscar por título:");
-		label1.setBounds(20, 10, 150, 50);
-		Font fuente2 = new Font("Book Antiqua", 3, 15);
-		label1.setFont(fuente2);
-		label1.setForeground(Color.WHITE);
-		bookPanel.add(label1);
-		final JTextField texto1 = new JTextField("Ej: Don Quijote");
-		texto1.setBounds(100, 50, 150, 30);
-		escrito1 = false;
-		texto1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (escrito1 == false) {
-					texto1.setText("");
-					escrito1 = true;
+		JScrollPane scroll = new JScrollPane(bookPanel);
+		scroll.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		scroll.setBounds(197, 62, 800, 715);
+		contentPane.add(scroll);
+			
+	}
+	
+	
+	public void cargarlibros() {
+		bd = new File((getClass().getResource("/es/deusto/spq/BD.txt")).getPath());
+		try {
+			FileReader fr = new FileReader(bd);
+			BufferedReader br = new BufferedReader(fr);
+			String l;
+			
+			try {
+				while( (l=br.readLine()) !=null) {
+					String[] f = l.split(",");
+					Libro b = new Libro(f[0],f[1], Integer.parseInt(f[2]), Integer.parseInt(f[3]), f[4]);
+					System.out.println(b);
+					arrayLibros.add(b);
 				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		});		
-
-		bookPanel.add(texto1);
-
-		final JButton boton1 = new JButton("Buscar");
-		boton1.setOpaque(false);
-		boton1.setContentAreaFilled(false);
-		boton1.setBounds(250, 50, 50, 30);
-		boton1.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/lupaP.png")));
-		boton1.setBorder(null);
-		boton1.setFocusable(true);
-		bookPanel.add(boton1);
-
-		// Detalles por libro
-		final JLabel label2 = new JLabel("Obtener detalles del libro:");
-		label2.setBounds(20, 10, 190, 190);
-		Font fuente1 = new Font("Book Antiqua", 3, 15);
-		label2.setFont(fuente1);
-		label2.setForeground(Color.WHITE);
-		bookPanel.add(label2);
-		final JTextField texto2 = new JTextField("Ej: Don Quijote");
-		texto2.setBounds(100, 125, 150, 30);
-		escrito2 = false;
-		texto2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (escrito2 == false) {
-					texto2.setText("");
-					escrito2 = true;
-				}
-			}
-		});		
-		
-		bookPanel.add(texto2);
-
-		final JButton boton2 = new JButton("Obtener");
-		boton2.setOpaque(false);
-		boton2.setContentAreaFilled(false);
-		boton2.setBounds(250, 50, 50, 180);
-		boton2.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/lupaP.png")));
-		boton2.setBorder(null);
-		boton2.setFocusable(true);
-		boton2.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e){
-				VentanaLibro v = new VentanaLibro();
-							v.setSize(1200, 800);
-							v.setVisible(true);
-							v.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-							v.setTitle("Libro");
-							dispose();
-			}
+			
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(this, "Archivo no encontrado.");
 		}
-		);
-		bookPanel.add(boton2);
-
-
+	}
+	
+	public void filtrarLibros() {
+		for(Libro l : arrayLibros) {
+			bookPanel.append("\n   " + l.getTitulo() + "\n");
+		}
 	}
 }
+
