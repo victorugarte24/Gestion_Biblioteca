@@ -1,11 +1,4 @@
-package es.deusto.spq;
-
-public class Libro {
-	private String titulo= "";
-	private String autor= "";
-	private int numPags=0;
-	private int ISBN=0;
-	private String sinopsis= "";
+private String sinopsis= "";
 	
 	public Libro (String titulo, String autor, int numPags, int ISBN, String sinopsis){
 		this.titulo = titulo;
@@ -53,5 +46,9 @@ public class Libro {
 
 	public void setSinopsis(String sinopsis) {
 		this.sinopsis = sinopsis;
+	}
+	
+	public String toString() {
+		return "\n"+ this.getTitulo().toUpperCase() + "\nAutor: " + this.getAutor() + "\nNumero de paginas: " + this.getNumPags() + "\nISBN: " + this.getISBN() + "\nSinopsis: "+ this.getSinopsis() + "\n\n";
 	}
 }
