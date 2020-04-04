@@ -1,4 +1,4 @@
-package ventanas;
+package es.deusto.spq.ventanas;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -11,7 +11,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Ventana_Inicio extends JFrame{
+public class Ventana_Login extends JFrame{
 	
 	/**
 	 * 
@@ -20,11 +20,11 @@ public class Ventana_Inicio extends JFrame{
 	private JTextField textField;
 	private JTextField textField_1;
 	
-	Ventana_Inicio(){
+	Ventana_Login(){
 		
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 14));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(""));
-		setDefaultCloseOperation(Ventana_Inicio.DISPOSE_ON_CLOSE );
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
+		setDefaultCloseOperation(Ventana_Login.DISPOSE_ON_CLOSE );
 		setTitle("Biblioteca Online");
 		setSize(500, 400);
 		this.setLocationRelativeTo(null);
@@ -32,7 +32,7 @@ public class Ventana_Inicio extends JFrame{
 		this.getContentPane().setBackground(Color.LIGHT_GRAY);
 		getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Iniciar Sesión");
+		JButton btnNewButton = new JButton("Iniciar SesiÃ³n");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -44,6 +44,13 @@ public class Ventana_Inicio extends JFrame{
 		JButton btnNewButton_1 = new JButton("Registrarse");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_1.setBounds(323, 287, 128, 29);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ventana_Registro vr = new Ventana_Registro();
+				vr.setVisible(true);
+				dispose();
+			}
+		});
 		getContentPane().add(btnNewButton_1);
 		
 		textField = new JTextField();
@@ -63,7 +70,7 @@ public class Ventana_Inicio extends JFrame{
 		lblNewLabel.setBounds(81, 134, 74, 13);
 		getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Contraseña:");
+		JLabel lblNewLabel_1 = new JLabel("ContraseÃ±a:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(81, 204, 96, 13);
 		getContentPane().add(lblNewLabel_1);
@@ -76,7 +83,7 @@ public class Ventana_Inicio extends JFrame{
 	}
 
 	public static void main (String [ ] args) {
-		Ventana_Inicio v = new Ventana_Inicio();
+		Ventana_Login v = new Ventana_Login();
 		v.setVisible(true);
 	}
 }

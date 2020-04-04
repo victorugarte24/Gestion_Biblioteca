@@ -1,4 +1,4 @@
-package ventanas;
+package es.deusto.spq.ventanas;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -28,7 +28,7 @@ public class Ventana_Registro extends JFrame{
 	Ventana_Registro(){
 		
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 14));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(""));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
 		setDefaultCloseOperation(Ventana_Registro.DISPOSE_ON_CLOSE );
 		setTitle("Biblioteca Online");
 		setSize(570, 470);
@@ -82,11 +82,14 @@ public class Ventana_Registro extends JFrame{
 		btnNewButton.setBounds(122, 374, 131, 29);
 		getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Atr\u00E1s");
+		JButton btnNewButton_1 = new JButton("Atrás");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_1.setFocusable(false);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Ventana_Login vi = new Ventana_Login();
+				vi.setVisible(true);
+				dispose();
 			}
 		});
 		btnNewButton_1.setBounds(326, 374, 120, 29);
