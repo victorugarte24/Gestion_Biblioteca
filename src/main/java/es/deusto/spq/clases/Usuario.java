@@ -1,4 +1,4 @@
-package es.deusto.spq.usuario;
+package es.deusto.spq.clases;
 
 public class Usuario {
 
