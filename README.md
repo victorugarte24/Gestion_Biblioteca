@@ -16,7 +16,7 @@ A continuación veremos un pequeño resumen de las ventanas:
 
 ![VentanaLogin](https://user-images.githubusercontent.com/43268879/78472092-8d40e080-7736-11ea-8ee8-a8f5ee233846.jpg)
 
-* Si el usuario no está registrado deberá clickar en "Registrarse" en la pantalla anterior y rellenar con sus datos en la siguiente panatalla:
+* Si el usuario no está registrado deberá clickar en "Registrarse" en la pantalla anterior y rellenar con sus datos en la siguiente pantalla:
 
 ![VentanaRegistro](https://user-images.githubusercontent.com/43268879/78472206-40a9d500-7737-11ea-8112-5b9c3d0b2a3d.jpg)
 
