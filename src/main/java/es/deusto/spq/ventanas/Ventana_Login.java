@@ -15,6 +15,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class Ventana_Login extends JFrame{
 	
@@ -22,8 +23,8 @@ public class Ventana_Login extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
 	private JTextField textField_1;
+	private JPasswordField passwordField;
 	
 	Ventana_Login(){
 		
@@ -43,7 +44,7 @@ public class Ventana_Login extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				DB database = new DB();
 				try {
-					if (database.comprobarContrasenya(textField_1.getText()).equals(textField.getText())) {
+					if (database.comprobarContrasenya(textField_1.getText()).equals(passwordField.getText())) {
 						JOptionPane.showMessageDialog(null, "Usuario Correcto");
 						dispose();
 					}
@@ -70,12 +71,6 @@ public class Ventana_Login extends JFrame{
 		});
 		getContentPane().add(btnNewButton_1);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.BOLD, 14));
-		textField.setBounds(195, 201, 141, 21);
-		getContentPane().add(textField);
-		textField.setColumns(10);
-		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		textField_1.setBounds(195, 131, 141, 21);
@@ -96,6 +91,11 @@ public class Ventana_Login extends JFrame{
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblNewLabel_2.setBounds(141, 35, 205, 29);
 		getContentPane().add(lblNewLabel_2);
+		
+		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.BOLD, 14));
+		passwordField.setBounds(195, 204, 141, 21);
+		getContentPane().add(passwordField);
 		
 	}
 
