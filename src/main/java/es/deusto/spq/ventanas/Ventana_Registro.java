@@ -100,6 +100,8 @@ public class Ventana_Registro extends JFrame{
 								}
 								JOptionPane.showMessageDialog(null, "Usuario Registrado");
 								dispose();
+								Ventana_Login vl  = new Ventana_Login();
+								vl.setVisible(true);
 							}
 							else {
 								JOptionPane.showMessageDialog(null, "El usuario ya existe");

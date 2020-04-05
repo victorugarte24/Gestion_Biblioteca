@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import es.deusto.spq.db.DB;
+import es.deusto.spq.utils.JLabelGraficoAjustado;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,11 +33,15 @@ public class Ventana_Login extends JFrame{
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
 		setDefaultCloseOperation(Ventana_Login.DISPOSE_ON_CLOSE );
 		setTitle("Biblioteca Online");
-		setSize(500, 400);
+		setSize(600, 400);
 		this.setLocationRelativeTo(null);
 		setResizable(false);
-		this.getContentPane().setBackground(Color.LIGHT_GRAY);
+		this.getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(null);
+		
+		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/java/es/deusto/spq/resources/logoP.png", 160, 120);
+		icono.setLocation(380, 110);
+		getContentPane().add(icono);
 		
 		JButton btnNewButton = new JButton("Iniciar Sesión");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -56,12 +61,12 @@ public class Ventana_Login extends JFrame{
 				}
 			}
 		});
-		btnNewButton.setBounds(52, 287, 141, 29);
+		btnNewButton.setBounds(68, 287, 141, 29);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Registrarse");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton_1.setBounds(323, 287, 128, 29);
+		btnNewButton_1.setBounds(373, 287, 128, 29);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ventana_Registro vr = new Ventana_Registro();
@@ -89,7 +94,7 @@ public class Ventana_Login extends JFrame{
 		
 		JLabel lblNewLabel_2 = new JLabel("Biblioteca Online");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblNewLabel_2.setBounds(141, 35, 205, 29);
+		lblNewLabel_2.setBounds(193, 37, 205, 29);
 		getContentPane().add(lblNewLabel_2);
 		
 		passwordField = new JPasswordField();
