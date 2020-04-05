@@ -1,34 +1,21 @@
 package es.deusto.spq.ventanas;
 
-import java.awt.*;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-import javax.swing.border.LineBorder;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JTextArea;
-import java.awt.Font;
-import javax.swing.JScrollBar;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-
-import es.deusto.spq.ventanas.VentanaPrincipal;
+import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 public class VentanaLibro extends JFrame{
 	/**
@@ -65,6 +52,10 @@ public class VentanaLibro extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
+		this.setLocationRelativeTo(null);
+		setResizable(false);
+		setTitle("Biblioteca Online");
 		contentPane.setBackground(new Color(127, 92, 26));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -76,16 +67,9 @@ public class VentanaLibro extends JFrame{
 		navBarPanel.setBackground(new Color(90, 64, 17));
 		contentPane.add(navBarPanel);
 		navBarPanel.setLayout(null);
-
-		final JButton logobtn = new JButton();
-		logobtn.setBounds(40, 5, 50, 60);
-		logobtn.setBorder(null);
-		logobtn.setFocusPainted(false);
-		logobtn.setFocusable(false);
-		logobtn.setContentAreaFilled(false);
-		logobtn.setIcon(new ImageIcon(VentanaLibro.class.getResource("/es/deusto/spq/resources/logoS.png")));
-		navBarPanel.add(logobtn);
-
+		
+		
+		
 		final JButton btnAtras = new JButton("Atras");
 		btnAtras.setForeground(Color.WHITE);
 		btnAtras.setFont(new Font("Rockwell", Font.BOLD, 14));
@@ -95,6 +79,7 @@ public class VentanaLibro extends JFrame{
 		btnAtras.setContentAreaFilled(false);
 		btnAtras.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		navBarPanel.add(btnAtras);
+		btnAtras.setFocusable(false);
 		
 		btnAtras.addActionListener(new ActionListener() {
 			@Override
@@ -205,6 +190,7 @@ public class VentanaLibro extends JFrame{
 		botonR.setFont(fuente2);
 		botonR.setForeground(Color.BLUE);
 		bookPanel.add(botonR);
+		botonR.setFocusable(false);
 		
 		botonR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

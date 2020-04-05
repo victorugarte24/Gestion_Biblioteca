@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 import es.deusto.spq.clases.Libro;
 import es.deusto.spq.db.DB;
+import es.deusto.spq.utils.JLabelGraficoAjustado;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
@@ -37,6 +38,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ListSelectionModel;
 
@@ -98,13 +101,57 @@ public class VentanaPrincipal extends JFrame {
 		navBarPanel.setBackground(new Color(90, 64, 17));
 		contentPane.add(navBarPanel);
 		navBarPanel.setLayout(null);
+		
+		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/java/es/deusto/spq/resources/logoS.png", 60, 50);
+		icono.setLocation(10, 13);
+		navBarPanel.add(icono);
+		
+		JLabel lblNewLabel_bo = new JLabel("Biblioteca Online");
+		lblNewLabel_bo.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblNewLabel_bo.setBounds(80, 20, 205, 29);
+		navBarPanel.add(lblNewLabel_bo);
+		
+		final JLabelGraficoAjustado lupa = new JLabelGraficoAjustado("src/main/java/es/deusto/spq/resources/lupaP.png", 20, 20);
+		lupa.setLocation(870, 25);
+		lupa.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Buscar");
+			}
+		});
+		navBarPanel.add(lupa);
 
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ventana_Login v = new Ventana_Login();
 				v.setVisible(true);
-				frame.setVisible(false);
+				dispose();
 			}
 		});
 
@@ -135,6 +182,7 @@ public class VentanaPrincipal extends JFrame {
 		btnLibro.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		btnLibro.setContentAreaFilled(false);
 		btnLibro.setForeground(new Color(0,0,0));
+		btnLibro.setFocusable(false);
 		contentPane.add(btnLibro);
 
 
