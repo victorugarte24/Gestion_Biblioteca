@@ -54,6 +54,8 @@ public class VentanaPrincipal extends JFrame {
 
 
 	public VentanaPrincipal() {
+		
+		/*
 		Libro l = new Libro("Romeo y Julieta","William Shakespeare",150,1999999,"aaa", 0);
 		Libro l2 = new Libro("El senyor de los Anillos","J.R.R. Tolkien",300,2000000,"aab", 0);
 		Libro l3 = new Libro("Cronicas de la Torre","Laura Gallego Garcia",200,2000001,"aac", 0);
@@ -67,13 +69,10 @@ public class VentanaPrincipal extends JFrame {
 			JOptionPane.showMessageDialog(this, "No se ha podido añadir a la BD");
 			e.printStackTrace();
 		}
-		
+		 */
 		try {
 			arrayLibros = database.getLibros();
-			
-			JOptionPane.showMessageDialog(this, "Libros cargados");
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(this, "Libros no cargados");
 			e.printStackTrace();
 		}
 		
@@ -88,6 +87,7 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.setBackground(new Color(127, 92, 26));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		this.setLocationRelativeTo(null);
 		contentPane.setLayout(null);
 		
 		JPanel navBarPanel = new JPanel();
@@ -109,9 +109,10 @@ public class VentanaPrincipal extends JFrame {
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaInicio v = new VentanaInicio();
+				dispose();
+				Ventana_Login v = new Ventana_Login();
 				v.setVisible(true);
-				frame.setVisible(false);
+				
 			}
 		});
 		

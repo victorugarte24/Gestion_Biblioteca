@@ -73,7 +73,6 @@ public class DB {
 		while(RS.next()) {
 			Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6));
 			array.add(l);
-			System.out.println(l);
 		}
 		return array;
 	}
