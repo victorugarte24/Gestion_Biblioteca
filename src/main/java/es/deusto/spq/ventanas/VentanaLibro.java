@@ -28,6 +28,8 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import es.deusto.spq.ventanas.VentanaPrincipal;
+
 public class VentanaLibro extends JFrame{
 	/**
 	 *
@@ -120,45 +122,80 @@ public class VentanaLibro extends JFrame{
 		contentPane.add(bookPanel);
 		bookPanel.setLayout(null);
 
+		//Cabecera
+		final JLabel cabezera = new JLabel("Información sobre el libro");
+		cabezera.setBounds(200, 10, 400, 50);
+		Font fuente2 = new Font("Book Antiqua", 3, 20);
+		cabezera.setFont(fuente2);
+		cabezera.setForeground(Color.WHITE);
+		bookPanel.add(cabezera);
+		
 		// Título
 		final JLabel label1 = new JLabel("Título: ");
-		label1.setBounds(20, 10, 150, 50);
-		final Font fuente2 = new Font("Book Antiqua", 3, 20);
+		label1.setBounds(20, 110, 150, 50);
 		label1.setFont(fuente2);
 		label1.setForeground(Color.WHITE);
 		bookPanel.add(label1);
+		
+		// ResultadoTítulo
+		final JLabel label11 = new JLabel("Prueba");
+		label11.setBounds(95, 110, 150, 50);
+		label11.setFont(fuente2);
+		label11.setForeground(Color.WHITE);
+		bookPanel.add(label11);
 
 		// Autor
 		final JLabel label2 = new JLabel("Autor: ");
-		label2.setBounds(20, 75, 150, 50);
+		label2.setBounds(20, 175, 150, 50);
 		label2.setFont(fuente2);
 		label2.setForeground(Color.WHITE);
 		bookPanel.add(label2);
+		
+		// ResultadoAutor
+		final JLabel label22 = new JLabel("Prueba");
+		label22.setBounds(95, 175, 150, 50);
+		label22.setFont(fuente2);
+		label22.setForeground(Color.WHITE);
+		bookPanel.add(label22);
 
 		// Número de páginas
 		final JLabel label3 = new JLabel("Nº de Páginas: ");
-		label3.setBounds(20, 140, 150, 50);
+		label3.setBounds(20, 240, 150, 50);
 		label3.setFont(fuente2);
 		label3.setForeground(Color.WHITE);
 		bookPanel.add(label3);
+		
+		// Resultado NºPáginas
+		final JLabel label33 = new JLabel("Prueba");
+		label33.setBounds(165, 240, 150, 50);
+		label33.setFont(fuente2);
+		label33.setForeground(Color.WHITE);
+		bookPanel.add(label33);
 
 		// ISBN
 		final JLabel label4 = new JLabel("ISBN: ");
-		label4.setBounds(20, 205, 150, 50);
+		label4.setBounds(20, 305, 150, 50);
 		label4.setFont(fuente2);
 		label4.setForeground(Color.WHITE);
 		bookPanel.add(label4);
+		
+		// ISBN
+		final JLabel label44 = new JLabel("Prueba");
+		label44.setBounds(95, 305, 150, 50);
+		label44.setFont(fuente2);
+		label44.setForeground(Color.WHITE);
+		bookPanel.add(label44);
 
 		// Sinopsis
 		final JLabel label5 = new JLabel("Sinopsis: ");
-		label5.setBounds(20, 270, 150, 50);
+		label5.setBounds(20, 370, 150, 50);
 		label5.setFont(fuente2);
 		label5.setForeground(Color.WHITE);
 		bookPanel.add(label5);
 		textarea1=new JTextArea();
 		textarea1.setEditable(false);
 		scrollpane1=new JScrollPane(textarea1);
-		scrollpane1.setBounds(20, 320, 600, 90);
+		scrollpane1.setBounds(20, 425, 600, 90);
 		bookPanel.add(scrollpane1);
 
 	}
