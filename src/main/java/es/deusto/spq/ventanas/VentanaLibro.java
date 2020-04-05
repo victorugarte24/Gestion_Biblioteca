@@ -165,7 +165,7 @@ public class VentanaLibro extends JFrame{
 		label3.setForeground(Color.WHITE);
 		bookPanel.add(label3);
 		
-		// Resultado NºPáginas
+		// ResultadoNºPáginas
 		final JLabel label33 = new JLabel("Prueba");
 		label33.setBounds(165, 240, 150, 50);
 		label33.setFont(fuente2);
@@ -179,7 +179,7 @@ public class VentanaLibro extends JFrame{
 		label4.setForeground(Color.WHITE);
 		bookPanel.add(label4);
 		
-		// ISBN
+		// ResultadoISBN
 		final JLabel label44 = new JLabel("Prueba");
 		label44.setBounds(95, 305, 150, 50);
 		label44.setFont(fuente2);
@@ -197,6 +197,21 @@ public class VentanaLibro extends JFrame{
 		scrollpane1=new JScrollPane(textarea1);
 		scrollpane1.setBounds(20, 425, 600, 90);
 		bookPanel.add(scrollpane1);
+		
+		
+		// Botón Reservar
+		final JButton botonR = new JButton("Reservar Libro");
+		botonR.setBounds(20, 550, 200, 50);
+		botonR.setFont(fuente2);
+		botonR.setForeground(Color.BLUE);
+		bookPanel.add(botonR);
+		
+		botonR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				
+			}
+		});
 
 	}
 }
