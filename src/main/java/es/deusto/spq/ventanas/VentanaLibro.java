@@ -17,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import es.deusto.spq.clases.Libro;
+
 public class VentanaLibro extends JFrame{
 	/**
 	 *
@@ -26,28 +28,7 @@ public class VentanaLibro extends JFrame{
 	private final JTextArea textarea1;
 	static VentanaLibro frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(final String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frame = new VentanaLibro();
-					frame.setSize(1200, 800);
-					frame.setVisible(true);
-
-				} catch (final Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public VentanaLibro() {
+	public VentanaLibro(Libro libro) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
@@ -86,7 +67,7 @@ public class VentanaLibro extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				VentanaPrincipal p = new VentanaPrincipal();
 				p.setVisible(true);
-				frame.dispose();
+				dispose();
 			}
 		});
 
@@ -123,7 +104,8 @@ public class VentanaLibro extends JFrame{
 		bookPanel.add(label1);
 		
 		// ResultadoTítulo
-		final JLabel label11 = new JLabel("Prueba");
+		String Titulolibro = libro.getTitulo();
+		final JLabel label11 = new JLabel(Titulolibro);
 		label11.setBounds(95, 110, 150, 50);
 		label11.setFont(fuente2);
 		label11.setForeground(Color.WHITE);

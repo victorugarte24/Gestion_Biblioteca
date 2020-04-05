@@ -184,12 +184,11 @@ public class VentanaPrincipal extends JFrame {
 		btnLibro.setForeground(new Color(0,0,0));
 		btnLibro.setFocusable(false);
 		contentPane.add(btnLibro);
-
-
 		btnLibro.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				VentanaLibro vl = new VentanaLibro(arrayLibros.get(bookPanel.getSelectedIndex()));
+				vl.setVisible(true);
 			}
 		});
 

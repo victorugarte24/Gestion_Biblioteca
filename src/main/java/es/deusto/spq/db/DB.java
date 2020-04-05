@@ -115,7 +115,6 @@ public class DB {
 		int updatep = update.executeUpdate();
 	}
 
-
 	public static void main(String[] args) throws SQLException {
 		DB db = new DB();
 		Usuario u = new Usuario("Mikel", "Lopez", "dhsd", 3213213, "1234");
