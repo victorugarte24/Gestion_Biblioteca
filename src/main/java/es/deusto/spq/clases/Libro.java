@@ -7,13 +7,15 @@ public class Libro {
     private int numPags;
     private int ISBN;
     private String sinopsis;
+    private int prestado; // 1 prestado, 0 no prestado
 
-	public Libro (String titulo, String autor, int numPags, int ISBN, String sinopsis){
+	public Libro (String titulo, String autor, int numPags, int ISBN, String sinopsis, int prestado){
 		this.titulo = titulo;
 		this.autor = autor;
 		this.numPags = numPags;
 		this.ISBN = ISBN;
 		this.sinopsis = sinopsis;
+		this.prestado = prestado;
 	}
 
 	public String getTitulo() {
@@ -56,7 +58,15 @@ public class Libro {
 		this.sinopsis = sinopsis;
 	}
 	
+	public int getPrestado() {
+		return prestado;
+	}
+
+	public void setPrestado(int prestado) {
+		this.prestado = prestado;
+	}
+
 	public String toString() {
-		return "\n"+ this.getTitulo().toUpperCase() + "\nAutor: " + this.getAutor() + "\nNumero de paginas: " + this.getNumPags() + "\nISBN: " + this.getISBN() + "\nSinopsis: "+ this.getSinopsis() + "\n\n";
+		return "\n"+ this.getTitulo().toUpperCase() + "\nAutor: " + this.getAutor() + "\nNumero de paginas: " + this.getNumPags() + "\nISBN: " + this.getISBN() + "\nSinopsis: "+ this.getSinopsis() + "\nPrestado: "+ this.getPrestado() + "\n\n";
 	}
 }

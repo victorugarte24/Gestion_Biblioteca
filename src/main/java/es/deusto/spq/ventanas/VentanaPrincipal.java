@@ -1,37 +1,29 @@
 package es.deusto.spq.ventanas;
 
-import java.awt.*;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.border.LineBorder;
-import javax.imageio.ImageIO;
+
+import es.deusto.spq.clases.Libro;
+import es.deusto.spq.db.DB;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import es.deusto.spq.clases.Libro;
 
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 
@@ -43,6 +35,7 @@ public class VentanaPrincipal extends JFrame {
 	private ArrayList<Libro> arrayLibros = new ArrayList<Libro>();
 	private File bd;
 	private static VentanaPrincipal frame;
+	private DB database = new DB();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -61,7 +54,29 @@ public class VentanaPrincipal extends JFrame {
 
 
 	public VentanaPrincipal() {
-		cargarlibros();
+		Libro l = new Libro("Romeo y Julieta","William Shakespeare",150,1999999,"aaa", 0);
+		Libro l2 = new Libro("El senyor de los Anillos","J.R.R. Tolkien",300,2000000,"aab", 0);
+		Libro l3 = new Libro("Cronicas de la Torre","Laura Gallego Garcia",200,2000001,"aac", 0);
+		
+		try {
+			database.AnyadirLibro(l);
+			database.AnyadirLibro(l2);
+			database.AnyadirLibro(l3);
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(this, "No se ha podido añadir a la BD");
+			e.printStackTrace();
+		}
+		
+		try {
+			arrayLibros = database.getLibros();
+			
+			JOptionPane.showMessageDialog(this, "Libros cargados");
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(this, "Libros no cargados");
+			e.printStackTrace();
+		}
+		
 		init();
 	}
 	
@@ -88,7 +103,7 @@ public class VentanaPrincipal extends JFrame {
 		logobtn.setFocusPainted(false);
 		logobtn.setFocusable(false);
 		logobtn.setContentAreaFilled(false);		
-		logobtn.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/logoS.png")));
+		//logobtn.setIcon(new ImageIcon(getClass().getResource("resources/logoS.png")));
 		navBarPanel.add(logobtn);		
 		
 		JButton btnSalir = new JButton("Salir");
@@ -115,7 +130,7 @@ public class VentanaPrincipal extends JFrame {
 		loginPanel.setBorder(null);
 		JLabel loginIMG = new JLabel();
 		loginIMG.setBounds(1050, 20, 24, 26);
-		loginIMG.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/flechaB.png")));
+		//loginIMG.setIcon(new ImageIcon(getClass().getResource("/resources/flechaB.png")));
 		loginPanel.add(loginIMG);
 		navBarPanel.add(loginPanel);
 		
@@ -128,7 +143,7 @@ public class VentanaPrincipal extends JFrame {
 		searchbtn.setOpaque(false);
 		searchbtn.setContentAreaFilled(false);
 		searchbtn.setBounds(855, 20, 30, 30);
-		searchbtn.setIcon(new ImageIcon(getClass().getResource("/es/deusto/spq/resources/lupaP.png")));
+		//searchbtn.setIcon(new ImageIcon(getClass().getResource("/resources/lupaP.png")));
 		searchbtn.setBorder(null);
 		searchbtn.setFocusable(true);
 		navBarPanel.add(searchbtn);
@@ -148,34 +163,11 @@ public class VentanaPrincipal extends JFrame {
 			
 	}
 	
-	
-	public void cargarlibros() {
-		bd = new File((getClass().getResource("/es/deusto/spq/BD.txt")).getPath());
-		try {
-			FileReader fr = new FileReader(bd);
-			BufferedReader br = new BufferedReader(fr);
-			String l;
-			
-			try {
-				while( (l=br.readLine()) !=null) {
-					String[] f = l.split(",");
-					Libro b = new Libro(f[0],f[1], Integer.parseInt(f[2]), Integer.parseInt(f[3]), f[4]);
-					System.out.println(b);
-					arrayLibros.add(b);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(this, "Archivo no encontrado.");
-		}
-	}
-	
 	public void filtrarLibros() {
 		for(Libro l : arrayLibros) {
 			bookPanel.append("\n   " + l.getTitulo() + "\n");
 		}
 	}
 }
+
 

@@ -7,7 +7,7 @@ Gestión de Biblioteca
 
 ### Guía de usuario (sin terminar, además, luego se pueden añadir pantallazos)
 ---
-Para usar la aplicación, el usuario debe registrarse. Una vez registrado, iniciará sesión y ya podra utilizar esta Gestión de Bibliotecas.
+Para usar la aplicación, el usuario debe registrarse. Una vez registrado, iniciará sesión y ya podrá utilizar la aplicación de gestión de la biblioteca.
 Al entrar, el usuario estará en la ventana principal, dicha ventana será el menú principal de la aplicación. 
 Si accede a la ventana libro, podrá buscar la información de los libros que estén en la biblioteca, asi como tomarlo prestado en caso de ser posible.
 A continuación veremos un pequeño resumen de las ventanas:
