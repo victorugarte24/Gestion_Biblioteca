@@ -1,35 +1,38 @@
 package es.deusto.spq.ventanas;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import es.deusto.spq.clases.Libro;
+import es.deusto.spq.db.DB;
 
 public class VentanaLibro extends JFrame{
 	/**
 	 *
 	 */
 	private final JPanel contentPane;
-	private final JScrollPane scrollpane1;
-	private final JTextArea textarea1;
+	
 	static VentanaLibro frame;
+	String Titulolibro;
 
 	public VentanaLibro(Libro libro) {
 		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
@@ -48,8 +51,6 @@ public class VentanaLibro extends JFrame{
 		navBarPanel.setBackground(new Color(90, 64, 17));
 		contentPane.add(navBarPanel);
 		navBarPanel.setLayout(null);
-		
-		
 		
 		final JButton btnAtras = new JButton("Atras");
 		btnAtras.setForeground(Color.WHITE);
@@ -104,9 +105,9 @@ public class VentanaLibro extends JFrame{
 		bookPanel.add(label1);
 		
 		// ResultadoTítulo
-		String Titulolibro = libro.getTitulo();
+		Titulolibro = libro.getTitulo();
 		final JLabel label11 = new JLabel(Titulolibro);
-		label11.setBounds(95, 110, 150, 50);
+		label11.setBounds(95, 110, 400, 50);
 		label11.setFont(fuente2);
 		label11.setForeground(Color.WHITE);
 		bookPanel.add(label11);
@@ -119,8 +120,9 @@ public class VentanaLibro extends JFrame{
 		bookPanel.add(label2);
 		
 		// ResultadoAutor
-		final JLabel label22 = new JLabel("Prueba");
-		label22.setBounds(95, 175, 150, 50);
+		String AutorLibro = libro.getAutor();
+		final JLabel label22 = new JLabel(AutorLibro);
+		label22.setBounds(95, 175, 400, 50);
 		label22.setFont(fuente2);
 		label22.setForeground(Color.WHITE);
 		bookPanel.add(label22);
@@ -133,13 +135,15 @@ public class VentanaLibro extends JFrame{
 		bookPanel.add(label3);
 		
 		// ResultadoNºPáginas
-		final JLabel label33 = new JLabel("Prueba");
+		String numeroPaginas = Integer.toString(libro.getNumPags());
+		final JLabel label33 = new JLabel(numeroPaginas);
 		label33.setBounds(165, 240, 150, 50);
 		label33.setFont(fuente2);
 		label33.setForeground(Color.WHITE);
 		bookPanel.add(label33);
 
 		// ISBN
+		
 		final JLabel label4 = new JLabel("ISBN: ");
 		label4.setBounds(20, 305, 150, 50);
 		label4.setFont(fuente2);
@@ -147,8 +151,9 @@ public class VentanaLibro extends JFrame{
 		bookPanel.add(label4);
 		
 		// ResultadoISBN
-		final JLabel label44 = new JLabel("Prueba");
-		label44.setBounds(95, 305, 150, 50);
+		String numeroISBN = Integer.toString(libro.getISBN());
+		final JLabel label44 = new JLabel(numeroISBN);
+		label44.setBounds(95, 305, 400, 50);
 		label44.setFont(fuente2);
 		label44.setForeground(Color.WHITE);
 		bookPanel.add(label44);
@@ -159,11 +164,15 @@ public class VentanaLibro extends JFrame{
 		label5.setFont(fuente2);
 		label5.setForeground(Color.WHITE);
 		bookPanel.add(label5);
-		textarea1=new JTextArea();
-		textarea1.setEditable(false);
-		scrollpane1=new JScrollPane(textarea1);
-		scrollpane1.setBounds(20, 425, 600, 90);
-		bookPanel.add(scrollpane1);
+		
+		
+		// ResultadoSinopsis
+		String sinopsisLibro = libro.getSinopsis();
+		final JLabel label55 = new JLabel(sinopsisLibro);
+		label55.setBounds(95, 370, 400, 50);
+		label55.setFont(fuente2);
+		label55.setForeground(Color.WHITE);
+		bookPanel.add(label55);
 		
 		
 		// Botón Reservar
@@ -173,11 +182,24 @@ public class VentanaLibro extends JFrame{
 		botonR.setForeground(Color.BLUE);
 		bookPanel.add(botonR);
 		botonR.setFocusable(false);
-		
+
 		botonR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-				
+				DB db = new DB();
+				try {
+					if (db.comprobarLibroPrestado(Titulolibro) == 0) {
+						db.tomarPrestadoLibro(Titulolibro);
+						JOptionPane.showMessageDialog(null, "Libro Reservado");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "El libro esta en manos de otro usuario. No se puede tomar prestado.");
+					}
+				} catch (HeadlessException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} 
+
 			}
 		});
 

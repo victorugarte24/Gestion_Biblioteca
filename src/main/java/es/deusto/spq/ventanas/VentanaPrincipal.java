@@ -32,6 +32,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.TextField;
 import java.awt.Toolkit;
 
 import javax.swing.JTextArea;
@@ -53,6 +54,7 @@ public class VentanaPrincipal extends JFrame {
 	private File bd;
 	private static VentanaPrincipal frame;
 	private DB database = new DB();
+	private String libroBuscado;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -141,7 +143,14 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Buscar");
+				for (int i = 0; i < arrayLibros.size(); i++) {
+					libroBuscado = txtField.getText();
+					if (libroBuscado.equals(arrayLibros.get(i).getTitulo())) {
+						VentanaLibro vl  = new VentanaLibro(arrayLibros.get(i));
+						vl.setVisible(true);
+						System.out.println("Libro encontrado");
+					}
+				}
 			}
 		});
 		navBarPanel.add(lupa);

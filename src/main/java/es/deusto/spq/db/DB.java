@@ -114,6 +114,14 @@ public class DB {
 		PreparedStatement update = con.prepareStatement("UPDATE LIBROS SET PRESTADO = 0 WHERE TITULO = '" + titulo +"'");
 		int updatep = update.executeUpdate();
 	}
+	
+	public Libro buscarLibro(String s) throws SQLException {
+        Connection con = initBD();
+        Statement stmt = con.createStatement();
+        ResultSet RS = stmt.executeQuery("SELECT * FROM libros WHERE Titulo = '" + s + "'");
+        Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
+        return l;
+    }
 
 	public static void main(String[] args) throws SQLException {
 		DB db = new DB();
