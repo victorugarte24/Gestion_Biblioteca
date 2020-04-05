@@ -27,7 +27,7 @@ public class Ventana_Login extends JFrame{
 	private JTextField textField_1;
 	private JPasswordField passwordField;
 	
-	Ventana_Login(){
+	public Ventana_Login(){
 		
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 14));
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
