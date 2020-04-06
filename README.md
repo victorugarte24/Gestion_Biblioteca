@@ -20,6 +20,13 @@ A continuación veremos un pequeño resumen de las ventanas:
 
 ![VentanaRegistro](https://user-images.githubusercontent.com/43268879/78472206-40a9d500-7737-11ea-8112-5b9c3d0b2a3d.jpg)
 
+* Al acceder a la aplicación, el usuario se encontrará con esta ventana, que será la principal. Aquí, el usuario podrá ver una serie de libros, además de poder hacer búsquedas mediante la barra superior.
+
+![ventanaPrincipal](https://user-images.githubusercontent.com/43268879/78564087-3ca3b300-781c-11ea-9eb8-220d377dbb67.jpg)
+
+* En está última ventana, denominada como ventana libro, será la que el usuario verá al realizar una búsqueda de algún libro. En dicha ventana se podrá ver la información y existirá la opción de poder reservarlo.
+
+![ventanaLibro](https://user-images.githubusercontent.com/43268879/78564571-ebe08a00-781c-11ea-9596-d4235451665a.jpg)
 
 
 ## Proyecto realizado con:
