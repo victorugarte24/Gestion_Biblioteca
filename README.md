@@ -5,7 +5,7 @@ Gestión de Biblioteca
 ---
   Esta aplicación está diseñada para ser utilizada para la gestión de bibliotecas. Los usuarios tienen distintos modos para encontrar información sobre los libros que se encuentran en el lugar, además, tienen la opción de reservarlos. Por otro lado, los bibliotecarios pueden conocer la ubicacion de los libros que se encuentran en sus instalaciones.
 
-### Guía de usuario (sin terminar, además, luego se pueden añadir pantallazos)
+### Guía de usuario
 ---
 Para usar la aplicación, el usuario debe registrarse. Una vez registrado, iniciará sesión y ya podrá utilizar la aplicación de gestión de la biblioteca.
 Al entrar, el usuario estará en la ventana principal, dicha ventana será el menú principal de la aplicación. 

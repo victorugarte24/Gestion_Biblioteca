@@ -192,7 +192,7 @@ public class VentanaLibro extends JFrame{
 						JOptionPane.showMessageDialog(null, "Libro Reservado");
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "El libro esta en manos de otro usuario. No se puede tomar prestado.");
+						JOptionPane.showMessageDialog(null, "El libro no esta disponible para ser prestado.");
 					}
 				} catch (HeadlessException e1) {
 					e1.printStackTrace();
