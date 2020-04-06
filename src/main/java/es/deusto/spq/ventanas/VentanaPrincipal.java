@@ -49,7 +49,7 @@ public class VentanaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtField;
-	private JList bookPanel;
+	private JList bookPanel = new JList();
 	private ArrayList<Libro> arrayLibros = new ArrayList<Libro>();
 	private File bd;
 	private static VentanaPrincipal frame;
@@ -143,14 +143,20 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				for (int i = 0; i < arrayLibros.size(); i++) {
-					libroBuscado = txtField.getText();
-					if (libroBuscado.equals(arrayLibros.get(i).getTitulo())) {
-						VentanaLibro vl  = new VentanaLibro(arrayLibros.get(i));
-						vl.setVisible(true);
-						System.out.println("Libro encontrado");
+
+				libroBuscado = txtField.getText().toLowerCase();
+				
+				if(libroBuscado.isEmpty()) {
+					cargarLista(arrayLibros);
+				}else {
+					for (int i = 0; i < arrayLibros.size(); i++) {
+						if (libroBuscado.equals(arrayLibros.get(i).getTitulo().toLowerCase())) {
+							ArrayList<Libro> a = new ArrayList<Libro>();
+							a.add(arrayLibros.get(i));
+							cargarLista(a);
+						}
 					}
-				}
+				}	
 			}
 		});
 		navBarPanel.add(lupa);
@@ -178,7 +184,7 @@ public class VentanaPrincipal extends JFrame {
 		navBarPanel.add(txtField);
 		txtField.setColumns(10);
 
-		cargarLista();
+		cargarLista(arrayLibros);
 
 		JScrollPane scroll = new JScrollPane(bookPanel);
 		scroll.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
@@ -204,12 +210,14 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 
-	public void cargarLista() {
+	public void cargarLista(ArrayList<Libro> a) {
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
-		for(Libro l : arrayLibros) {
+		for(Libro l : a) {
 			modelo.addElement(l.getTitulo());
 		}
-		bookPanel = new JList(modelo);
+		
+		bookPanel.setModel(modelo);
+		bookPanel.updateUI();
 		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)bookPanel.getCellRenderer();  
 		renderer.setHorizontalAlignment(JLabel.CENTER);  
 		bookPanel.setFixedCellHeight(40);
@@ -219,6 +227,5 @@ public class VentanaPrincipal extends JFrame {
 		bookPanel.setForeground(new Color(0, 0, 0));
 		bookPanel.setBackground(new Color(90, 64, 17));
 	}
-	
 }
 
