@@ -66,8 +66,6 @@ public class VentanaLibro extends JFrame{
 		btnAtras.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaPrincipal p = new VentanaPrincipal();
-				p.setVisible(true);
 				dispose();
 			}
 		});
