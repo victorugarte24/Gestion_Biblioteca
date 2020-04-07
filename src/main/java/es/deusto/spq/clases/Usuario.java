@@ -49,7 +49,7 @@ public class Usuario {
 	}
 
 	public void setDNI(int DNI) {
-		DNI = DNI;
+		this.DNI = DNI;
 	}
 
 	public String getContrasenya() {
