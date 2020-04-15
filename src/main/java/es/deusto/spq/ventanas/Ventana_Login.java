@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 
 public class Ventana_Login extends JFrame{
 	
@@ -39,7 +40,7 @@ public class Ventana_Login extends JFrame{
 		this.getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(null);
 		
-		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/java/es/deusto/spq/resources/logoP.png", 160, 120);
+		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/java/es/deusto/spq/resources/logoP.png", 160, 135);
 		icono.setLocation(380, 110);
 		getContentPane().add(icono);
 		
@@ -63,12 +64,12 @@ public class Ventana_Login extends JFrame{
 				}
 			}
 		});
-		btnNewButton.setBounds(68, 287, 141, 29);
+		btnNewButton.setBounds(68, 318, 141, 29);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Registrarse");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnNewButton_1.setBounds(373, 287, 128, 29);
+		btnNewButton_1.setBounds(380, 318, 128, 29);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ventana_Registro vr = new Ventana_Registro();
@@ -103,6 +104,21 @@ public class Ventana_Login extends JFrame{
 		passwordField.setFont(new Font("Tahoma", Font.BOLD, 14));
 		passwordField.setBounds(195, 204, 141, 21);
 		getContentPane().add(passwordField);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Bibliotecario");
+		rdbtnNewRadioButton.setBackground(Color.LIGHT_GRAY);
+		rdbtnNewRadioButton.setBounds(346, 270, 103, 21);
+		getContentPane().add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Usuario");
+		rdbtnNewRadioButton_1.setBackground(Color.LIGHT_GRAY);
+		rdbtnNewRadioButton_1.setBounds(473, 270, 103, 21);
+		getContentPane().add(rdbtnNewRadioButton_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("Seleccione el tipo de usuario:");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_3.setBounds(81, 270, 255, 17);
+		getContentPane().add(lblNewLabel_3);
 		
 	}
 
