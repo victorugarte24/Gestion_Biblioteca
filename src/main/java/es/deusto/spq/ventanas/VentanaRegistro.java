@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
-public class Ventana_Registro extends JFrame{
+public class VentanaRegistro extends JFrame{
 
 	/**
 	 * 
@@ -32,11 +32,11 @@ public class Ventana_Registro extends JFrame{
 	private static JPasswordField passwordField;
 	private static JPasswordField passwordField_1;
 
-	Ventana_Registro(){
+	VentanaRegistro(){
 
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 14));
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
-		setDefaultCloseOperation(Ventana_Registro.DISPOSE_ON_CLOSE );
+		setDefaultCloseOperation(VentanaRegistro.DISPOSE_ON_CLOSE );
 		setTitle("Biblioteca Online");
 		setSize(570, 470);
 		this.setLocationRelativeTo(null);
@@ -100,7 +100,7 @@ public class Ventana_Registro extends JFrame{
 								}
 								JOptionPane.showMessageDialog(null, "Usuario Registrado");
 								dispose();
-								Ventana_Login vl  = new Ventana_Login();
+								VentanaLogin vl  = new VentanaLogin();
 								vl.setVisible(true);
 							}
 							else {
@@ -129,7 +129,7 @@ public class Ventana_Registro extends JFrame{
 		btnNewButton_1.setFocusable(false);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ventana_Login vi = new Ventana_Login();
+				VentanaLogin vi = new VentanaLogin();
 				vi.setVisible(true);
 				dispose();
 			}
@@ -176,7 +176,7 @@ public class Ventana_Registro extends JFrame{
 	}
 
 	public static void main (String [ ] args) {
-		Ventana_Registro v = new Ventana_Registro();
+		VentanaRegistro v = new VentanaRegistro();
 		v.setVisible(true);
 	}
 }

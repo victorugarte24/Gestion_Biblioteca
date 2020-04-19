@@ -1,10 +1,10 @@
 package es.deusto.spq.main;
 
-import es.deusto.spq.ventanas.Ventana_Login;
+import es.deusto.spq.ventanas.VentanaLogin;
 
 public class main {
 	public static void main (String [ ] args) {
-		Ventana_Login v = new Ventana_Login();
+		VentanaLogin v = new VentanaLogin();
 		v.setVisible(true);
 	}
 }

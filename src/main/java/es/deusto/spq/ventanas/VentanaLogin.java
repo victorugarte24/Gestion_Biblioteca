@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 
-public class Ventana_Login extends JFrame{
+public class VentanaLogin extends JFrame{
 	
 	/**
 	 * 
@@ -30,11 +30,11 @@ public class Ventana_Login extends JFrame{
 	private JRadioButton rdbtnNewRadioButton;
 	private JRadioButton rdbtnNewRadioButton_1;
 	
-	public Ventana_Login(){
+	public VentanaLogin(){
 		
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 14));
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
-		setDefaultCloseOperation(Ventana_Login.DISPOSE_ON_CLOSE );
+		setDefaultCloseOperation(VentanaLogin.DISPOSE_ON_CLOSE );
 		setTitle("Biblioteca Online");
 		setSize(600, 400);
 		this.setLocationRelativeTo(null);
@@ -89,7 +89,7 @@ public class Ventana_Login extends JFrame{
 		btnNewButton_1.setBounds(380, 318, 128, 29);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ventana_Registro vr = new Ventana_Registro();
+				VentanaRegistro vr = new VentanaRegistro();
 				vr.setVisible(true);
 				dispose();
 			}
@@ -156,7 +156,7 @@ public class Ventana_Login extends JFrame{
 	}
 
 	public static void main (String [ ] args) {
-		Ventana_Login v = new Ventana_Login();
+		VentanaLogin v = new VentanaLogin();
 		v.setVisible(true);
 	}
 }

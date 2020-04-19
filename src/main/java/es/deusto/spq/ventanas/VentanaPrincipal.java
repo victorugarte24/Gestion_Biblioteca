@@ -164,7 +164,7 @@ public class VentanaPrincipal extends JFrame {
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ventana_Login v = new Ventana_Login();
+				VentanaLogin v = new VentanaLogin();
 				v.setVisible(true);
 				dispose();
 			}
