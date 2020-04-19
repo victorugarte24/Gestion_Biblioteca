@@ -27,6 +27,8 @@ public class Ventana_Login extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_1;
 	private JPasswordField passwordField;
+	private JRadioButton rdbtnNewRadioButton;
+	private JRadioButton rdbtnNewRadioButton_1;
 	
 	public Ventana_Login(){
 		
@@ -39,26 +41,41 @@ public class Ventana_Login extends JFrame{
 		setResizable(false);
 		this.getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(null);
-		
+
 		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/java/es/deusto/spq/resources/logoP.png", 160, 135);
 		icono.setLocation(380, 110);
 		getContentPane().add(icono);
-		
+
 		JButton btnNewButton = new JButton("Iniciar Sesión");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DB database = new DB();
 				try {
-					if (database.comprobarContrasenya(textField_1.getText()).equals(passwordField.getText())) {
-						JOptionPane.showMessageDialog(null, "Usuario Correcto");
-						dispose();
-						VentanaPrincipal vp = new VentanaPrincipal();
-						vp.setVisible(true);
+
+					if (rdbtnNewRadioButton.isSelected() == true) { //Login Bibliotecario
+						if (database.comprobarContrasenyaBibliotecario(textField_1.getText()).equals(passwordField.getText())) {
+							JOptionPane.showMessageDialog(null, "Usuario Correcto");
+							dispose();
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Usuario Incorrecto");
+						}
 					}
-					else {
-						JOptionPane.showMessageDialog(null, "Usuario Incorrecto");
+					else if (rdbtnNewRadioButton_1.isSelected() == true) { //Login Usuario
+						if (database.comprobarContrasenya(textField_1.getText()).equals(passwordField.getText())) {
+							JOptionPane.showMessageDialog(null, "Usuario Correcto");
+							dispose();
+							VentanaPrincipal vp = new VentanaPrincipal();
+							vp.setVisible(true);
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Usuario Incorrecto");
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Seleccione el tipo de usuario");
 					}
+
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -105,14 +122,30 @@ public class Ventana_Login extends JFrame{
 		passwordField.setBounds(195, 204, 141, 21);
 		getContentPane().add(passwordField);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Bibliotecario");
+		rdbtnNewRadioButton = new JRadioButton("Bibliotecario");
 		rdbtnNewRadioButton.setBackground(Color.LIGHT_GRAY);
 		rdbtnNewRadioButton.setBounds(346, 270, 103, 21);
+		rdbtnNewRadioButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				rdbtnNewRadioButton_1.setSelected(false);
+
+			}
+		});
 		getContentPane().add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Usuario");
+
+		rdbtnNewRadioButton_1 = new JRadioButton("Usuario");
 		rdbtnNewRadioButton_1.setBackground(Color.LIGHT_GRAY);
 		rdbtnNewRadioButton_1.setBounds(473, 270, 103, 21);
+		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				rdbtnNewRadioButton.setSelected(false);
+
+			}
+		});
 		getContentPane().add(rdbtnNewRadioButton_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Seleccione el tipo de usuario:");

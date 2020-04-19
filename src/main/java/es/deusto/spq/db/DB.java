@@ -122,9 +122,24 @@ public class DB {
         Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
         return l;
     }
+	
+	public String comprobarContrasenyaBibliotecario(String IDbibliotecario) throws SQLException {
+		String contrasenya = "";
+		Connection con = initBD();
+		Statement stmt = con.createStatement();
+		String query = "SELECT CONTRASENYA FROM bibliotecarios where ID = '" + IDbibliotecario +"'";
+		ResultSet RS = stmt.executeQuery(query);
+		while (RS.next()) {
+			contrasenya = RS.getString("Contrasenya");
+		}
+		return contrasenya;
+	}
+	
+	
 
 	public static void main(String[] args) throws SQLException {
 		DB db = new DB();
+		System.out.println(db.comprobarContrasenyaBibliotecario("admin1"));
 	}
 
 }
