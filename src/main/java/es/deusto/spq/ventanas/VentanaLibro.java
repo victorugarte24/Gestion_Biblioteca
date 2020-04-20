@@ -20,6 +20,7 @@ import javax.swing.border.LineBorder;
 
 import es.deusto.spq.clases.Libro;
 import es.deusto.spq.db.DB;
+import es.deusto.spq.utils.JLabelGraficoAjustado;
 
 public class VentanaLibro extends JFrame{
 	/**
@@ -40,7 +41,7 @@ public class VentanaLibro extends JFrame{
 		this.setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle("Biblioteca Online");
-		contentPane.setBackground(new Color(127, 92, 26));
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -48,15 +49,15 @@ public class VentanaLibro extends JFrame{
 		final JPanel navBarPanel = new JPanel();
 		navBarPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		navBarPanel.setBounds(-5, -5, 1203, 70);
-		navBarPanel.setBackground(new Color(90, 64, 17));
+		navBarPanel.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(navBarPanel);
 		navBarPanel.setLayout(null);
 		
 		final JButton btnAtras = new JButton("Atras");
+		btnAtras.setBounds(1040, 20, 140, 30);
 		btnAtras.setForeground(Color.WHITE);
 		btnAtras.setFont(new Font("Rockwell", Font.BOLD, 14));
 		btnAtras.setFocusPainted(false);
-		btnAtras.setBounds(1040, 20, 140, 30);
 		btnAtras.setOpaque(false);
 		btnAtras.setContentAreaFilled(false);
 		btnAtras.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
@@ -66,34 +67,47 @@ public class VentanaLibro extends JFrame{
 		btnAtras.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				VentanaPrincipal v1 = new VentanaPrincipal();
+				v1.setVisible(true);
 				dispose();
 			}
 		});
 
 		final JPanel atrasPanel = new JPanel();
+		atrasPanel.setBounds(1050, 18, 26, 30);
 		atrasPanel.setOpaque(false);
-		atrasPanel.setBounds(1050, 16, 26, 30);
 		atrasPanel.setBorder(null);
+		atrasPanel.setLayout(null);
 		final JLabel atrasIMG = new JLabel();
-		atrasIMG.setBounds(1050, 20, 24, 26);
+		atrasIMG.setBounds(1, 5, 25, 25);
 		atrasIMG.setIcon(new ImageIcon(VentanaLibro.class.getResource("/es/deusto/spq/resources/flechaB.png")));
 		atrasPanel.add(atrasIMG);
 		navBarPanel.add(atrasPanel);
+		
+		JLabel lblBiblioteca = new JLabel("Biblioteca Online");
+		lblBiblioteca.setBounds(80, 20, 205, 29);
+		lblBiblioteca.setFont(new Font("Tahoma", Font.BOLD, 24));
+		navBarPanel.add(lblBiblioteca);
+		
+		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/java/es/deusto/spq/resources/logoS.png", 60, 50);
+		icono.setBounds(10, 13, 60, 50);
+		navBarPanel.add(icono);
 
-		final JScrollPane bookPanel = new JScrollPane();
+		final JPanel bookPanel = new JPanel();
+		bookPanel.setLayout(null);
 		bookPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		bookPanel.setBounds(197, 62, 800, 711);
-		bookPanel.setBackground(new Color(90, 64, 17));
+		bookPanel.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(bookPanel);
-		bookPanel.setLayout(null);
+		
 
 		//Cabecera
-		final JLabel cabezera = new JLabel("Información sobre el libro");
-		cabezera.setBounds(200, 10, 400, 50);
+		final JLabel cabecera = new JLabel("Información sobre el libro:");
+		cabecera.setBounds(262, 11, 270, 50);
 		Font fuente2 = new Font("Book Antiqua", 3, 20);
-		cabezera.setFont(fuente2);
-		cabezera.setForeground(Color.WHITE);
-		bookPanel.add(cabezera);
+		cabecera.setFont(new Font("Tahoma", Font.BOLD, 20));
+		cabecera.setForeground(Color.BLACK);
+		bookPanel.add(cabecera);
 		
 		// Título
 		final JLabel label1 = new JLabel("Título: ");
@@ -141,7 +155,6 @@ public class VentanaLibro extends JFrame{
 		bookPanel.add(label33);
 
 		// ISBN
-		
 		final JLabel label4 = new JLabel("ISBN: ");
 		label4.setBounds(20, 305, 150, 50);
 		label4.setFont(fuente2);
@@ -175,12 +188,14 @@ public class VentanaLibro extends JFrame{
 		
 		// Botón Reservar
 		final JButton botonR = new JButton("Reservar Libro");
-		botonR.setBounds(20, 550, 200, 50);
-		botonR.setFont(fuente2);
-		botonR.setForeground(Color.BLUE);
-		bookPanel.add(botonR);
+		botonR.setBounds(60, 550, 200, 50);
+		botonR.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 17));
+		botonR.setForeground(Color.BLACK);
+		botonR.setContentAreaFilled(false);
+		botonR.setBorder(new LineBorder(new Color (0,0,0),3));
 		botonR.setFocusable(false);
-
+		bookPanel.add(botonR);
+		
 		botonR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DB db = new DB();

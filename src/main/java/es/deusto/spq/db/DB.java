@@ -115,12 +115,25 @@ public class DB {
 		int updatep = update.executeUpdate();
 	}
 	
-	public Libro buscarLibro(String s) throws SQLException {
+	public Libro buscarLibroTitulo(String s) throws SQLException {
         Connection con = initBD();
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libros WHERE Titulo = '" + s + "'");
         Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
         return l;
+    }
+	
+	public ArrayList<Libro> buscarLibroAutor(String s) throws SQLException {
+        ArrayList<Libro> a = new ArrayList<Libro>();
+		
+		Connection con = initBD();
+        Statement stmt = con.createStatement();
+        ResultSet RS = stmt.executeQuery("SELECT * FROM libros WHERE Autor = '" + s + "'");
+        while(RS.next()) {
+        	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
+            a.add(l);
+        }
+        return a;
     }
 	
 	public String comprobarContrasenyaBibliotecario(String IDbibliotecario) throws SQLException {

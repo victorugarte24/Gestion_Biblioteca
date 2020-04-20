@@ -27,6 +27,7 @@ import es.deusto.spq.clases.Libro;
 import es.deusto.spq.db.DB;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -43,6 +44,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ListSelectionModel;
+import javax.swing.JRadioButton;
 
 
 public class VentanaPrincipal extends JFrame {
@@ -55,6 +57,9 @@ public class VentanaPrincipal extends JFrame {
 	private static VentanaPrincipal frame;
 	private DB database = new DB();
 	private String libroBuscado;
+	private ButtonGroup filtro;
+	private JRadioButton rdbtnAutor;
+	private JRadioButton rdbtnTitulo;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -70,7 +75,6 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 	}
-
 
 	public VentanaPrincipal() {
 
@@ -89,7 +93,7 @@ public class VentanaPrincipal extends JFrame {
 		setBounds(100, 100, 1200, 800);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(127, 92, 26));
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		this.setLocationRelativeTo(null);
@@ -100,7 +104,7 @@ public class VentanaPrincipal extends JFrame {
 		JPanel navBarPanel = new JPanel();
 		navBarPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		navBarPanel.setBounds(-5, -5, 1203, 70);
-		navBarPanel.setBackground(new Color(90, 64, 17));
+		navBarPanel.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(navBarPanel);
 		navBarPanel.setLayout(null);
 		
@@ -108,10 +112,10 @@ public class VentanaPrincipal extends JFrame {
 		icono.setLocation(10, 13);
 		navBarPanel.add(icono);
 		
-		JLabel lblNewLabel_bo = new JLabel("Biblioteca Online");
-		lblNewLabel_bo.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblNewLabel_bo.setBounds(80, 20, 205, 29);
-		navBarPanel.add(lblNewLabel_bo);
+		JLabel lblBiblioteca = new JLabel("Biblioteca Online");
+		lblBiblioteca.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblBiblioteca.setBounds(80, 20, 205, 29);
+		navBarPanel.add(lblBiblioteca);
 		
 		final JLabelGraficoAjustado lupa = new JLabelGraficoAjustado("src/main/java/es/deusto/spq/resources/lupaP.png", 20, 20);
 		lupa.setLocation(870, 25);
@@ -149,16 +153,27 @@ public class VentanaPrincipal extends JFrame {
 				if(libroBuscado.isEmpty()) {
 					cargarLista(arrayLibros);
 				}else {
-					for (int i = 0; i < arrayLibros.size(); i++) {
-						if (libroBuscado.equals(arrayLibros.get(i).getTitulo().toLowerCase())) {
-							ArrayList<Libro> a = new ArrayList<Libro>();
-							a.add(arrayLibros.get(i));
-							cargarLista(a);
+					if(rdbtnTitulo.isSelected()==true) {
+						for (int i = 0; i < arrayLibros.size(); i++) {
+							if (libroBuscado.equals(arrayLibros.get(i).getTitulo().toLowerCase())) {
+								ArrayList<Libro> a = new ArrayList<Libro>();
+								a.add(arrayLibros.get(i));
+								cargarLista(a);
+							}
 						}
-					}
+					} else if(rdbtnAutor.isSelected()==true) {
+						for (int i = 0; i < arrayLibros.size(); i++) {
+							if(libroBuscado.equals(arrayLibros.get(i).getAutor().toLowerCase())) {
+								ArrayList<Libro> a = new ArrayList<Libro>();
+								a.add(arrayLibros.get(i));
+								cargarLista(a);
+							}
+						}
+					}	
 				}	
 			}
 		});
+		
 		navBarPanel.add(lupa);
 
 		JButton btnSalir = new JButton("Salir");
@@ -199,16 +214,39 @@ public class VentanaPrincipal extends JFrame {
 		btnLibro.setForeground(new Color(0,0,0));
 		btnLibro.setFocusable(false);
 		contentPane.add(btnLibro);
+		
+		JLabel lblFiltro = new JLabel("Filtrar por:");
+		lblFiltro.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblFiltro.setBounds(1015, 81, 169, 24);
+		contentPane.add(lblFiltro);
+		
+		filtro = new ButtonGroup();
+		
+		rdbtnAutor = new JRadioButton("Autor");
+		rdbtnAutor.setFont(new Font("Tahoma", Font.BOLD, 13));
+		rdbtnAutor.setBounds(1045, 141, 109, 23);
+		rdbtnAutor.setContentAreaFilled(false);
+		contentPane.add(rdbtnAutor);
+		
+		rdbtnTitulo = new JRadioButton("Titulo");
+		rdbtnTitulo.setFont(new Font("Tahoma", Font.BOLD, 13));
+		rdbtnTitulo.setBounds(1045, 117, 109, 23);
+		rdbtnTitulo.setContentAreaFilled(false);
+		rdbtnTitulo.setSelected(true);
+		contentPane.add(rdbtnTitulo);
+		
+		filtro.add(rdbtnTitulo);
+		filtro.add(rdbtnAutor);
+		
 		btnLibro.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaLibro vl = new VentanaLibro(arrayLibros.get(bookPanel.getSelectedIndex()));
 				vl.setVisible(true);
+				dispose();
 			}
 		});
-
 	}
-
 
 	public void cargarLista(ArrayList<Libro> a) {
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
@@ -225,7 +263,7 @@ public class VentanaPrincipal extends JFrame {
 		bookPanel.setVisibleRowCount(5);
 		bookPanel.setFont(new Font("Rockwell", Font.BOLD, 20));
 		bookPanel.setForeground(new Color(0, 0, 0));
-		bookPanel.setBackground(new Color(90, 64, 17));
+		bookPanel.setBackground(Color.LIGHT_GRAY);
 	}
 }
 
