@@ -147,7 +147,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				ArrayList<Libro> a = new ArrayList<Libro>();
 				libroBuscado = txtField.getText().toLowerCase();
 				
 				if(libroBuscado.isEmpty()) {
@@ -156,20 +156,20 @@ public class VentanaPrincipal extends JFrame {
 					if(rdbtnTitulo.isSelected()==true) {
 						for (int i = 0; i < arrayLibros.size(); i++) {
 							if (libroBuscado.equals(arrayLibros.get(i).getTitulo().toLowerCase())) {
-								ArrayList<Libro> a = new ArrayList<Libro>();
 								a.add(arrayLibros.get(i));
 								cargarLista(a);
 							}
-						}
+						} 
 					} else if(rdbtnAutor.isSelected()==true) {
 						for (int i = 0; i < arrayLibros.size(); i++) {
 							if(libroBuscado.equals(arrayLibros.get(i).getAutor().toLowerCase())) {
-								ArrayList<Libro> a = new ArrayList<Libro>();
 								a.add(arrayLibros.get(i));
 								cargarLista(a);
 							}
-						}
-					}	
+						} 
+					} if(a.isEmpty()) {
+						JOptionPane.showMessageDialog(frame, "No se han encontrado resultados."); 							
+					}
 				}	
 			}
 		});
@@ -252,8 +252,7 @@ public class VentanaPrincipal extends JFrame {
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		for(Libro l : a) {
 			modelo.addElement(l.getTitulo());
-		}
-		
+		}		
 		bookPanel.setModel(modelo);
 		bookPanel.updateUI();
 		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)bookPanel.getCellRenderer();  
