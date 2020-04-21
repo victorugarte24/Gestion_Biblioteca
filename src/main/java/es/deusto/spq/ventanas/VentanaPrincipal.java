@@ -60,6 +60,7 @@ public class VentanaPrincipal extends JFrame {
 	private ButtonGroup filtro;
 	private JRadioButton rdbtnAutor;
 	private JRadioButton rdbtnTitulo;
+	private JRadioButton rdbtnISBN;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -155,19 +156,25 @@ public class VentanaPrincipal extends JFrame {
 				}else {
 					if(rdbtnTitulo.isSelected()==true) {
 						for (int i = 0; i < arrayLibros.size(); i++) {
-							if (libroBuscado.equals(arrayLibros.get(i).getTitulo().toLowerCase())) {
+							if (libroBuscado.toLowerCase().equals(arrayLibros.get(i).getTitulo().toLowerCase())) {
 								a.add(arrayLibros.get(i));
-								cargarLista(a);
 							}
-						} 
+						} cargarLista(a);
 					} else if(rdbtnAutor.isSelected()==true) {
 						for (int i = 0; i < arrayLibros.size(); i++) {
-							if(libroBuscado.equals(arrayLibros.get(i).getAutor().toLowerCase())) {
+							if(libroBuscado.toLowerCase().equals(arrayLibros.get(i).getAutor().toLowerCase())) {
 								a.add(arrayLibros.get(i));
-								cargarLista(a);
 							}
-						} 
-					} if(a.isEmpty()) {
+						} cargarLista(a); 
+					}else if(rdbtnISBN.isSelected()==true) {
+						for (int i = 0; i < arrayLibros.size(); i++) {
+							if(Integer.parseInt(libroBuscado) == arrayLibros.get(i).getISBN()) {
+								System.out.println(libroBuscado);
+								System.out.println(arrayLibros.get(i));
+								a.add(arrayLibros.get(i));
+							}
+						} cargarLista(a);
+					}if(a.isEmpty()) {
 						JOptionPane.showMessageDialog(frame, "No se han encontrado resultados."); 							
 					}
 				}	
@@ -205,7 +212,7 @@ public class VentanaPrincipal extends JFrame {
 		scroll.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		scroll.setBounds(197, 62, 800, 650);
 		contentPane.add(scroll);
-
+		
 		JButton btnLibro = new JButton("Más información");
 		btnLibro.setFont(new Font("Rockwell", Font.BOLD, 14));
 		btnLibro.setBounds(507, 725, 180, 30);
@@ -235,15 +242,26 @@ public class VentanaPrincipal extends JFrame {
 		rdbtnTitulo.setSelected(true);
 		contentPane.add(rdbtnTitulo);
 		
+		rdbtnISBN = new JRadioButton("ISBN");
+		rdbtnISBN.setBounds(1045, 165, 109, 23);
+		rdbtnISBN.setContentAreaFilled(false);
+		contentPane.add(rdbtnISBN);
+		
 		filtro.add(rdbtnTitulo);
 		filtro.add(rdbtnAutor);
+		filtro.add(rdbtnISBN);
 		
 		btnLibro.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaLibro vl = new VentanaLibro(arrayLibros.get(bookPanel.getSelectedIndex()));
-				vl.setVisible(true);
-				dispose();
+				try {
+					VentanaLibro vl = new VentanaLibro(arrayLibros.get(bookPanel.getSelectedIndex()));
+					vl.setVisible(true);
+					dispose();
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(frame, "No se ha seleccionado ningún libro.");
+				}
+				
 			}
 		});
 	}

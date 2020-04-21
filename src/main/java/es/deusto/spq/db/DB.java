@@ -120,6 +120,7 @@ public class DB {
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libros WHERE Titulo = '" + s + "'");
         Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
+        
         return l;
     }
 	
@@ -134,6 +135,15 @@ public class DB {
             a.add(l);
         }
         return a;
+    }
+	
+	public Libro buscarLibroISBN(int i) throws SQLException {
+        Connection con = initBD();
+        Statement stmt = con.createStatement();
+        ResultSet RS = stmt.executeQuery("SELECT * FROM libros WHERE ISBN = '" + i + "'");
+       	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
+
+        return l;
     }
 	
 	public String comprobarContrasenyaBibliotecario(String IDbibliotecario) throws SQLException {
