@@ -57,6 +57,8 @@ public class VentanaLogin extends JFrame{
 						if (database.comprobarContrasenyaBibliotecario(textField_1.getText()).equals(passwordField.getText())) {
 							JOptionPane.showMessageDialog(null, "Usuario Correcto");
 							dispose();
+							VentanaAdministración va = new VentanaAdministración();
+							va.setVisible(true);
 						}
 						else {
 							JOptionPane.showMessageDialog(null, "Usuario Incorrecto");
