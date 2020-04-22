@@ -158,11 +158,24 @@ public class DB {
 		return contrasenya;
 	}
 	
+	public String buscarUbicacionLibro(String Titulo) throws SQLException {
+		String ubicacion = "";
+		Connection con = initBD();
+		Statement stmt = con.createStatement();
+		String query = "SELECT Ubicacion FROM libro_ubicacion WHERE Libro = '" + Titulo + "'";
+		ResultSet RS = stmt.executeQuery(query);
+		while (RS.next()) {
+			ubicacion = RS.getString("Ubicacion");
+		}
+		
+        return ubicacion;
+    }
+	
 	
 
 	public static void main(String[] args) throws SQLException {
 		DB db = new DB();
-		System.out.println(db.comprobarContrasenyaBibliotecario("admin1"));
+		System.out.println(db.buscarUbicacionLibro("1793"));
 	}
 
 }
