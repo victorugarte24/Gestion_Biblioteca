@@ -65,8 +65,7 @@ public class VentanaAdministración extends JFrame{
 	public VentanaAdministración() {
 
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1200, 800);
+		setSize(1200, 800);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -277,9 +276,10 @@ public class VentanaAdministración extends JFrame{
 				lblNewLabel_4.setText(Autor);
 				lblNewLabel_5.setText(ISBN);
 				if (e.getClickCount() == 2) {
-				    //Ventana
-				  }
-				
+					VentanaUbicacion vu = new VentanaUbicacion(Libro);
+					vu.setVisible(true);
+				}
+
 			}
 		});
 	
