@@ -1,12 +1,12 @@
 package es.deusto.spq.clases;
 
-public class Bibliotecatario {
+public class Bibliotecario {
 	
 	int ID;
 	String nombre;
 	String apellido;
 	
-	public Bibliotecatario(int ID, String nombre, String apellido) {
+	public Bibliotecario(int ID, String nombre, String apellido) {
 		this.ID = ID;
 		this.nombre = nombre;
 		this.apellido = apellido;
