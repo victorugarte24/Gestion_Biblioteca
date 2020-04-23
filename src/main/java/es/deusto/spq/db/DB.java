@@ -171,8 +171,6 @@ public class DB {
         return ubicacion;
     }
 	
-	
-
 	public static void main(String[] args) throws SQLException {
 		DB db = new DB();
 		System.out.println(db.buscarUbicacionLibro("1793"));

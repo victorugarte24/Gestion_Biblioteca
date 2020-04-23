@@ -1,4 +1,4 @@
-package es.deusto.spq.testing;
+package es.deusto.spq.clases;
 
 import static org.junit.Assert.*;
 

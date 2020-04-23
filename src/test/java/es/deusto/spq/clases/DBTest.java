@@ -1,4 +1,4 @@
-package es.deusto.spq.testing;
+package es.deusto.spq.clases;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +14,7 @@ public class DBTest {
 	private DB db;
 
 	@Test
-	public void test() {
+	public void vaciarTablas() {
 
 	}
 
