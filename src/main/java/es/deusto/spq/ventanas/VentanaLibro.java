@@ -130,12 +130,35 @@ public class VentanaLibro extends JFrame{
 		bookPanel.add(label2);
 		
 		// ResultadoAutor
-		String AutorLibro = libro.getAutor();
-		final JLabel label22 = new JLabel(AutorLibro);
-		label22.setBounds(95, 175, 400, 50);
-		label22.setFont(fuente2);
-		label22.setForeground(Color.WHITE);
-		bookPanel.add(label22);
+				final String AutorLibro = libro.getAutor();
+				final JLabel label22 = new JLabel(AutorLibro);
+				label22.setBounds(95, 175, 400, 50);
+				label22.setFont(fuente2);
+				label22.setForeground(Color.WHITE);
+				bookPanel.add(label22);
+				//Botón InformaciónAutor
+				final JButton botonAutor = new JButton("Más información");
+				botonAutor.setBounds(325, 175, 200, 50);
+				botonAutor.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 17));
+				botonAutor.setForeground(Color.BLACK);
+				botonAutor.setContentAreaFilled(false);
+				botonAutor.setBorder(new LineBorder(new Color (0,0,0),3));
+				botonAutor.setFocusable(false);
+				bookPanel.add(botonAutor);
+				
+				botonAutor.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+						System.out.println(AutorLibro);
+						VentanaAutor v12 = new VentanaAutor(AutorLibro);
+						v12.setVisible(true);
+						dispose();	
+					 }catch (Exception e2) {
+						 JOptionPane.showMessageDialog(frame, "Autor no encontrado");
+					 }
+						
+					}});
 
 		// Número de páginas
 		final JLabel label3 = new JLabel("Nº de Páginas: ");
