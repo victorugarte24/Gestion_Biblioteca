@@ -33,7 +33,7 @@ public class DB {
 		String nombre = u.getNombre();
 		String apellido = u.getApellido();
 		String contrasenya = u.getContrasenya();
-		String query = "INSERT INTO USUARIOS  VALUES('" + usuario + "', "+ dni + ", '"+ nombre + "', '"+  apellido + "', '"+ contrasenya + "')";
+		String query = "INSERT INTO USUARIO  VALUES('" + usuario + "', "+ dni + ", '"+ nombre + "', '"+  apellido + "', '"+ contrasenya + "')";
 		stmt.execute(query);
 	}
 
@@ -41,7 +41,7 @@ public class DB {
 		boolean respuesta = false;
 		Connection con = initBD();
 		Statement stmt = con.createStatement();
-		String query = "SELECT COUNT(*) AS total FROM usuarios where usuario = '" + usuario +"'";
+		String query = "SELECT COUNT(*) AS total FROM usuario where usuario = '" + usuario +"'";
 		ResultSet RS = stmt.executeQuery(query);
 		while (RS.next()) {
 			if( RS.getInt("total") > 0 ) {
@@ -57,7 +57,7 @@ public class DB {
 		String contrasenya = "";
 		Connection con = initBD();
 		Statement stmt = con.createStatement();
-		String query = "SELECT CONTRASENYA FROM usuarios where usuario = '" + Usuario +"'";
+		String query = "SELECT CONTRASENYA FROM usuario where usuario = '" + Usuario +"'";
 		ResultSet RS = stmt.executeQuery(query);
 		while (RS.next()) {
 			contrasenya = RS.getString("Contrasenya");
@@ -69,7 +69,7 @@ public class DB {
 		ArrayList<Libro> array = new ArrayList<Libro>();
 		Connection con = initBD();
 		Statement stmt = con.createStatement();
-		ResultSet RS = stmt.executeQuery("SELECT * FROM libros");
+		ResultSet RS = stmt.executeQuery("SELECT * FROM libro");
 		while(RS.next()) {
 			Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6));
 			array.add(l);
@@ -87,7 +87,7 @@ public class DB {
 
 		Connection con = initBD();
 		Statement stmt = con.createStatement();
-		String query = "INSERT INTO libros VALUES ('" + titulo +"','" + autor + "'," + numPags + "," + ISBN + ",'" + sinopsis + "'," + prestado + ")";
+		String query = "INSERT INTO libro VALUES ('" + titulo +"','" + autor + "'," + numPags + "," + ISBN + ",'" + sinopsis + "'," + prestado + ")";
 		stmt.execute(query);
 	}
 	
@@ -95,7 +95,7 @@ public class DB {
 		int prestado = 0;
 		Connection con = initBD();
 		Statement stmt = con.createStatement();
-		String query = "SELECT PRESTADO FROM LIBROS WHERE TITULO = '" + titulo +"'";
+		String query = "SELECT PRESTADO FROM LIBRO WHERE TITULO = '" + titulo +"'";
 		ResultSet RS = stmt.executeQuery(query);
 		while (RS.next()) {
 			prestado = RS.getInt("Prestado");
@@ -105,20 +105,20 @@ public class DB {
 	
 	public void tomarPrestadoLibro(String titulo) throws SQLException {
 		Connection con = initBD();
-		PreparedStatement update = con.prepareStatement("UPDATE LIBROS SET PRESTADO = 1 WHERE TITULO = '" + titulo +"'");
+		PreparedStatement update = con.prepareStatement("UPDATE LIBRO SET PRESTADO = 1 WHERE TITULO = '" + titulo +"'");
 		int updatep = update.executeUpdate();
 	}
 	
 	public void devolverLibroPrestado(String titulo) throws SQLException {
 		Connection con = initBD();
-		PreparedStatement update = con.prepareStatement("UPDATE LIBROS SET PRESTADO = 0 WHERE TITULO = '" + titulo +"'");
+		PreparedStatement update = con.prepareStatement("UPDATE LIBRO SET PRESTADO = 0 WHERE TITULO = '" + titulo +"'");
 		int updatep = update.executeUpdate();
 	}
 	
 	public Libro buscarLibroTitulo(String s) throws SQLException {
         Connection con = initBD();
         Statement stmt = con.createStatement();
-        ResultSet RS = stmt.executeQuery("SELECT * FROM libros WHERE Titulo = '" + s + "'");
+        ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Titulo = '" + s + "'");
         Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
         
         return l;
@@ -129,7 +129,7 @@ public class DB {
 		
 		Connection con = initBD();
         Statement stmt = con.createStatement();
-        ResultSet RS = stmt.executeQuery("SELECT * FROM libros WHERE Autor = '" + s + "'");
+        ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Autor = '" + s + "'");
         while(RS.next()) {
         	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
             a.add(l);
@@ -140,7 +140,7 @@ public class DB {
 	public Libro buscarLibroISBN(int i) throws SQLException {
         Connection con = initBD();
         Statement stmt = con.createStatement();
-        ResultSet RS = stmt.executeQuery("SELECT * FROM libros WHERE ISBN = '" + i + "'");
+        ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE ISBN = '" + i + "'");
        	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
 
         return l;
@@ -150,7 +150,7 @@ public class DB {
 		String contrasenya = "";
 		Connection con = initBD();
 		Statement stmt = con.createStatement();
-		String query = "SELECT CONTRASENYA FROM bibliotecarios where ID = '" + IDbibliotecario +"'";
+		String query = "SELECT CONTRASENYA FROM bibliotecario where ID = '" + IDbibliotecario +"'";
 		ResultSet RS = stmt.executeQuery(query);
 		while (RS.next()) {
 			contrasenya = RS.getString("Contrasenya");
@@ -163,6 +163,19 @@ public class DB {
 		Connection con = initBD();
 		Statement stmt = con.createStatement();
 		String query = "SELECT Ubicacion FROM libro_ubicacion WHERE Libro = '" + Titulo + "'";
+		ResultSet RS = stmt.executeQuery(query);
+		while (RS.next()) {
+			ubicacion = RS.getString("Ubicacion");
+		}
+		
+        return ubicacion;
+    }
+	
+	public String fechaNacAutor(String Autor) throws SQLException {
+		String ubicacion = "";
+		Connection con = initBD();
+		Statement stmt = con.createStatement();
+		String query = "SELECT Ubicacion FROM libro_ubicacion WHERE Libro = '" + Autor + "'";
 		ResultSet RS = stmt.executeQuery(query);
 		while (RS.next()) {
 			ubicacion = RS.getString("Ubicacion");
