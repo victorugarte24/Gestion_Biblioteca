@@ -61,6 +61,7 @@ public class VentanaPrincipal extends JFrame {
 	private JRadioButton rdbtnAutor;
 	private JRadioButton rdbtnTitulo;
 	private JRadioButton rdbtnISBN;
+	ArrayList<Libro> a;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -148,7 +149,7 @@ public class VentanaPrincipal extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ArrayList<Libro> a = new ArrayList<Libro>();
+				a = new ArrayList<Libro>();
 				libroBuscado = txtField.getText().toLowerCase();
 				
 				if(libroBuscado.isEmpty()) {
@@ -255,8 +256,8 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					VentanaLibro vl = new VentanaLibro(arrayLibros.get(bookPanel.getSelectedIndex()));
-					vl.setVisible(true);
+					VentanaLibro ventanaLibro = new VentanaLibro(arrayLibros.get(bookPanel.getSelectedIndex()));
+					ventanaLibro.setVisible(true);
 					dispose();
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(frame, "No se ha seleccionado ningún libro.");

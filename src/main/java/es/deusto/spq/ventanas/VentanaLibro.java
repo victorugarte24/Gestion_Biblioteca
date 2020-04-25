@@ -79,8 +79,6 @@ public class VentanaLibro extends JFrame{
 		atrasPanel.setBorder(null);
 		atrasPanel.setLayout(null);
 		final JLabel atrasIMG = new JLabel();
-		atrasIMG.setBounds(1, 5, 25, 25);
-		atrasIMG.setIcon(new ImageIcon(VentanaLibro.class.getResource("/es/deusto/spq/resources/flechaB.png")));
 		atrasPanel.add(atrasIMG);
 		navBarPanel.add(atrasPanel);
 		
@@ -89,7 +87,7 @@ public class VentanaLibro extends JFrame{
 		lblBiblioteca.setFont(new Font("Tahoma", Font.BOLD, 24));
 		navBarPanel.add(lblBiblioteca);
 		
-		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/java/es/deusto/spq/resources/logoS.png", 60, 50);
+		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/resources/logoS.png", 60, 50);
 		icono.setBounds(10, 13, 60, 50);
 		navBarPanel.add(icono);
 
@@ -216,5 +214,11 @@ public class VentanaLibro extends JFrame{
 			}
 		});
 
+	}
+	
+	public static void main (String [ ] args) {
+		Libro l = new Libro("dsd", "dsadsad", 33232, 232132, "", 0);
+		VentanaLibro v = new VentanaLibro(l);
+		v.setVisible(true);
 	}
 }
