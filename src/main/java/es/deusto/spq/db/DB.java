@@ -171,22 +171,47 @@ public class DB {
         return ubicacion;
     }
 	
-	public String fechaNacAutor(String Autor) throws SQLException {
-		String ubicacion = "";
+	public int anyoNacAutor(String Autor) throws SQLException {
+		int anyo = 0;
 		Connection con = initBD();
 		Statement stmt = con.createStatement();
-		String query = "SELECT Ubicacion FROM libro_ubicacion WHERE Libro = '" + Autor + "'";
+		String query = "SELECT AnyoNacimiento FROM autor WHERE Nombre = '" + Autor + "'";
 		ResultSet RS = stmt.executeQuery(query);
 		while (RS.next()) {
-			ubicacion = RS.getString("Ubicacion");
+			anyo = RS.getInt("AnyoNacimiento");
 		}
-		
-        return ubicacion;
+        return anyo;
     }
+	
+	public String LugarNacAutor(String Autor) throws SQLException {
+		String Lugar = "";
+		Connection con = initBD();
+		Statement stmt = con.createStatement();
+		String query = "SELECT LugarNacimiento FROM autor WHERE Nombre = '" + Autor + "'";
+		ResultSet RS = stmt.executeQuery(query);
+		while (RS.next()) {
+			Lugar = RS.getString("LugarNacimiento");
+		}
+        return Lugar;
+    }
+	
+	public int numLibrosPublicados(String Autor) throws SQLException {
+		int numLibrosPublicados = 0;
+		Connection con = initBD();
+		Statement stmt = con.createStatement();
+		String query = "SELECT NumLibrosPublicados FROM autor WHERE Nombre = '" + Autor + "'";
+		ResultSet RS = stmt.executeQuery(query);
+		while (RS.next()) {
+			numLibrosPublicados = RS.getInt("NumLibrosPublicados");
+		}
+        return numLibrosPublicados;
+    }
+	
+	
 	
 	public static void main(String[] args) throws SQLException {
 		DB db = new DB();
-		System.out.println(db.buscarUbicacionLibro("1793"));
+		System.out.println(db.numLibrosPublicados("Vanesa Redondo"));
 	}
 
 }
