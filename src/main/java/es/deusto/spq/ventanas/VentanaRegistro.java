@@ -35,7 +35,7 @@ public class VentanaRegistro extends JFrame{
 	VentanaRegistro(){
 
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 14));
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
 		setDefaultCloseOperation(VentanaRegistro.DISPOSE_ON_CLOSE );
 		setTitle("Biblioteca Online");
 		setSize(570, 470);

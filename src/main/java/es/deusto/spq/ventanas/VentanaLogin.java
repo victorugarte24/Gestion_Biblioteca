@@ -33,7 +33,7 @@ public class VentanaLogin extends JFrame{
 	public VentanaLogin(){
 		
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 14));
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
 		setDefaultCloseOperation(VentanaLogin.DISPOSE_ON_CLOSE );
 		setTitle("Biblioteca Online");
 		setSize(600, 400);
@@ -42,7 +42,7 @@ public class VentanaLogin extends JFrame{
 		this.getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(null);
 
-		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/java/es/deusto/spq/resources/logoP.png", 160, 135);
+		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/resources/logoP.png", 160, 135);
 		icono.setLocation(380, 110);
 		getContentPane().add(icono);
 
