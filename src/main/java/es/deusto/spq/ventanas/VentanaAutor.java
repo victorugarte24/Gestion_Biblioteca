@@ -181,6 +181,10 @@ public class VentanaAutor extends JFrame{
 		label55.setFont(fuente2);
 		label55.setForeground(Color.WHITE);
 		bookPanel.add(label55);
+		
+		JLabelGraficoAjustado fotoAutor = new JLabelGraficoAjustado("src/main/resources/icono-perfil.png", 160, 165);
+		fotoAutor.setLocation(550, 110);
+		bookPanel.add(fotoAutor);
 
 
 	}

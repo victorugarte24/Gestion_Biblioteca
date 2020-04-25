@@ -10,19 +10,13 @@ class AutorTest {
 	
 	@Before
 	public void setUp() {
-		a = new Autor("Joanna","Rowling",1965,"Inglaterra",23);
+		a = new Autor("Joanna Rowling",1965,"Inglaterra",23);
 	}
 	
 	@Test
 	public void testNombre() {
 		a.setNombre("JK");
 		assertEquals("JK", a.getNombre());
-	}
-	
-	@Test
-	public void testApell() {
-		a.setApellido("Potter");
-		assertEquals("Potter", a.getApellido());
 	}
 	
 	@Test

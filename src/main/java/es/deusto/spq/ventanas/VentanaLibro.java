@@ -33,11 +33,10 @@ public class VentanaLibro extends JFrame{
 
 	public VentanaLibro(Libro libro) {
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/es/deusto/spq/resources/logoS.png"));
 		this.setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle("Biblioteca Online");
@@ -236,6 +235,10 @@ public class VentanaLibro extends JFrame{
 
 			}
 		});
+		
+		JLabelGraficoAjustado fotoAutor = new JLabelGraficoAjustado("src/main/resources/libro.jpg", 170, 175);
+		fotoAutor.setLocation(600, 50);
+		bookPanel.add(fotoAutor);
 
 	}
 	
