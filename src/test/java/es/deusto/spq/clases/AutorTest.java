@@ -13,7 +13,6 @@ public class AutorTest {
 
 	@Rule
 	public ContiPerfRule i = new ContiPerfRule();
-	}
 	
 	@Before
 	public void setUp() {

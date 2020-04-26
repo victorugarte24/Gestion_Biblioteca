@@ -1,13 +1,14 @@
 package es.deusto.spq.interfaces;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JList;
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 import es.deusto.spq.clases.Libro;
 import es.deusto.spq.db.DB;
 
