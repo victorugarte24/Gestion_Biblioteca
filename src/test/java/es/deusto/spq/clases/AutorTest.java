@@ -1,7 +1,6 @@
 package es.deusto.spq.clases;
 
 import static org.junit.Assert.assertEquals;
-
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
 import org.databene.contiperf.junit.ContiPerfRule;
@@ -10,15 +9,15 @@ import org.junit.Rule;
 import org.junit.Test;
 
 public class AutorTest {
+    private Autor a; 
 
-	Autor a;
-	
 	@Rule
 	public ContiPerfRule i = new ContiPerfRule();
+	}
 	
 	@Before
 	public void setUp() {
-		a = new Autor("Joanna Rowling",1965,"Inglaterra",23);
+		a = new Autor();
 	}
 	
 	@Test
