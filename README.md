@@ -41,4 +41,5 @@ A continuación veremos un pequeño resumen de las ventanas:
 * Sergio Cogollos
 
 ## Ejecutar Proyecto:
-Instalar la base de datos mysql con los dos ficheros que se encuentran en resources, y ejecutar el jar creado mediante mvn package que se encuentra en target.
+Instalar la base de datos mysql con los dos ficheros que se encuentran en resources.
+Ejecutar el comando en la ruta del proyecto: mvn exec:java -D"exec.mainClass"="es.deusto.spq.main.main"
