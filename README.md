@@ -14,7 +14,7 @@ A continuación veremos un pequeño resumen de las ventanas:
 
 * Esta será la primera ventana que verá el usuario al abrir la aplicación:
 
-![VentanaLogin](https://user-images.githubusercontent.com/43268879/78472092-8d40e080-7736-11ea-8ee8-a8f5ee233846.jpg)
+![1](https://user-images.githubusercontent.com/43268879/80314464-f07fd900-87f1-11ea-9ed6-3223cc865670.JPG)
 
 * Si el usuario no está registrado deberá clickar en "Registrarse" en la pantalla anterior y rellenar con sus datos en la siguiente pantalla:
 
