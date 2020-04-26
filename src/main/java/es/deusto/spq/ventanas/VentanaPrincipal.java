@@ -81,7 +81,7 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal() {
 
 		try {
-			arrayLibros = database.getLibros();
+			arrayLibros = database.getLibros("gestion_biblioteca_db");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

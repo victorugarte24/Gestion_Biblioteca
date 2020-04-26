@@ -30,7 +30,7 @@ public class VentanaUbicacion extends JFrame{
 		DB db = new DB();
 		
 		try {
-			Ubicacion = db.buscarUbicacionLibro(Titulo);
+			Ubicacion = db.buscarUbicacionLibro(Titulo, "gestion_biblioteca_db");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

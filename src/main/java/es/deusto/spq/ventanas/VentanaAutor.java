@@ -129,7 +129,7 @@ public class VentanaAutor extends JFrame{
 		// ResultadoAnyoNacimiento
 		String anyoNacimiento = null;
 		try {
-			anyoNacimiento = Integer.toString(db.anyoNacAutor(autor));
+			anyoNacimiento = Integer.toString(db.anyoNacAutor(autor, "gestion_biblioteca_db"));
 		} catch (SQLException e3) {
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
@@ -151,7 +151,7 @@ public class VentanaAutor extends JFrame{
 		// ResultadoLugarNacimiento
 		String lugarNacimiento = null;
 		try {
-			lugarNacimiento = db.LugarNacAutor(autor);
+			lugarNacimiento = db.LugarNacAutor(autor, "gestion_biblioteca_db");
 		} catch (SQLException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -172,7 +172,7 @@ public class VentanaAutor extends JFrame{
 
 		String librosPublicados = null;
 		try {
-			librosPublicados = Integer.toString(db.numLibrosPublicados(autor));
+			librosPublicados = Integer.toString(db.numLibrosPublicados(autor, "gestion_biblioteca_db"));
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

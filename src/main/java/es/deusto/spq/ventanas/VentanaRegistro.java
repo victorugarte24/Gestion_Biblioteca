@@ -91,10 +91,10 @@ public class VentanaRegistro extends JFrame{
 				else {
 					if (passwordField.getText().equals(passwordField_1.getText())) {
 						try {
-							if (db.comprobarUsuario(textField_2.getText()) == false) {
+							if (db.comprobarUsuario(textField_2.getText(), "gestion_biblioteca_db") == false) {
 								Usuario u = new Usuario(textField.getText(), textField_1.getText(), textField_2.getText(), Integer.valueOf(textField_3.getText()), passwordField_1.getText());
 								try {
-									db.insertarUsuario(u);
+									db.insertarUsuario(u, "gestion_biblioteca_db");
 								} catch (SQLException e1) {
 									e1.printStackTrace();
 								}

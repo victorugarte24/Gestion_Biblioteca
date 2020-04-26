@@ -13,10 +13,10 @@ import es.deusto.spq.clases.Usuario;
 
 public class DB {
 
-	public static Connection initBD() {
+	public static Connection initBD(String BD) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_biblioteca_db?userTimezone=true&serverTimezone=UTC", "root", "admin");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + BD +"?userTimezone=true&serverTimezone=UTC", "root", "admin");
 			return con;
 		}
 		catch (ClassNotFoundException | SQLException e) {
@@ -25,8 +25,8 @@ public class DB {
 		}
 	}
 
-	public void insertarUsuario(Usuario u) throws SQLException {
-		Connection con = initBD();
+	public void insertarUsuario(Usuario u, String BD) throws SQLException {
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		String usuario = u.getUsuario();
 		int dni = u.getDNI();
@@ -37,9 +37,9 @@ public class DB {
 		stmt.execute(query);
 	}
 
-	public boolean comprobarUsuario(String usuario) throws SQLException {
+	public boolean comprobarUsuario(String usuario, String BD) throws SQLException {
 		boolean respuesta = false;
-		Connection con = initBD();
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		String query = "SELECT COUNT(*) AS total FROM usuario where usuario = '" + usuario +"'";
 		ResultSet RS = stmt.executeQuery(query);
@@ -53,9 +53,9 @@ public class DB {
 		return respuesta;
 	}
 
-	public String comprobarContrasenya(String Usuario) throws SQLException {
+	public String comprobarContrasenya(String Usuario, String BD) throws SQLException {
 		String contrasenya = "";
-		Connection con = initBD();
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		String query = "SELECT CONTRASENYA FROM usuario where usuario = '" + Usuario +"'";
 		ResultSet RS = stmt.executeQuery(query);
@@ -65,9 +65,9 @@ public class DB {
 		return contrasenya;
 	}
 
-	public ArrayList<Libro> getLibros() throws SQLException {
+	public ArrayList<Libro> getLibros(String BD) throws SQLException {
 		ArrayList<Libro> array = new ArrayList<Libro>();
-		Connection con = initBD();
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		ResultSet RS = stmt.executeQuery("SELECT * FROM libro");
 		while(RS.next()) {
@@ -77,7 +77,7 @@ public class DB {
 		return array;
 	}
 
-	public void AnyadirLibro(Libro l) throws SQLException {
+	public void AnyadirLibro(Libro l, String BD) throws SQLException {
 		String titulo = l.getTitulo();
 		String autor = l.getAutor();
 		int numPags = l.getNumPags();
@@ -85,15 +85,15 @@ public class DB {
 		String sinopsis = l.getSinopsis();
 		int prestado = l.getPrestado();
 
-		Connection con = initBD();
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		String query = "INSERT INTO libro VALUES ('" + titulo +"','" + autor + "'," + numPags + "," + ISBN + ",'" + sinopsis + "'," + prestado + ")";
 		stmt.execute(query);
 	}
 	
-	public int comprobarLibroPrestado(String titulo) throws SQLException {
+	public int comprobarLibroPrestado(String titulo, String BD) throws SQLException {
 		int prestado = 0;
-		Connection con = initBD();
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		String query = "SELECT PRESTADO FROM LIBRO WHERE TITULO = '" + titulo +"'";
 		ResultSet RS = stmt.executeQuery(query);
@@ -103,20 +103,20 @@ public class DB {
 		return prestado;
 	}
 	
-	public void tomarPrestadoLibro(String titulo) throws SQLException {
-		Connection con = initBD();
+	public void tomarPrestadoLibro(String titulo, String BD) throws SQLException {
+		Connection con = initBD(BD);
 		PreparedStatement update = con.prepareStatement("UPDATE LIBRO SET PRESTADO = 1 WHERE TITULO = '" + titulo +"'");
 		int updatep = update.executeUpdate();
 	}
 	
-	public void devolverLibroPrestado(String titulo) throws SQLException {
-		Connection con = initBD();
+	public void devolverLibroPrestado(String titulo, String BD) throws SQLException {
+		Connection con = initBD(BD);
 		PreparedStatement update = con.prepareStatement("UPDATE LIBRO SET PRESTADO = 0 WHERE TITULO = '" + titulo +"'");
 		int updatep = update.executeUpdate();
 	}
 	
-	public Libro buscarLibroTitulo(String s) throws SQLException {
-        Connection con = initBD();
+	public Libro buscarLibroTitulo(String s, String BD) throws SQLException {
+        Connection con = initBD(BD);
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Titulo = '" + s + "'");
         Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
@@ -124,10 +124,10 @@ public class DB {
         return l;
     }
 	
-	public ArrayList<Libro> buscarLibroAutor(String s) throws SQLException {
+	public ArrayList<Libro> buscarLibroAutor(String s, String BD) throws SQLException {
         ArrayList<Libro> a = new ArrayList<Libro>();
 		
-		Connection con = initBD();
+		Connection con = initBD(BD);
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Autor = '" + s + "'");
         while(RS.next()) {
@@ -137,8 +137,8 @@ public class DB {
         return a;
     }
 	
-	public Libro buscarLibroISBN(int i) throws SQLException {
-        Connection con = initBD();
+	public Libro buscarLibroISBN(int i, String BD) throws SQLException {
+        Connection con = initBD(BD);
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE ISBN = '" + i + "'");
        	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
@@ -146,9 +146,9 @@ public class DB {
         return l;
     }
 	
-	public String comprobarContrasenyaBibliotecario(String IDbibliotecario) throws SQLException {
+	public String comprobarContrasenyaBibliotecario(String IDbibliotecario, String BD) throws SQLException {
 		String contrasenya = "";
-		Connection con = initBD();
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		String query = "SELECT CONTRASENYA FROM bibliotecario where ID = '" + IDbibliotecario +"'";
 		ResultSet RS = stmt.executeQuery(query);
@@ -158,9 +158,9 @@ public class DB {
 		return contrasenya;
 	}
 	
-	public String buscarUbicacionLibro(String Titulo) throws SQLException {
+	public String buscarUbicacionLibro(String Titulo, String BD) throws SQLException {
 		String ubicacion = "";
-		Connection con = initBD();
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		String query = "SELECT Ubicacion FROM libro_ubicacion WHERE Libro = '" + Titulo + "'";
 		ResultSet RS = stmt.executeQuery(query);
@@ -171,9 +171,9 @@ public class DB {
         return ubicacion;
     }
 	
-	public int anyoNacAutor(String Autor) throws SQLException {
+	public int anyoNacAutor(String Autor, String BD) throws SQLException {
 		int anyo = 0;
-		Connection con = initBD();
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		String query = "SELECT AnyoNacimiento FROM autor WHERE Nombre = '" + Autor + "'";
 		ResultSet RS = stmt.executeQuery(query);
@@ -183,9 +183,9 @@ public class DB {
         return anyo;
     }
 	
-	public String LugarNacAutor(String Autor) throws SQLException {
+	public String LugarNacAutor(String Autor, String BD) throws SQLException {
 		String Lugar = "";
-		Connection con = initBD();
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		String query = "SELECT LugarNacimiento FROM autor WHERE Nombre = '" + Autor + "'";
 		ResultSet RS = stmt.executeQuery(query);
@@ -195,9 +195,9 @@ public class DB {
         return Lugar;
     }
 	
-	public int numLibrosPublicados(String Autor) throws SQLException {
+	public int numLibrosPublicados(String Autor, String BD) throws SQLException {
 		int numLibrosPublicados = 0;
-		Connection con = initBD();
+		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
 		String query = "SELECT NumLibrosPublicados FROM autor WHERE Nombre = '" + Autor + "'";
 		ResultSet RS = stmt.executeQuery(query);
@@ -211,7 +211,7 @@ public class DB {
 	
 	public static void main(String[] args) throws SQLException {
 		DB db = new DB();
-		System.out.println(db.numLibrosPublicados("Vanesa Redondo"));
+		System.out.println(db.anyoNacAutor("Vanesa Redondo", "gestion_biblioteca_db"));
 	}
 
 }

@@ -220,8 +220,8 @@ public class VentanaLibro extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				DB db = new DB();
 				try {
-					if (db.comprobarLibroPrestado(Titulolibro) == 0) {
-						db.tomarPrestadoLibro(Titulolibro);
+					if (db.comprobarLibroPrestado(Titulolibro, "gestion_biblioteca_db") == 0) {
+						db.tomarPrestadoLibro(Titulolibro, "gestion_biblioteca_db");
 						JOptionPane.showMessageDialog(null, "Libro Reservado");
 					}
 					else {

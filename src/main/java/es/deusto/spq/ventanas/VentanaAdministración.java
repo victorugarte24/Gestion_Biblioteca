@@ -77,7 +77,7 @@ public class VentanaAdministración extends JFrame{
 		contentPane.setLayout(null);
 		
 		try {
-			arrayLibros = database.getLibros();
+			arrayLibros = database.getLibros("gestion_biblioteca_db");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

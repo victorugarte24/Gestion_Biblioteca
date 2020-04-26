@@ -2,10 +2,10 @@ package es.deusto.spq.clases;
 
 public class Autor {
 
-    private String Nombre;
-    private int anyoNacimiento;
-    private String lugarNacimiento;
-    private int numLibrosPublicados;
+	private String Nombre;
+	private int anyoNacimiento;
+	private String lugarNacimiento;
+	private int numLibrosPublicados;
 
     public Autor() {
 

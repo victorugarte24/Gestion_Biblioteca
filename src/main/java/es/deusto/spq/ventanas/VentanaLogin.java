@@ -54,7 +54,7 @@ public class VentanaLogin extends JFrame{
 				try {
 
 					if (rdbtnNewRadioButton.isSelected() == true) { //Login Bibliotecario
-						if (database.comprobarContrasenyaBibliotecario(textField_1.getText()).equals(passwordField.getText())) {
+						if (database.comprobarContrasenyaBibliotecario(textField_1.getText(), "gestion_biblioteca_db").equals(passwordField.getText())) {
 							JOptionPane.showMessageDialog(null, "Usuario Correcto");
 							dispose();
 							VentanaAdministración va = new VentanaAdministración();
@@ -65,7 +65,7 @@ public class VentanaLogin extends JFrame{
 						}
 					}
 					else if (rdbtnNewRadioButton_1.isSelected() == true) { //Login Usuario
-						if (database.comprobarContrasenya(textField_1.getText()).equals(passwordField.getText())) {
+						if (database.comprobarContrasenya(textField_1.getText(), "gestion_biblioteca_db").equals(passwordField.getText())) {
 							JOptionPane.showMessageDialog(null, "Usuario Correcto");
 							dispose();
 							VentanaPrincipal vp = new VentanaPrincipal();

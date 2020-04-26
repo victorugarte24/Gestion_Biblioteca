@@ -2,7 +2,11 @@ package es.deusto.spq.clases;
 
 import static org.junit.Assert.*;
 
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.junit.ContiPerfRule;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import es.deusto.spq.clases.Usuario;
@@ -11,12 +15,17 @@ public class UsuarioTest {
 
 	private Usuario u;
 	
+	@Rule
+	public ContiPerfRule i = new ContiPerfRule();
+	
 	@Before
 	public void setUp() {
 		u = new Usuario("Juan", "López", "user", 232323, "1234");
 	}
 
 	@Test
+	@PerfTest(invocations = 1000, threads = 20)
+	@Required(max = 1200, average = 250)
 	public void testNombre() {
 		u.setNombre("Pepe");
 		assertEquals("Pepe", u.getNombre());
