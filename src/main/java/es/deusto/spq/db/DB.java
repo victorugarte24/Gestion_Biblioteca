@@ -116,32 +116,39 @@ public class DB {
 	}
 	
 	public Libro buscarLibroTitulo(String s, String BD) throws SQLException {
+		Libro l = null;
         Connection con = initBD(BD);
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Titulo = '" + s + "'");
-        Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
+     
+        while(RS.next()) {
+        	   l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6));
+        }
         
         return l;
     }
 	
-	public ArrayList<Libro> buscarLibroAutor(String s, String BD) throws SQLException {
+	public ArrayList<Libro> buscarLibroAutor(String Autor, String BD) throws SQLException {
         ArrayList<Libro> a = new ArrayList<Libro>();
 		
 		Connection con = initBD(BD);
         Statement stmt = con.createStatement();
-        ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Autor = '" + s + "'");
+        ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Autor = '" + Autor + "'");
         while(RS.next()) {
-        	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
+        	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6));
             a.add(l);
         }
         return a;
     }
 	
 	public Libro buscarLibroISBN(int i, String BD) throws SQLException {
+		Libro l = null;
         Connection con = initBD(BD);
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE ISBN = '" + i + "'");
-       	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(0));
+        while (RS.next()) {
+           	l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6));			
+		}
 
         return l;
     }
@@ -207,6 +214,19 @@ public class DB {
         return numLibrosPublicados;
     }
 	
+	public void eliminarUsuario(String Usuario, String BD) throws SQLException {
+		Connection con = initBD(BD);
+		PreparedStatement update = con.prepareStatement("DELETE FROM usuario WHERE Usuario = '" + Usuario + "'");
+		int updatep = update.executeUpdate();
+
+    }
+
+	public void eliminarLibro(String Libro, String BD) throws SQLException {
+		Connection con = initBD(BD);
+		PreparedStatement update = con.prepareStatement("DELETE FROM libro WHERE Titulo = '" + Libro + "'");
+		int updatep = update.executeUpdate();
+
+    }
 	
 	
 	public static void main(String[] args) throws SQLException {
