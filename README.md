@@ -4,7 +4,9 @@ Gestión de Biblioteca
 ## Ejecutar Proyecto:
 Instalar la base de datos mysql con los ficheros que se encuentran en resources.
 Ejecutar el comando en la ruta del proyecto:
-  mvn exec:java -D"exec.mainClass"="es.deusto.spq.main.main"
+```
+mvn exec:java -D"exec.mainClass"="es.deusto.spq.main.main 
+````
 
 ### Descripción y Contexto
 ---
