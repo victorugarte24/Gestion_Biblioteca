@@ -62,5 +62,4 @@ Ahora veremos como funciona el programa en caso de seleccionar la opción "Bibli
 ## Desarrollado por:
 * Jonathan Blázquez 
 * Víctor Ugarte 
-* Nicolás Cerero
 * Sergio Cogollos
