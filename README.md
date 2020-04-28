@@ -1,6 +1,10 @@
 Gestión de Biblioteca
 =====================
 
+## Ejecutar Proyecto:
+Instalar la base de datos mysql con los ficheros que se encuentran en resources.
+Ejecutar el comando en la ruta del proyecto: 	mvn exec:java -D"exec.mainClass"="es.deusto.spq.main.main"
+
 ### Descripción y Contexto
 ---
   Esta aplicación está diseñada para ser utilizada para la gestión de bibliotecas. Los usuarios tienen distintos modos para encontrar información sobre los libros que se encuentran en el lugar, además, tienen la opción de reservarlos. Por otro lado, los bibliotecarios pueden conocer la ubicacion de los libros que se encuentran en sus instalaciones.
@@ -57,7 +61,3 @@ Ahora veremos como funciona el programa en caso de seleccionar la opción "Bibli
 * Víctor Ugarte 
 * Nicolás Cerero
 * Sergio Cogollos
-
-## Ejecutar Proyecto:
-Instalar la base de datos mysql con los dos ficheros que se encuentran en resources.
-Ejecutar el comando en la ruta del proyecto: mvn exec:java -D"exec.mainClass"="es.deusto.spq.main.main"

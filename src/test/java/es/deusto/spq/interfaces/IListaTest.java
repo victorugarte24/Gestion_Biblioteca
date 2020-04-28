@@ -13,7 +13,7 @@ import es.deusto.spq.clases.Libro;
 import es.deusto.spq.db.DB;
 
 
-class IListaTest {
+public class IListaTest {
 	
 	private ILista interfaz;
 	private DB database = new DB();
