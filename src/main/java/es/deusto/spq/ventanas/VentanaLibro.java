@@ -29,7 +29,7 @@ public class VentanaLibro extends JFrame{
 	private final JPanel contentPane;
 	
 	static VentanaLibro frame;
-	String Titulolibro;
+	String titulolibro;
 
 	
 	public VentanaLibro(Libro libro) {
@@ -115,8 +115,8 @@ public class VentanaLibro extends JFrame{
 		bookPanel.add(label1);
 		
 		// ResultadoTítulo
-		Titulolibro = libro.getTitulo();
-		final JLabel label11 = new JLabel(Titulolibro);
+		titulolibro = libro.getTitulo();
+		final JLabel label11 = new JLabel(titulolibro);
 		label11.setBounds(95, 110, 400, 50);
 		label11.setFont(fuente2);
 		label11.setForeground(Color.WHITE);
@@ -151,7 +151,7 @@ public class VentanaLibro extends JFrame{
 					public void actionPerformed(ActionEvent e) {
 						try {
 						System.out.println(AutorLibro);
-						VentanaAutor v12 = new VentanaAutor(AutorLibro);
+						VentanaAutor v12 = new VentanaAutor(AutorLibro, libro);
 						v12.setVisible(true);
 						dispose();	
 					 }catch (Exception e2) {
@@ -237,8 +237,8 @@ public class VentanaLibro extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				DB db = new DB();
 				try {
-					if (db.comprobarLibroPrestado(Titulolibro, "gestion_biblioteca_db") == 0) {
-						db.tomarPrestadoLibro(Titulolibro, "gestion_biblioteca_db");
+					if (db.comprobarLibroPrestado(titulolibro, "gestion_biblioteca_db") == 0) {
+						db.tomarPrestadoLibro(titulolibro, "gestion_biblioteca_db");
 						JOptionPane.showMessageDialog(null, "Libro Reservado");
 					}
 					else {

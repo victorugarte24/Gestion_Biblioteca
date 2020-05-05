@@ -19,7 +19,7 @@ public interface ILista {
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		for(Libro l : a) {
 			modelo.addElement(l.getTitulo());
-		}		
+		}
 		bookPanel.setModel(modelo);
 		bookPanel.updateUI();
 		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)bookPanel.getCellRenderer();  

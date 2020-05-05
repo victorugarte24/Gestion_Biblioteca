@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import es.deusto.spq.clases.Libro;
 import es.deusto.spq.db.DB;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
 
@@ -23,7 +25,7 @@ public class VentanaAutor extends JFrame{
 
 	static VentanaLibro frame;
 
-	public VentanaAutor(String autor) {
+	public VentanaAutor(String autor, Libro libro) {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +61,7 @@ public class VentanaAutor extends JFrame{
 		btnAtras.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaPrincipal v1 = new VentanaPrincipal();
+				VentanaLibro v1 = new VentanaLibro(libro);
 				v1.setVisible(true);
 				dispose();
 			}
@@ -188,8 +190,9 @@ public class VentanaAutor extends JFrame{
 
 
 	}
+	/*
 	public static void main (String [ ] args) {
 		VentanaAutor v = new VentanaAutor("Vanesa Redondo");
 		v.setVisible(true);
-	}
+	}*/
 }

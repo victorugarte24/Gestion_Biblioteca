@@ -63,7 +63,7 @@ public class VentanaPrincipal extends JFrame {
 	private JRadioButton rdbtnAutor;
 	private JRadioButton rdbtnTitulo;
 	private JRadioButton rdbtnISBN;
-	private ArrayList<Libro> a;
+	private ArrayList<Libro> arrayResultado = new ArrayList<Libro>();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -128,54 +128,54 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				a = new ArrayList<Libro>();
+				
 				libroBuscado = txtField.getText().toLowerCase();
+				arrayResultado.clear();
 				
 				if(libroBuscado.isEmpty()) {
-					ILista.cargarLista(bookPanel, arrayLibros);
+					for(Libro l : arrayLibros) {
+						arrayResultado.add(l);
+					}
+					ILista.cargarLista(bookPanel, arrayResultado);
 				}else {
 					if(rdbtnTitulo.isSelected()==true) {
 						for (int i = 0; i < arrayLibros.size(); i++) {
 							if (libroBuscado.toLowerCase().equals(arrayLibros.get(i).getTitulo().toLowerCase())) {
-								a.add(arrayLibros.get(i));
+								arrayResultado.add(arrayLibros.get(i));
 							}
-						} ILista.cargarLista(bookPanel, a);
+						} ILista.cargarLista(bookPanel, arrayResultado);
 					} else if(rdbtnAutor.isSelected()==true) {
 						for (int i = 0; i < arrayLibros.size(); i++) {
 							if(libroBuscado.toLowerCase().equals(arrayLibros.get(i).getAutor().toLowerCase())) {
-								a.add(arrayLibros.get(i));
+								arrayResultado.add(arrayLibros.get(i));
 							}
-						} ILista.cargarLista(bookPanel, a); 
+						} ILista.cargarLista(bookPanel, arrayResultado); 
 					}else if(rdbtnISBN.isSelected()==true) {
 						for (int i = 0; i < arrayLibros.size(); i++) {
 							if(Integer.parseInt(libroBuscado) == arrayLibros.get(i).getISBN()) {
-								a.add(arrayLibros.get(i));
+								arrayResultado.add(arrayLibros.get(i));
 							}
-						} ILista.cargarLista(bookPanel, a);
-					}if(a.isEmpty()) {
+						} ILista.cargarLista(bookPanel, arrayResultado);
+					}if(arrayResultado.isEmpty()) {
 						JOptionPane.showMessageDialog(frame, "No se han encontrado resultados."); 							
 					}
 				}	
@@ -207,7 +207,10 @@ public class VentanaPrincipal extends JFrame {
 		navBarPanel.add(txtField);
 		txtField.setColumns(10);
 
-		ILista.cargarLista(bookPanel, arrayLibros);
+		for(Libro l : arrayLibros) {
+			arrayResultado.add(l);
+		}
+		ILista.cargarLista(bookPanel, arrayResultado);
 
 		JScrollPane scroll = new JScrollPane(bookPanel);
 		scroll.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
@@ -256,7 +259,7 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					VentanaLibro ventanaLibro = new VentanaLibro(arrayLibros.get(bookPanel.getSelectedIndex()));
+					VentanaLibro ventanaLibro = new VentanaLibro(arrayResultado.get(bookPanel.getSelectedIndex()));
 					ventanaLibro.setVisible(true);
 					dispose();
 				} catch (Exception e2) {
