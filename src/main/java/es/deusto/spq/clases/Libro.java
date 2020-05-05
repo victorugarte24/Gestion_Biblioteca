@@ -8,7 +8,7 @@ public class Libro {
     private int ISBN;
     private String sinopsis;
     private int prestado; // 1 prestado, 0 no prestado
-    private String genero;
+    private String genero; 
 
 	public Libro (String titulo, String autor, int numPags, int ISBN, String sinopsis, int prestado, String genero){
 		this.titulo = titulo;

@@ -31,6 +31,7 @@ public class VentanaLibro extends JFrame{
 	static VentanaLibro frame;
 	String Titulolibro;
 
+	
 	public VentanaLibro(Libro libro) {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));

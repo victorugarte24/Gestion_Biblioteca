@@ -65,6 +65,7 @@ public class LibroTest {
 	public void cambiarGenero() {
 		l.setSinopsis("No hay");
 		assertEquals("No hay", l.getSinopsis());
+		
 	}
 
 }

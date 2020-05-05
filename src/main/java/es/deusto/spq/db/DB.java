@@ -227,6 +227,7 @@ public class DB {
 		PreparedStatement update = con.prepareStatement("DELETE FROM libro WHERE Titulo = '" + Libro + "'");
 		int updatep = update.executeUpdate();
 
+		
     }
 	
 	
