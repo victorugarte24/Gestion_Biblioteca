@@ -8,14 +8,16 @@ public class Libro {
     private int ISBN;
     private String sinopsis;
     private int prestado; // 1 prestado, 0 no prestado
+    private String genero;
 
-	public Libro (String titulo, String autor, int numPags, int ISBN, String sinopsis, int prestado){
+	public Libro (String titulo, String autor, int numPags, int ISBN, String sinopsis, int prestado, String genero){
 		this.titulo = titulo;
 		this.autor = autor;
 		this.numPags = numPags;
 		this.ISBN = ISBN;
 		this.sinopsis = sinopsis;
 		this.prestado = prestado;
+		this.genero = genero;
 	}
 
 	public String getTitulo() {
@@ -66,7 +68,14 @@ public class Libro {
 		this.prestado = prestado;
 	}
 
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
 	public String toString() {
-		return "\n"+ this.getTitulo().toUpperCase() + "\nAutor: " + this.getAutor() + "\nNumero de paginas: " + this.getNumPags() + "\nISBN: " + this.getISBN() + "\nSinopsis: "+ this.getSinopsis() + "\nPrestado: "+ this.getPrestado() + "\n\n";
+		return "\n"+ this.getTitulo().toUpperCase() + "\nAutor: " + this.getAutor() + "\nNumero de paginas: " + this.getNumPags() + "\nISBN: " + this.getISBN() + "\nSinopsis: "+ this.getSinopsis() + "\nPrestado: "+ this.getPrestado() +"\nGenero: "+ this.getGenero() + "\n\n";
 	}
 }

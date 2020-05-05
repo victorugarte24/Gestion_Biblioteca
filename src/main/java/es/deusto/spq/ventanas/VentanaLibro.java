@@ -131,7 +131,7 @@ public class VentanaLibro extends JFrame{
 		// ResultadoAutor
 				final String AutorLibro = libro.getAutor();
 				final JLabel label22 = new JLabel(AutorLibro);
-				label22.setBounds(95, 175, 400, 50);
+				label22.setBounds(90, 175, 400, 50);
 				label22.setFont(fuente2);
 				label22.setForeground(Color.WHITE);
 				bookPanel.add(label22);
@@ -159,9 +159,25 @@ public class VentanaLibro extends JFrame{
 						
 					}});
 
+				
+		//Género
+		final JLabel labelGenero = new JLabel("Género: ");
+		labelGenero.setBounds(20, 240, 230, 50);
+		labelGenero.setFont(fuente2);
+		labelGenero.setForeground(Color.WHITE);
+		bookPanel.add(labelGenero);
+		
+		//ResultadoGenero
+		String genero = libro.getGenero();
+		final JLabel labelGeneroRes = new JLabel(genero);
+		labelGeneroRes.setBounds(110, 240, 230, 50);
+		labelGeneroRes.setFont(fuente2);
+		labelGeneroRes.setForeground(Color.WHITE);
+		bookPanel.add(labelGeneroRes);
+				
 		// Número de páginas
 		final JLabel label3 = new JLabel("Nº de Páginas: ");
-		label3.setBounds(20, 240, 150, 50);
+		label3.setBounds(20, 305, 150, 50);
 		label3.setFont(fuente2);
 		label3.setForeground(Color.WHITE);
 		bookPanel.add(label3);
@@ -169,14 +185,14 @@ public class VentanaLibro extends JFrame{
 		// ResultadoNºPáginas
 		String numeroPaginas = Integer.toString(libro.getNumPags());
 		final JLabel label33 = new JLabel(numeroPaginas);
-		label33.setBounds(165, 240, 150, 50);
+		label33.setBounds(170, 305, 400, 50);
 		label33.setFont(fuente2);
 		label33.setForeground(Color.WHITE);
 		bookPanel.add(label33);
 
 		// ISBN
 		final JLabel label4 = new JLabel("ISBN: ");
-		label4.setBounds(20, 305, 150, 50);
+		label4.setBounds(20, 370, 150, 50);
 		label4.setFont(fuente2);
 		label4.setForeground(Color.WHITE);
 		bookPanel.add(label4);
@@ -184,14 +200,14 @@ public class VentanaLibro extends JFrame{
 		// ResultadoISBN
 		String numeroISBN = Integer.toString(libro.getISBN());
 		final JLabel label44 = new JLabel(numeroISBN);
-		label44.setBounds(95, 305, 400, 50);
+		label44.setBounds(95, 370, 400, 50);
 		label44.setFont(fuente2);
 		label44.setForeground(Color.WHITE);
 		bookPanel.add(label44);
 
 		// Sinopsis
 		final JLabel label5 = new JLabel("Sinopsis: ");
-		label5.setBounds(20, 370, 150, 50);
+		label5.setBounds(20, 435, 150, 50);
 		label5.setFont(fuente2);
 		label5.setForeground(Color.WHITE);
 		bookPanel.add(label5);
@@ -200,7 +216,7 @@ public class VentanaLibro extends JFrame{
 		// ResultadoSinopsis
 		String sinopsisLibro = libro.getSinopsis();
 		final JLabel label55 = new JLabel(sinopsisLibro);
-		label55.setBounds(95, 370, 400, 50);
+		label55.setBounds(150, 435, 400, 50);
 		label55.setFont(fuente2);
 		label55.setForeground(Color.WHITE);
 		bookPanel.add(label55);
@@ -243,7 +259,7 @@ public class VentanaLibro extends JFrame{
 	}
 	
 	public static void main (String [ ] args) {
-		Libro l = new Libro("dsd", "dsadsad", 33232, 232132, "", 0);
+		Libro l = new Libro("dsd", "dsadsad", 33232, 232132, "", 0, "ads");
 		VentanaLibro v = new VentanaLibro(l);
 		v.setVisible(true);
 	}

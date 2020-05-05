@@ -12,7 +12,7 @@ public class AutorTest {
     private Autor a; 
 
 	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
+	public ContiPerfRule i = new ContiPerfRule(); 
 	
 	@Before
 	public void setUp() {
@@ -20,7 +20,8 @@ public class AutorTest {
 	}
 	
 	@Test
-	@PerfTest(invocations = 1000, threads = 20)
+	
+	@PerfTest(invocations = 1000, threads = 20) 
 	@Required(max = 1200, average = 250)
 	public void testNombre() {
 		a.setNombre("JK");

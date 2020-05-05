@@ -71,7 +71,7 @@ public class DB {
 		Statement stmt = con.createStatement();
 		ResultSet RS = stmt.executeQuery("SELECT * FROM libro");
 		while(RS.next()) {
-			Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6));
+			Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7));
 			array.add(l);
 		}
 		return array;
@@ -84,10 +84,11 @@ public class DB {
 		int ISBN = l.getISBN();
 		String sinopsis = l.getSinopsis();
 		int prestado = l.getPrestado();
+		String genero = l.getGenero();
 
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
-		String query = "INSERT INTO libro VALUES ('" + titulo +"','" + autor + "'," + numPags + "," + ISBN + ",'" + sinopsis + "'," + prestado + ")";
+		String query = "INSERT INTO libro VALUES ('" + titulo +"','" + autor + "'," + numPags + "," + ISBN + ",'" + sinopsis + "'," + prestado + "'," + genero + ")";
 		stmt.execute(query);
 	}
 	
@@ -122,7 +123,7 @@ public class DB {
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Titulo = '" + s + "'");
      
         while(RS.next()) {
-        	   l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6));
+        	   l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7));
         }
         
         return l;
@@ -135,7 +136,7 @@ public class DB {
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Autor = '" + Autor + "'");
         while(RS.next()) {
-        	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6));
+        	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7));
             a.add(l);
         }
         return a;
@@ -147,7 +148,7 @@ public class DB {
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE ISBN = '" + i + "'");
         while (RS.next()) {
-           	l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6));			
+           	l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7));			
 		}
 
         return l;

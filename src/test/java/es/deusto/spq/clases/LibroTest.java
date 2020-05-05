@@ -20,7 +20,7 @@ public class LibroTest {
 
 	@Before
 	public void setUp() {
-		l = new Libro("La casa de papel", "Juan Ramon García", 2324, 23232313, "Nada", 0);
+		l = new Libro("La casa de papel", "Juan Ramon García", 2324, 23232313, "Nada", 0, "Novela");
 	}
 	
 	@Test
@@ -61,6 +61,10 @@ public class LibroTest {
 		assertEquals(1, l.getPrestado());
 	}
 	
-
+	@Test
+	public void cambiarGenero() {
+		l.setSinopsis("No hay");
+		assertEquals("No hay", l.getSinopsis());
+	}
 
 }
