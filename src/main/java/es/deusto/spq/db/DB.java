@@ -36,6 +36,15 @@ public class DB {
 		String query = "INSERT INTO USUARIO  VALUES('" + usuario + "', "+ dni + ", '"+ nombre + "', '"+  apellido + "', '"+ contrasenya + "')";
 		stmt.execute(query);
 	}
+	
+	public Usuario getUsuario(String usuario, String BD) throws SQLException {
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		String query = "SELECT * FROM Usuario where usuario = '" + usuario + "'";
+		ResultSet RS = stmt.executeQuery(query);
+		Usuario u = new Usuario(RS.getString(1), RS.getString(2), RS.getString(3), RS.getInt(4), RS.getString(5));
+		return u;
+	}
 
 	public boolean comprobarUsuario(String usuario, String BD) throws SQLException {
 		boolean respuesta = false;

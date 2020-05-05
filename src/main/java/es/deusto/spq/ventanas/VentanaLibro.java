@@ -19,20 +19,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import es.deusto.spq.clases.Libro;
+import es.deusto.spq.clases.Usuario;
 import es.deusto.spq.db.DB;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
 
 public class VentanaLibro extends JFrame{
-	/**
-	 *
-	 */
+
 	private final JPanel contentPane;
-	
+	private Usuario usuario;
 	static VentanaLibro frame;
 	String titulolibro;
 
 	
-	public VentanaLibro(Libro libro) {
+	public VentanaLibro(Libro libro, Usuario u) {
+		usuario = u;
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,7 +67,7 @@ public class VentanaLibro extends JFrame{
 		btnAtras.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaPrincipal v1 = new VentanaPrincipal();
+				VentanaPrincipal v1 = new VentanaPrincipal(u);
 				v1.setVisible(true);
 				dispose();
 			}
@@ -257,11 +257,5 @@ public class VentanaLibro extends JFrame{
 		fotoAutor.setLocation(600, 50);
 		bookPanel.add(fotoAutor);
 
-	}
-	
-	public static void main (String [ ] args) {
-		Libro l = new Libro("dsd", "dsadsad", 33232, 232132, "", 0, "ads");
-		VentanaLibro v = new VentanaLibro(l);
-		v.setVisible(true);
 	}
 }

@@ -1,5 +1,7 @@
 package es.deusto.spq.clases;
 
+import java.util.ArrayList;
+
 public class Libro {
 
     private String titulo;
@@ -9,6 +11,9 @@ public class Libro {
     private String sinopsis;
     private int prestado; // 1 prestado, 0 no prestado
     private String genero; 
+    private ArrayList<String> usuarios;
+    private ArrayList<String> opiniones;
+    
 
 	public Libro (String titulo, String autor, int numPags, int ISBN, String sinopsis, int prestado, String genero){
 		this.titulo = titulo;

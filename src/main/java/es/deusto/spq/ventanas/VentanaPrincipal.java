@@ -24,6 +24,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import es.deusto.spq.clases.Libro;
+import es.deusto.spq.clases.Usuario;
 import es.deusto.spq.db.DB;
 import es.deusto.spq.interfaces.ILista;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
@@ -64,30 +65,15 @@ public class VentanaPrincipal extends JFrame {
 	private JRadioButton rdbtnTitulo;
 	private JRadioButton rdbtnISBN;
 	private ArrayList<Libro> arrayResultado = new ArrayList<Libro>();
+	private Usuario usuario;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frame = new VentanaPrincipal();
-					frame.setSize(1200, 800);
-					frame.setVisible(true);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	public VentanaPrincipal() {
-
+	public VentanaPrincipal(Usuario u) {
 		try {
 			arrayLibros = database.getLibros("gestion_biblioteca_db");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		usuario = u;
 		init();
 	}
 
@@ -259,7 +245,7 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					VentanaLibro ventanaLibro = new VentanaLibro(arrayResultado.get(bookPanel.getSelectedIndex()));
+					VentanaLibro ventanaLibro = new VentanaLibro(arrayResultado.get(bookPanel.getSelectedIndex()), usuario);
 					ventanaLibro.setVisible(true);
 					dispose();
 				} catch (Exception e2) {

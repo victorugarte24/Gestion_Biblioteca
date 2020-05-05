@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import es.deusto.spq.clases.Usuario;
 import es.deusto.spq.db.DB;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
 
@@ -21,9 +22,6 @@ import javax.swing.JRadioButton;
 
 public class VentanaLogin extends JFrame{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_1;
 	private JPasswordField passwordField;
@@ -68,7 +66,8 @@ public class VentanaLogin extends JFrame{
 						if (database.comprobarContrasenya(textField_1.getText(), "gestion_biblioteca_db").equals(passwordField.getText())) {
 							JOptionPane.showMessageDialog(null, "Usuario Correcto");
 							dispose();
-							VentanaPrincipal vp = new VentanaPrincipal();
+							Usuario usuario = database.getUsuario(textField_1.getText(), "gestion_biblioteca_db");
+							VentanaPrincipal vp = new VentanaPrincipal(usuario);
 							vp.setVisible(true);
 						}
 						else {
