@@ -56,7 +56,6 @@ public class VentanaPrincipal extends JFrame {
 	private JTextField txtField;
 	private JList bookPanel = new JList();
 	private ArrayList<Libro> arrayLibros = new ArrayList<Libro>();
-	private File bd;
 	private static VentanaPrincipal frame;
 	private DB database = new DB();
 	private String libroBuscado;

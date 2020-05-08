@@ -14,18 +14,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import es.deusto.spq.clases.Libro;
+import es.deusto.spq.clases.Usuario;
 import es.deusto.spq.db.DB;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
 
 public class VentanaAutor extends JFrame{
-	/**
-	 *
-	 */
-	private final JPanel contentPane;
 
+	private final JPanel contentPane;
+	private Usuario usuario;
 	static VentanaLibro frame;
 
-	public VentanaAutor(String autor, Libro libro) {
+	public VentanaAutor(String autor, Libro libro, Usuario u) {
+		usuario = u;
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,7 +61,7 @@ public class VentanaAutor extends JFrame{
 		btnAtras.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaLibro v1 = new VentanaLibro(libro);
+				VentanaLibro v1 = new VentanaLibro(libro, usuario);
 				v1.setVisible(true);
 				dispose();
 			}

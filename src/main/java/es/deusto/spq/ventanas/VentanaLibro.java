@@ -22,24 +22,23 @@ import es.deusto.spq.clases.Libro;
 import es.deusto.spq.clases.Usuario;
 import es.deusto.spq.db.DB;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 public class VentanaLibro extends JFrame{
 
 	private final JPanel contentPane;
-	private Usuario usuario;
 	static VentanaLibro frame;
 	String titulolibro;
 
 	
 	public VentanaLibro(Libro libro, Usuario u) {
-		usuario = u;
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
 		this.setLocationRelativeTo(null);
-		setResizable(false);
 		setTitle("Biblioteca Online");
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -151,7 +150,7 @@ public class VentanaLibro extends JFrame{
 					public void actionPerformed(ActionEvent e) {
 						try {
 						System.out.println(AutorLibro);
-						VentanaAutor v12 = new VentanaAutor(AutorLibro, libro);
+						VentanaAutor v12 = new VentanaAutor(AutorLibro, libro, u);
 						v12.setVisible(true);
 						dispose();	
 					 }catch (Exception e2) {
@@ -225,7 +224,7 @@ public class VentanaLibro extends JFrame{
 		
 		// Botón Reservar
 		final JButton botonR = new JButton("Reservar Libro");
-		botonR.setBounds(60, 550, 200, 50);
+		botonR.setBounds(588, 240, 191, 50);
 		botonR.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 17));
 		botonR.setForeground(Color.BLACK);
 		botonR.setContentAreaFilled(false);
@@ -256,6 +255,23 @@ public class VentanaLibro extends JFrame{
 		JLabelGraficoAjustado fotoAutor = new JLabelGraficoAjustado("src/main/resources/libro.jpg", 170, 175);
 		fotoAutor.setLocation(600, 50);
 		bookPanel.add(fotoAutor);
-
+		
+		JButton btnOpiniones = new JButton("Consultar opiniones");
+		btnOpiniones.setForeground(Color.BLACK);
+		btnOpiniones.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 15));
+		btnOpiniones.setFocusable(false);
+		btnOpiniones.setContentAreaFilled(false);
+		btnOpiniones.setBorder(new LineBorder(new Color (0,0,0),3));
+		btnOpiniones.setBounds(325, 629, 191, 50);
+		bookPanel.add(btnOpiniones);
+		
+		btnOpiniones.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaOpiniones v2 = new VentanaOpiniones(libro, u);
+				v2.setVisible(true);				
+			}
+		});
 	}
 }

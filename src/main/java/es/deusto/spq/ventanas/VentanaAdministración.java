@@ -64,6 +64,7 @@ public class VentanaAdministración extends JFrame{
 	JLabel lblNewLabel_3;
 	JLabel lblNewLabel_4;
 	JLabel lblNewLabel_5;
+	private ArrayList<Libro> arrayResultado;
 
 	public VentanaAdministración() {
 
@@ -131,33 +132,34 @@ public class VentanaAdministración extends JFrame{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ArrayList<Libro> a = new ArrayList<Libro>();
 				libroBuscado = txtField.getText().toLowerCase();
+				arrayResultado.clear();
 				
 				if(libroBuscado.isEmpty()) {
-					ILista.cargarLista(bookPanel, arrayLibros);
+					for(Libro l : arrayLibros) {
+						arrayResultado.add(l);
+					}
+					ILista.cargarLista(bookPanel, arrayResultado);
 				}else {
 					if(rdbtnTitulo.isSelected()==true) {
 						for (int i = 0; i < arrayLibros.size(); i++) {
-							if (libroBuscado.equals(arrayLibros.get(i).getTitulo().toLowerCase())) {
-								a.add(arrayLibros.get(i));
-								ILista.cargarLista(bookPanel, a);
+							if (libroBuscado.toLowerCase().equals(arrayLibros.get(i).getTitulo().toLowerCase())) {
+								arrayResultado.add(arrayLibros.get(i));
 							}
-						} 
+						} ILista.cargarLista(bookPanel, arrayResultado);
 					} else if(rdbtnAutor.isSelected()==true) {
 						for (int i = 0; i < arrayLibros.size(); i++) {
-							if(libroBuscado.equals(arrayLibros.get(i).getAutor().toLowerCase())) {
-								a.add(arrayLibros.get(i));
-								ILista.cargarLista(bookPanel, a);
+							if(libroBuscado.toLowerCase().equals(arrayLibros.get(i).getAutor().toLowerCase())) {
+								arrayResultado.add(arrayLibros.get(i));
 							}
-						} 
+						} ILista.cargarLista(bookPanel, arrayResultado); 
 					}else if(rdbtnISBN.isSelected()==true) {
 						for (int i = 0; i < arrayLibros.size(); i++) {
 							if(Integer.parseInt(libroBuscado) == arrayLibros.get(i).getISBN()) {
-								a.add(arrayLibros.get(i));
+								arrayResultado.add(arrayLibros.get(i));
 							}
-						} ILista.cargarLista(bookPanel, a);
-					}if(a.isEmpty()) {
+						} ILista.cargarLista(bookPanel, arrayResultado);
+					}if(arrayResultado.isEmpty()) {
 						JOptionPane.showMessageDialog(frame, "No se han encontrado resultados."); 							
 					}
 				}	
@@ -189,7 +191,10 @@ public class VentanaAdministración extends JFrame{
 		navBarPanel.add(txtField);
 		txtField.setColumns(10);
 
-		ILista.cargarLista(bookPanel, arrayLibros);
+		for(Libro l : arrayLibros) {
+			arrayResultado.add(l);
+		}
+		ILista.cargarLista(bookPanel, arrayResultado);
 
 		JScrollPane scroll = new JScrollPane(bookPanel);
 		scroll.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
@@ -299,27 +304,5 @@ public class VentanaAdministración extends JFrame{
 			}
 		});
 	
-	}
-
-	public void cargarLista(ArrayList<Libro> a) {
-		DefaultListModel<String> modelo = new DefaultListModel<String>();
-		for(Libro l : a) {
-			modelo.addElement(l.getTitulo());
-		}		
-		bookPanel.setModel(modelo);
-		bookPanel.updateUI();
-		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)bookPanel.getCellRenderer();  
-		renderer.setHorizontalAlignment(JLabel.CENTER);  
-		bookPanel.setFixedCellHeight(40);
-		bookPanel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		bookPanel.setVisibleRowCount(5);
-		bookPanel.setFont(new Font("Rockwell", Font.BOLD, 20));
-		bookPanel.setForeground(new Color(0, 0, 0));
-		bookPanel.setBackground(Color.LIGHT_GRAY);
-	}
-
-	public static void main (String [ ] args) {
-		VentanaAdministración v = new VentanaAdministración();
-		v.setVisible(true);
 	}
 }

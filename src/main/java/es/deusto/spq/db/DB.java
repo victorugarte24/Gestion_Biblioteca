@@ -40,9 +40,13 @@ public class DB {
 	public Usuario getUsuario(String usuario, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
+		Usuario u = null;
 		String query = "SELECT * FROM Usuario where usuario = '" + usuario + "'";
 		ResultSet RS = stmt.executeQuery(query);
-		Usuario u = new Usuario(RS.getString(1), RS.getString(2), RS.getString(3), RS.getInt(4), RS.getString(5));
+		while(RS.next()){
+			u = new Usuario(RS.getString(3), RS.getString(4), RS.getString(1), RS.getInt(2), RS.getString(5));
+		}
+		
 		return u;
 	}
 
@@ -235,9 +239,80 @@ public class DB {
 		Connection con = initBD(BD);
 		PreparedStatement update = con.prepareStatement("DELETE FROM libro WHERE Titulo = '" + Libro + "'");
 		int updatep = update.executeUpdate();
-
-		
     }
+	
+	
+	public void insertarOpiniones(Libro l, ArrayList<String> usuarios, ArrayList<String> opiniones, String BD) throws SQLException {
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		String users = "";
+		String opinions = "";
+		for(String s : usuarios) {
+			users = users + (s+"/");
+		}
+		for(String s : opiniones) {
+			opinions = opinions  + (s+"/");
+		}
+		
+		String query = "INSERT INTO opinion VALUES ('" + l.getISBN() + "','" + users + "','" + opinions + "')";
+		stmt.execute(query);
+	}
+	
+	
+	public void modificarOpiniones(Libro l, ArrayList<String> usuarios, ArrayList<String> opiniones, String BD) throws SQLException {
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		String users = "";
+		String opinions = "";
+		for(String s : usuarios) {
+			users = users + (s+"/");
+		}
+		for(String s : opiniones) {
+			opinions = opinions  + (s+"/");
+		}
+		
+		String query = "UPDATE opinion SET Usuarios = '" + users + "', Opiniones = '" + opinions + "' WHERE ISBN = '" + l.getISBN() + "')";
+		stmt.execute(query);
+	}
+	
+	public ArrayList<String> getOpUsuarios(Libro l, String BD) throws SQLException {
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		String[] users = {};
+		ArrayList<String> usuarios = new ArrayList<String>();
+		
+		String query = "SELECT Usuarios FROM opinion WHERE ISBN= '" + l.getISBN() + "'";
+		ResultSet RS = stmt.executeQuery(query);
+		while(RS.next()) {
+			users = RS.getString("Usuarios").split("/");
+		}
+		
+		for(String s : users) {
+			usuarios.add(s);
+		}
+		
+		return usuarios;
+	}
+	
+	public ArrayList<String> getOpOpiniones(Libro l, String BD) throws SQLException {
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		String[] opinions = {};
+		ArrayList<String> opiniones = new ArrayList<String>();
+		
+		String query = "SELECT Opiniones FROM opinion WHERE ISBN= '" + l.getISBN() + "'";
+		ResultSet RS = stmt.executeQuery(query);
+		while(RS.next()) {
+			opinions = RS.getString("Opiniones").split("/");
+		}
+		
+		for(String s : opinions) {
+			opiniones.add(s);
+		}
+		
+		return opiniones;
+	}
+	
 	
 	
 	public static void main(String[] args) throws SQLException {

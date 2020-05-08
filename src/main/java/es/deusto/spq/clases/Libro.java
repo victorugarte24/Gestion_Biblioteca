@@ -11,8 +11,8 @@ public class Libro {
     private String sinopsis;
     private int prestado; // 1 prestado, 0 no prestado
     private String genero; 
-    private ArrayList<String> usuarios;
-    private ArrayList<String> opiniones;
+    private ArrayList<String> usuarios = new ArrayList<String>();
+    private ArrayList<String> opiniones = new ArrayList<String>();
     
 
 	public Libro (String titulo, String autor, int numPags, int ISBN, String sinopsis, int prestado, String genero){
@@ -80,6 +80,23 @@ public class Libro {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
+	
+	public ArrayList<String> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(ArrayList<String> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public ArrayList<String> getOpiniones() {
+		return opiniones;
+	}
+
+	public void setOpiniones(ArrayList<String> opiniones) {
+		this.opiniones = opiniones;
+	}
+	
 	public String toString() {
 		return "\n"+ this.getTitulo().toUpperCase() + "\nAutor: " + this.getAutor() + "\nNumero de paginas: " + this.getNumPags() + "\nISBN: " + this.getISBN() + "\nSinopsis: "+ this.getSinopsis() + "\nPrestado: "+ this.getPrestado() +"\nGenero: "+ this.getGenero() + "\n\n";
 	}
