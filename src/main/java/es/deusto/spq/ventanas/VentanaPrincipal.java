@@ -63,6 +63,7 @@ public class VentanaPrincipal extends JFrame {
 	private JRadioButton rdbtnAutor;
 	private JRadioButton rdbtnTitulo;
 	private JRadioButton rdbtnISBN;
+	private JRadioButton rdbtnEditorial;
 	private ArrayList<Libro> arrayResultado = new ArrayList<Libro>();
 	private Usuario usuario;
 
@@ -160,7 +161,16 @@ public class VentanaPrincipal extends JFrame {
 								arrayResultado.add(arrayLibros.get(i));
 							}
 						} ILista.cargarLista(bookPanel, arrayResultado);
-					}if(arrayResultado.isEmpty()) {
+					}else if(rdbtnEditorial.isSelected()==true) {
+						for (int i = 0; i < arrayLibros.size(); i++) {
+							if(libroBuscado.toLowerCase().equals(arrayLibros.get(i).getEditorial().toLowerCase())) {
+								arrayResultado.add(arrayLibros.get(i));
+							}
+						} ILista.cargarLista(bookPanel, arrayResultado);
+					}
+					
+					
+					if(arrayResultado.isEmpty()) {
 						JOptionPane.showMessageDialog(frame, "No se han encontrado resultados."); 							
 					}
 				}	
@@ -236,9 +246,17 @@ public class VentanaPrincipal extends JFrame {
 		rdbtnISBN.setContentAreaFilled(false);
 		contentPane.add(rdbtnISBN);
 		
+		rdbtnEditorial = new JRadioButton("Editorial");
+		rdbtnEditorial.setFont(new Font("Tahoma", Font.BOLD, 13));
+		rdbtnEditorial.setBounds(1045, 189, 109, 23);
+		rdbtnEditorial.setContentAreaFilled(false);
+		rdbtnEditorial.setSelected(true);
+		contentPane.add(rdbtnEditorial);
+		
 		filtro.add(rdbtnTitulo);
 		filtro.add(rdbtnAutor);
 		filtro.add(rdbtnISBN);
+		filtro.add(rdbtnEditorial);
 		
 		btnLibro.addActionListener(new ActionListener() {
 			@Override

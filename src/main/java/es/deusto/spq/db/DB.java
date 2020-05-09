@@ -84,7 +84,7 @@ public class DB {
 		Statement stmt = con.createStatement();
 		ResultSet RS = stmt.executeQuery("SELECT * FROM libro");
 		while(RS.next()) {
-			Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7));
+			Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7), RS.getString(8));
 			array.add(l);
 		}
 		return array;
@@ -136,7 +136,7 @@ public class DB {
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Titulo = '" + s + "'");
      
         while(RS.next()) {
-        	   l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7));
+        	   l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7), RS.getString(8));
         }
         
         return l;
@@ -149,7 +149,7 @@ public class DB {
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Autor = '" + Autor + "'");
         while(RS.next()) {
-        	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7));
+        	Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7), RS.getString(8));
             a.add(l);
         }
         return a;
@@ -161,7 +161,7 @@ public class DB {
         Statement stmt = con.createStatement();
         ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE ISBN = '" + i + "'");
         while (RS.next()) {
-           	l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7));			
+           	l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7), RS.getString(8));			
 		}
 
         return l;
