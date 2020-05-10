@@ -44,7 +44,7 @@ public class DB {
 		String query = "SELECT * FROM Usuario where usuario = '" + usuario + "'";
 		ResultSet RS = stmt.executeQuery(query);
 		while(RS.next()){
-			u = new Usuario(RS.getString(3), RS.getString(4), RS.getString(1), RS.getInt(2), RS.getString(5));
+			u = new Usuario(RS.getString(1), RS.getString(2), RS.getString(3), RS.getInt(4), RS.getString(5));
 		}
 		
 		return u;

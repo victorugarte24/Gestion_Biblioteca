@@ -271,6 +271,20 @@ public class VentanaPrincipal extends JFrame {
 				
 			}
 		});
+		
+		JButton top10 = new JButton("TOP 10");
+		top10.setBounds(7, 75, 180, 30);
+		top10.setForeground(new Color(0,0,0));
+		top10.setFocusable(false);
+		top10.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaTop vt = new VentanaTop();
+				vt.setVisible(true);
+			}
+		});
+		contentPane.add(top10);
 	}
 }
 

@@ -64,6 +64,8 @@ public class VentanaAdministración extends JFrame{
 	JLabel lblNewLabel_3;
 	JLabel lblNewLabel_4;
 	JLabel lblNewLabel_5;
+	String genero;
+	JLabel lblNewLabel_7;
 	private ArrayList<Libro> arrayResultado;
 
 	public VentanaAdministración() {
@@ -190,11 +192,12 @@ public class VentanaAdministración extends JFrame{
 		txtField.setBounds(347, 20, 500, 30);
 		navBarPanel.add(txtField);
 		txtField.setColumns(10);
-
+		
+		/*
 		for(Libro l : arrayLibros) {
 			arrayResultado.add(l);
 		}
-		ILista.cargarLista(bookPanel, arrayResultado);
+		ILista.cargarLista(bookPanel, arrayResultado); */
 
 		JScrollPane scroll = new JScrollPane(bookPanel);
 		scroll.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
@@ -262,6 +265,16 @@ public class VentanaAdministración extends JFrame{
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 13));
 		contentPane.add(lblNewLabel_5);
 		
+		JLabel lblNewLabel_6 = new JLabel("Género:");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_6.setBounds(10, 315, 84, 13);
+		contentPane.add(lblNewLabel_6);	
+		
+		lblNewLabel_7 = new JLabel(genero);
+		lblNewLabel_7.setBounds(10, 345, 250, 18);
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 13));
+		contentPane.add(lblNewLabel_7);
+		
 		bookPanel.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -293,9 +306,11 @@ public class VentanaAdministración extends JFrame{
 				Libro = arrayLibros.get(bookPanel.getSelectedIndex()).getTitulo();
 				Autor = arrayLibros.get(bookPanel.getSelectedIndex()).getAutor();
 				ISBN = Integer.toString(arrayLibros.get(bookPanel.getSelectedIndex()).getISBN());
+				genero = arrayLibros.get(bookPanel.getSelectedIndex()).getGenero();
 				lblNewLabel_3.setText(Libro);
 				lblNewLabel_4.setText(Autor);
 				lblNewLabel_5.setText(ISBN);
+				lblNewLabel_7.setText(genero);
 				if (e.getClickCount() == 2) {
 					VentanaUbicacion vu = new VentanaUbicacion(Libro);
 					vu.setVisible(true);
