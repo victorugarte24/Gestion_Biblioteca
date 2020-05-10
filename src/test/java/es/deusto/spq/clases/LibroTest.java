@@ -20,7 +20,7 @@ public class LibroTest {
 
 	@Before
 	public void setUp() {
-		l = new Libro("La casa de papel", "Juan Ramon García", 2324, 23232313, "Nada", 0, "Novela");
+		l = new Libro("La casa de papel", "Juan Ramon García", 2324, 23232313, "Nada", 0, "Novela", null);
 	}
 	
 	@Test

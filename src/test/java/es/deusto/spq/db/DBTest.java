@@ -52,7 +52,7 @@ public class DBTest {
 	
 	@Test
 	public void libroAutor() throws SQLException {
-		Libro l = new Libro("EL LEGADO DE LOS MALDITOS", "Vanesa Redondo",	356, 4342343, "", 1);
+		Libro l = new Libro("EL LEGADO DE LOS MALDITOS", "Vanesa Redondo",	356, 4342343, "", 1, null, null);
 		assertEquals(l.getAutor(), db.buscarLibroAutor("Vanesa Redondo", "gestion_biblioteca_db_pruebas").get(0).getAutor());
 	}
 	
@@ -82,7 +82,7 @@ public class DBTest {
 	
 	@Test
 	public void anyadirLibro() throws SQLException {
-		Libro l = new Libro("a", "a", 1, 4321, "", 1);
+		Libro l = new Libro("a", "a", 1, 4321, "", 1, null, null);
 		db.eliminarLibro("a", "gestion_biblioteca_db_pruebas");
 		db.AnyadirLibro(l, "gestion_biblioteca_db_pruebas");
 		assertEquals(l.getTitulo(), db.buscarLibroTitulo("a", "gestion_biblioteca_db_pruebas").getTitulo());
@@ -90,7 +90,7 @@ public class DBTest {
 	
 	@Test
 	public void libroISBN() throws SQLException {
-		Libro l = new Libro("1793", "Niklas Natt Och Dag", 354, 484841, "", 0);
+		Libro l = new Libro("1793", "Niklas Natt Och Dag", 354, 484841, "", 0, null, null);
 		assertEquals(l.getISBN(), db.buscarLibroISBN(484841, "gestion_biblioteca_db_pruebas").getISBN());
 	}	
 
