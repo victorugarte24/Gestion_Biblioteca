@@ -65,8 +65,10 @@ public class VentanaAdministración extends JFrame{
 	JLabel lblNewLabel_4;
 	JLabel lblNewLabel_5;
 	String genero;
+	String editorial;
 	JLabel lblNewLabel_7;
-	private ArrayList<Libro> arrayResultado;
+	JLabel lblNewLabel_9;
+	private ArrayList<Libro> arrayResultado = new ArrayList<Libro>();
 
 	public VentanaAdministración() {
 
@@ -193,11 +195,10 @@ public class VentanaAdministración extends JFrame{
 		navBarPanel.add(txtField);
 		txtField.setColumns(10);
 		
-		/*
 		for(Libro l : arrayLibros) {
 			arrayResultado.add(l);
 		}
-		ILista.cargarLista(bookPanel, arrayResultado); */
+		ILista.cargarLista(bookPanel, arrayResultado); 
 
 		JScrollPane scroll = new JScrollPane(bookPanel);
 		scroll.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
@@ -251,17 +252,17 @@ public class VentanaAdministración extends JFrame{
 		
 		
 		lblNewLabel_3 = new JLabel(Libro);
-		lblNewLabel_3.setBounds(10, 147, 250, 18);
+		lblNewLabel_3.setBounds(10, 147, 177, 18);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		contentPane.add(lblNewLabel_3);
 		
 		lblNewLabel_4 = new JLabel(Autor);
-		lblNewLabel_4.setBounds(10, 217, 250, 18);
+		lblNewLabel_4.setBounds(10, 217, 177, 18);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 13));
 		contentPane.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel(ISBN);
-		lblNewLabel_5.setBounds(10, 277, 250, 18);
+		lblNewLabel_5.setBounds(10, 277, 177, 18);
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 13));
 		contentPane.add(lblNewLabel_5);
 		
@@ -271,9 +272,19 @@ public class VentanaAdministración extends JFrame{
 		contentPane.add(lblNewLabel_6);	
 		
 		lblNewLabel_7 = new JLabel(genero);
-		lblNewLabel_7.setBounds(10, 345, 250, 18);
+		lblNewLabel_7.setBounds(10, 345, 177, 18);
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 13));
 		contentPane.add(lblNewLabel_7);
+		
+		lblNewLabel_9 = new JLabel(editorial);
+		lblNewLabel_9.setBounds(10, 413, 177, 18);
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 13));
+		contentPane.add(lblNewLabel_9);
+		
+		JLabel lblNewLabel_8 = new JLabel("Editorial:");
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_8.setBounds(10, 383, 70, 13);
+		contentPane.add(lblNewLabel_8);
 		
 		bookPanel.addMouseListener(new MouseListener() {
 			
@@ -307,10 +318,12 @@ public class VentanaAdministración extends JFrame{
 				Autor = arrayLibros.get(bookPanel.getSelectedIndex()).getAutor();
 				ISBN = Integer.toString(arrayLibros.get(bookPanel.getSelectedIndex()).getISBN());
 				genero = arrayLibros.get(bookPanel.getSelectedIndex()).getGenero();
+				editorial = arrayLibros.get(bookPanel.getSelectedIndex()).getEditorial();
 				lblNewLabel_3.setText(Libro);
 				lblNewLabel_4.setText(Autor);
 				lblNewLabel_5.setText(ISBN);
-				lblNewLabel_7.setText(genero);
+				lblNewLabel_7.setText(genero); 
+				lblNewLabel_9.setText(editorial); 
 				if (e.getClickCount() == 2) {
 					VentanaUbicacion vu = new VentanaUbicacion(Libro);
 					vu.setVisible(true);
