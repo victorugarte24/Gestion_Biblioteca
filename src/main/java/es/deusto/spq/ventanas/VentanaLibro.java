@@ -6,6 +6,8 @@ import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
@@ -22,23 +24,25 @@ import es.deusto.spq.clases.Libro;
 import es.deusto.spq.clases.Usuario;
 import es.deusto.spq.db.DB;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
 
 public class VentanaLibro extends JFrame{
 
 	private final JPanel contentPane;
+	private Usuario usuario;
 	static VentanaLibro frame;
 	String titulolibro;
-
+	private JLabelGraficoAjustado dislike;
+	private JLabelGraficoAjustado like;
 	
 	public VentanaLibro(Libro libro, Usuario u) {
+		usuario = u;
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
 		this.setLocationRelativeTo(null);
+		setResizable(false);
 		setTitle("Biblioteca Online");
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -224,7 +228,7 @@ public class VentanaLibro extends JFrame{
 		
 		// Botón Reservar
 		final JButton botonR = new JButton("Reservar Libro");
-		botonR.setBounds(588, 240, 191, 50);
+		botonR.setBounds(60, 550, 200, 50);
 		botonR.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 17));
 		botonR.setForeground(Color.BLACK);
 		botonR.setContentAreaFilled(false);
@@ -232,9 +236,10 @@ public class VentanaLibro extends JFrame{
 		botonR.setFocusable(false);
 		bookPanel.add(botonR);
 		
+		DB db = new DB();
+		
 		botonR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DB db = new DB();
 				try {
 					if (db.comprobarLibroPrestado(titulolibro, "gestion_biblioteca_db") == 0) {
 						db.tomarPrestadoLibro(titulolibro, "gestion_biblioteca_db");
@@ -256,22 +261,98 @@ public class VentanaLibro extends JFrame{
 		fotoAutor.setLocation(600, 50);
 		bookPanel.add(fotoAutor);
 		
-		JButton btnOpiniones = new JButton("Consultar opiniones");
-		btnOpiniones.setForeground(Color.BLACK);
-		btnOpiniones.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 15));
-		btnOpiniones.setFocusable(false);
-		btnOpiniones.setContentAreaFilled(false);
-		btnOpiniones.setBorder(new LineBorder(new Color (0,0,0),3));
-		btnOpiniones.setBounds(325, 629, 191, 50);
-		bookPanel.add(btnOpiniones);
-		
-		btnOpiniones.addActionListener(new ActionListener() {
+		like = new JLabelGraficoAjustado("src/main/resources/like.jpg", 65, 65);
+		like.setLocation(550, 538);
+		like.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				VentanaOpiniones v2 = new VentanaOpiniones(libro, u);
-				v2.setVisible(true);				
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dislike.setVisible(false);
+				try {
+					int likes = db.getLikes(titulolibro, "gestion_biblioteca_db");
+					likes = likes + 1;
+					db.darLike(titulolibro, likes, "gestion_biblioteca_db");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				
 			}
 		});
+		bookPanel.add(like);
+
+		dislike = new JLabelGraficoAjustado("src/main/resources/dislike.jpg", 65, 65);
+		dislike.setLocation(650, 538);
+		dislike.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				like.setVisible(false);
+				try {
+					int dislikes = db.getDislikes(titulolibro, "gestion_biblioteca_db");
+					dislikes = dislikes + 1;
+					db.darDislike(titulolibro, dislikes, "gestion_biblioteca_db");
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		bookPanel.add(dislike);
+
+	}
+	
+	public static void main (String [ ] args) {
+		Usuario u = new Usuario("u", "s", "f", 323, "13123");
+		Libro l = new Libro("", "", 3, 3, "", 0, "", "");
+		VentanaLibro v = new VentanaLibro(l, u);
+		v.setVisible(true);
 	}
 }

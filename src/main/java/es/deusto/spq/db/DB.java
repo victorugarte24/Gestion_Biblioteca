@@ -313,6 +313,53 @@ public class DB {
 		return opiniones;
 	}
 	
+	public void darLike(String titulo,int likes, String BD) throws SQLException {
+		Connection con = initBD(BD);
+		PreparedStatement update = con.prepareStatement("UPDATE LIKES_DISLIKES SET LIKES = " + likes + " WHERE TITULO = '" + titulo +"'");
+		int updatep = update.executeUpdate();
+	}
+	
+	public void darDislike(String titulo, int dislikes, String BD) throws SQLException {
+		Connection con = initBD(BD);
+		PreparedStatement update = con.prepareStatement("UPDATE LIKES_DISLIKES SET DISLIKES = " + dislikes + " WHERE TITULO = '" + titulo +"'");
+		int updatep = update.executeUpdate();
+	}
+	
+	public int getLikes(String titulo, String BD) throws SQLException {
+		int likes = 0;
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		String query = "SELECT LIKES FROM LIKES_DISLIKES WHERE TITULO = '" + titulo + "'";
+		ResultSet RS = stmt.executeQuery(query);
+		while (RS.next()) {
+			likes = RS.getInt("Likes");
+		}
+        return likes;
+    }
+	
+	public int getDislikes(String titulo, String BD) throws SQLException {
+		int dislikes = 0;
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		String query = "SELECT DISLIKES FROM LIKES_DISLIKES WHERE TITULO = '" + titulo + "'";
+		ResultSet RS = stmt.executeQuery(query);
+		while (RS.next()) {
+			dislikes = RS.getInt("Dislikes");
+		}
+        return dislikes;
+    }
+	
+	public ArrayList<String> getTop10(String BD) throws SQLException {
+		ArrayList<String> array = new ArrayList<String>();
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		ResultSet RS = stmt.executeQuery("SELECT Titulo FROM likes_dislikes ORDER BY likes DESC LIMIT 10");
+		while(RS.next()) {
+			array.add(RS.getString("Titulo"));
+		}
+		return array;
+	}
+	
 	
 	
 	public static void main(String[] args) throws SQLException {
