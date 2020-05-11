@@ -286,6 +286,20 @@ public class VentanaAdministración extends JFrame{
 		lblNewLabel_8.setBounds(10, 383, 70, 13);
 		contentPane.add(lblNewLabel_8);
 		
+		JButton botonEstadisticas = new JButton("Estadísticas");
+		botonEstadisticas.setBounds(7, 70, 180, 30);
+		botonEstadisticas.setForeground(new Color(0,0,0));
+		botonEstadisticas.setFocusable(false);
+		botonEstadisticas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaEstadisticas ve = new VentanaEstadisticas();
+				ve.setVisible(true);
+			}
+		});
+		contentPane.add(botonEstadisticas);
+		
 		bookPanel.addMouseListener(new MouseListener() {
 			
 			@Override
