@@ -209,9 +209,25 @@ public class VentanaLibro extends JFrame{
 		label44.setForeground(Color.WHITE);
 		bookPanel.add(label44);
 
+		// Editorial
+		final JLabel labelEditorial = new JLabel("Editorial: ");
+		labelEditorial.setBounds(20, 435, 150, 50);
+		labelEditorial.setFont(fuente2);
+		labelEditorial.setForeground(Color.WHITE);
+		bookPanel.add(labelEditorial);
+				
+				
+		// ResultadoEditorial
+		String editorialLibro = libro.getEditorial();
+		final JLabel labelEdi = new JLabel(editorialLibro);
+		labelEdi.setBounds(125, 435, 400, 50);
+		labelEdi.setFont(fuente2);
+		labelEdi.setForeground(Color.WHITE);
+		bookPanel.add(labelEdi);
+		
 		// Sinopsis
 		final JLabel label5 = new JLabel("Sinopsis: ");
-		label5.setBounds(20, 435, 150, 50);
+		label5.setBounds(20, 500, 150, 50);
 		label5.setFont(fuente2);
 		label5.setForeground(Color.WHITE);
 		bookPanel.add(label5);
@@ -220,15 +236,16 @@ public class VentanaLibro extends JFrame{
 		// ResultadoSinopsis
 		String sinopsisLibro = libro.getSinopsis();
 		final JLabel label55 = new JLabel(sinopsisLibro);
-		label55.setBounds(150, 435, 400, 50);
+		label55.setBounds(150, 500, 400, 50);
 		label55.setFont(fuente2);
 		label55.setForeground(Color.WHITE);
 		bookPanel.add(label55);
 		
 		
+		
 		// Botón Reservar
 		final JButton botonR = new JButton("Reservar Libro");
-		botonR.setBounds(60, 550, 200, 50);
+		botonR.setBounds(575, 305, 200, 50); // 170, 305, 400, 50
 		botonR.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 17));
 		botonR.setForeground(Color.BLACK);
 		botonR.setContentAreaFilled(false);
