@@ -346,6 +346,24 @@ public class VentanaLibro extends JFrame{
 			}
 		});
 		bookPanel.add(dislike);
+		
+		JButton btnOpinion = new JButton("Ver Opiniones");
+		btnOpinion.setForeground(Color.BLACK);
+		btnOpinion.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 17));
+		btnOpinion.setFocusable(false);
+		btnOpinion.setContentAreaFilled(false);
+		btnOpinion.setBorder(new LineBorder(new Color (0,0,0),3));
+		btnOpinion.setBounds(298, 639, 200, 50);
+		bookPanel.add(btnOpinion);
+		
+		btnOpinion.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaOpiniones v2 = new VentanaOpiniones(libro, usuario);
+				v2.setVisible(true);
+			}
+		});
 
 	}
 	

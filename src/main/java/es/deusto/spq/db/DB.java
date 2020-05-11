@@ -44,7 +44,7 @@ public class DB {
 		String query = "SELECT * FROM Usuario where usuario = '" + usuario + "'";
 		ResultSet RS = stmt.executeQuery(query);
 		while(RS.next()){
-			u = new Usuario(RS.getString(1), RS.getString(2), RS.getString(3), RS.getInt(4), RS.getString(5));
+			u = new Usuario(RS.getString(3), RS.getString(4), RS.getString(1), RS.getInt(2), RS.getString(5));
 		}
 		
 		return u;
@@ -242,6 +242,21 @@ public class DB {
     }
 	
 	
+	public ArrayList<Integer> getOpISBN(String BD) throws SQLException{
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		ArrayList<Integer> ISBN = new ArrayList<Integer>();
+		
+		String query = "SELECT ISBN from opinion";
+		ResultSet RS = stmt.executeQuery(query);
+		while(RS.next()) {
+			ISBN.add((Integer) RS.getInt(1));
+		}
+		
+		return ISBN;
+	}
+	
+	
 	public void insertarOpiniones(Libro l, ArrayList<String> usuarios, ArrayList<String> opiniones, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
@@ -271,7 +286,7 @@ public class DB {
 			opinions = opinions  + (s+"/");
 		}
 		
-		String query = "UPDATE opinion SET Usuarios = '" + users + "', Opiniones = '" + opinions + "' WHERE ISBN = '" + l.getISBN() + "')";
+		String query = "UPDATE opinion SET Usuarios = '" + users + "', Opiniones = '" + opinions + "' WHERE ISBN = '" + l.getISBN() + "'";
 		stmt.execute(query);
 	}
 	

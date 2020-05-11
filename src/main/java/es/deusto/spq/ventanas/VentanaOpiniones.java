@@ -2,6 +2,7 @@ package es.deusto.spq.ventanas;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JPanel;
@@ -17,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Rectangle;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -34,6 +37,7 @@ public class VentanaOpiniones extends JFrame{
 	private DB database = new DB();
 	private Libro libro;
 	private Usuario usuario;
+	private JTextPane textPaneOpinion = new JTextPane();
 	
 	public VentanaOpiniones(Libro l, Usuario u) {
 		libro = l;
@@ -71,7 +75,7 @@ public class VentanaOpiniones extends JFrame{
 		
 		JScrollPane scrollPaneIput = new JScrollPane();
 		scrollPaneIput.setAutoscrolls(true);
-		scrollPaneIput.setBounds(21, 35, 709, 29);
+		scrollPaneIput.setBounds(21, 29, 709, 35);
 		
 		textPaneInput = new JTextPane();
 		textPaneInput.setBounds(0, 0, 86, 20);
@@ -87,7 +91,72 @@ public class VentanaOpiniones extends JFrame{
 		btnPublicar.setBounds(753, 25, 122, 43);
 		panelInput.add(btnPublicar);
 		
-		JTextPane textPaneOpinion = new JTextPane();
+		
+		btnPublicar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String o = textPaneInput.getText();
+				if(o.length()<=100) {
+					ArrayList<Integer> isbn = new ArrayList<Integer>();
+					try {
+						isbn = database.getOpISBN("gestion_biblioteca_db");
+					} catch (SQLException e2) {
+						System.out.println("ISBN no cargadas");
+						e2.printStackTrace();
+					}
+					
+					if(isbn.contains(libro.getISBN())) {
+						if(libro.getUsuarios().contains(usuario.getUsuario())) {
+							int i = libro.getUsuarios().indexOf(usuario.getUsuario());
+							System.out.println(i);
+							
+							libro.getUsuarios().remove(i);
+							libro.getOpiniones().remove(i);
+							
+							libro.getUsuarios().add(usuario.getUsuario());
+							libro.getOpiniones().add(o);				
+							
+							try {
+								database.modificarOpiniones(libro, libro.getUsuarios(), libro.getOpiniones(), "gestion_biblioteca_db");
+								textPaneOpinion.setText(generarOpiniones(libro.getUsuarios(), libro.getOpiniones()));
+								textPaneInput.setText("");
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+								textPaneInput.setText("");
+							}
+						}else{
+							libro.getUsuarios().add(usuario.getUsuario());
+							libro.getOpiniones().add(o);
+							try {
+								database.modificarOpiniones(libro, libro.getUsuarios(), libro.getOpiniones(), "gestion_biblioteca_db");
+								textPaneOpinion.setText(generarOpiniones(libro.getUsuarios(), libro.getOpiniones()));
+								textPaneInput.setText("");
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+								textPaneInput.setText("");
+							}
+						}
+					}else{
+						libro.getUsuarios().add(usuario.getUsuario());
+						libro.getOpiniones().add(o);
+						
+						try {
+							database.insertarOpiniones(libro, libro.getUsuarios(), libro.getOpiniones(), "gestion_biblioteca_db");
+							textPaneOpinion.setText(generarOpiniones(libro.getUsuarios(), libro.getOpiniones()));
+							textPaneInput.setText("");
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+							textPaneInput.setText("");
+						}
+					}
+				}else{
+					JOptionPane.showMessageDialog(frame, "La opinión no puede tener más de 100 caracteres.");
+					textPaneInput.setText("");
+				}
+			}
+		});
+		
 		textPaneOpinion.setBorder(new LineBorder(new Color(128, 128, 128), 4, true));
 		textPaneOpinion.setFont(new Font("Rockwell", Font.PLAIN, 16));
 		textPaneOpinion.setEditable(false);
@@ -118,7 +187,7 @@ public class VentanaOpiniones extends JFrame{
 		int i = 0;
 		
 		while (i < u.size()) {
-			String s = u.get(i) + ": " + o.get(i) + "\n";
+			String s = "\n    " + u.get(i) + ": " + o.get(i) + "\n";
 			r += s;
 			i++;
 		}
