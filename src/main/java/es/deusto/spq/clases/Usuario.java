@@ -12,10 +12,10 @@ public class Usuario {
 
     }
 
-    public Usuario(String Nombre, String Apellido, String Usuario, int DNI, String Contrasenya) {
+    public Usuario(String Usuario,String Nombre, String Apellido, int DNI, String Contrasenya) {
+        this.Usuario = Usuario;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
-        this.Usuario = Usuario;
         this.DNI = DNI;
         this.Contrasenya = Contrasenya;
     }

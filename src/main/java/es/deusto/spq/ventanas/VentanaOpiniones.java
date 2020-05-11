@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Rectangle;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -56,6 +57,8 @@ public class VentanaOpiniones extends JFrame{
 	}
 	
 	public void Init() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
+		setTitle("Biblioteca Online");	
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(900, 600);
