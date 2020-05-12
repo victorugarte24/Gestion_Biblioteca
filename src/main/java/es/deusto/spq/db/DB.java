@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import es.deusto.spq.clases.Libro;
 import es.deusto.spq.clases.Usuario;
@@ -22,6 +23,15 @@ public class DB {
 		catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public static void cerrarBD( Connection con, Statement st ) {
+		try {
+			if (st!=null) st.close();
+			if (con!=null) con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -86,6 +96,17 @@ public class DB {
 		while(RS.next()) {
 			Libro l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7), RS.getString(8));
 			array.add(l);
+		}
+		return array;
+	}
+	
+	public ArrayList<String> getTituloLibros(String BD) throws SQLException {
+		ArrayList<String> array = new ArrayList<String>();
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		ResultSet RS = stmt.executeQuery("SELECT Titulo FROM libro");
+		while(RS.next()) {
+			array.add(RS.getString(1));
 		}
 		return array;
 	}
@@ -362,6 +383,7 @@ public class DB {
 			dislikes = RS.getInt("Dislikes");
 		}
         return dislikes;
+        
     }
 	
 	public ArrayList<String> getTop10(String BD) throws SQLException {
@@ -375,11 +397,59 @@ public class DB {
 		return array;
 	}
 	
+	public ArrayList<Integer> getListaLikes(String BD) throws SQLException {
+		ArrayList<Integer> array = new ArrayList<>();
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		ResultSet RS = stmt.executeQuery("SELECT Likes FROM likes_dislikes");
+		while(RS.next()) {
+			array.add(RS.getInt("Likes"));
+		}
+		return array;
+	}
 	
+	public ArrayList<Integer> getListaDislikes(String BD) throws SQLException {
+		ArrayList<Integer> array = new ArrayList<>();
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		ResultSet RS = stmt.executeQuery("SELECT Dislikes FROM likes_dislikes");
+		while(RS.next()) {
+			array.add(RS.getInt("Dislikes"));
+		}
+		return array;
+	}
+	
+	public ArrayList<Usuario> getListaUsuarios(String BD) throws SQLException {
+		ArrayList<Usuario> array = new ArrayList<>();
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		Usuario u = null;
+		String query = "SELECT * FROM Usuario";
+		ResultSet RS = stmt.executeQuery(query);
+		while(RS.next()){
+			u = new Usuario(RS.getString(1), RS.getString(2), RS.getString(3), RS.getInt(4), RS.getString(5));
+			array.add(u);
+		}
+		
+		return array;
+	}
+	
+	public ArrayList<String> getListaAdministradores(String BD) throws SQLException {
+		ArrayList<String> array = new ArrayList<>();
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		Usuario u = null;
+		String query = "SELECT * FROM bibliotecario";
+		ResultSet RS = stmt.executeQuery(query);
+		while(RS.next()){
+			array.add(RS.getString("ID"));
+		}
+		return array;
+	}	
 	
 	public static void main(String[] args) throws SQLException {
 		DB db = new DB();
-		System.out.println(db.anyoNacAutor("Vanesa Redondo", "gestion_biblioteca_db"));
+		System.out.println(db.getListaAdministradores("gestion_biblioteca_db"));
 	}
 
 }
