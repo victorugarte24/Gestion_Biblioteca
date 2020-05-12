@@ -57,7 +57,7 @@ public class VentanaOpiniones extends JFrame{
 	}
 	
 	public void Init() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logos/logoS.png"));
 		setTitle("Biblioteca Online");	
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

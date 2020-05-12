@@ -27,11 +27,11 @@ public class VentanaAutor extends JFrame{
 	public VentanaAutor(String autor, Libro libro, Usuario u) {
 		usuario = u;
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logos/logoS.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logos/logoS.png"));
 		this.setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle("Biblioteca Online");
@@ -82,7 +82,7 @@ public class VentanaAutor extends JFrame{
 		lblBiblioteca.setFont(new Font("Tahoma", Font.BOLD, 24));
 		navBarPanel.add(lblBiblioteca);
 
-		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/resources/logoS.png", 60, 50);
+		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/resources/logos/logoS.png", 60, 50);
 		icono.setBounds(10, 13, 60, 50);
 		navBarPanel.add(icono);
 
@@ -184,7 +184,7 @@ public class VentanaAutor extends JFrame{
 		label55.setForeground(Color.WHITE);
 		bookPanel.add(label55);
 		
-		JLabelGraficoAjustado fotoAutor = new JLabelGraficoAjustado("src/main/resources/icono-perfil.png", 160, 165);
+		JLabelGraficoAjustado fotoAutor = new JLabelGraficoAjustado("src/main/resources/usuario/icono-perfil.png", 160, 165);
 		fotoAutor.setLocation(550, 110);
 		bookPanel.add(fotoAutor);
 

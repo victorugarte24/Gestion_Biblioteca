@@ -81,7 +81,7 @@ public class VentanaPrincipal extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logos/logoS.png"));
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -98,7 +98,7 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.add(navBarPanel);
 		navBarPanel.setLayout(null);
 		
-		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/resources/logoS.png", 60, 50);
+		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/resources/logos/logoS.png", 60, 50);
 		icono.setLocation(10, 13);
 		navBarPanel.add(icono);
 		
@@ -107,7 +107,7 @@ public class VentanaPrincipal extends JFrame {
 		lblBiblioteca.setBounds(80, 20, 205, 29);
 		navBarPanel.add(lblBiblioteca);
 		
-		final JLabelGraficoAjustado lupa = new JLabelGraficoAjustado("src/main/resources/lupaP.png", 20, 20);
+		final JLabelGraficoAjustado lupa = new JLabelGraficoAjustado("src/main/resources/lupa/lupaP.png", 20, 20);
 		lupa.setLocation(870, 25);
 		lupa.addMouseListener(new MouseListener() {
 			

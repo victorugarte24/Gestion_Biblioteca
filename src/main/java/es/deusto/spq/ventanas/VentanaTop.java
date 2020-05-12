@@ -41,7 +41,7 @@ public class VentanaTop extends JFrame{
 			
 	public VentanaTop(){
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logos/logoS.png"));
 		setSize(650,500);
 		this.setLocationRelativeTo(null);
 		setResizable(false);

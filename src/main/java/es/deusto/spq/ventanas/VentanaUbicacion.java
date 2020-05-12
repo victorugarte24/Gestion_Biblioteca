@@ -21,7 +21,7 @@ public class VentanaUbicacion extends JFrame{
 	public VentanaUbicacion(String Titulo) {
 		setResizable(false);
 		setSize(700, 680);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logos/logoS.png"));
 		this.setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle("Biblioteca Online");
@@ -66,31 +66,31 @@ public class VentanaUbicacion extends JFrame{
 		
 		switch (Pasillo){
 		case "1":
-			mapa = new JLabelGraficoAjustado("src/main/resources/bibliotecapas1.jpg", 500, 350);
+			mapa = new JLabelGraficoAjustado("src/main/resources/ubicacion/bibliotecapas1.jpg", 500, 350);
 			break;
 		case "2":
-			mapa = new JLabelGraficoAjustado("src/main/resources/bibliotecapas2.jpg", 500, 350);
+			mapa = new JLabelGraficoAjustado("src/main/resources/ubicacion/bibliotecapas2.jpg", 500, 350);
 			break;
 		case "3":
-			mapa = new JLabelGraficoAjustado("src/main/resources/bibliotecapas3.jpg", 500, 350);
+			mapa = new JLabelGraficoAjustado("src/main/resources/ubicacion/bibliotecapas3.jpg", 500, 350);
 			break;
 		case "4":
-			mapa = new JLabelGraficoAjustado("src/main/resources/bibliotecapas4.jpg", 500, 350);
+			mapa = new JLabelGraficoAjustado("src/main/resources/ubicacion/bibliotecapas4.jpg", 500, 350);
 			break;
 		case "5":
-			mapa = new JLabelGraficoAjustado("src/main/resources/bibliotecapas5.jpg", 500, 350);
+			mapa = new JLabelGraficoAjustado("src/main/resources/ubicacion/bibliotecapas5.jpg", 500, 350);
 			break;
 		case "6":
-			mapa = new JLabelGraficoAjustado("src/main/resources/bibliotecapas6.jpg", 500, 350);
+			mapa = new JLabelGraficoAjustado("src/main/resources/ubicacion/bibliotecapas6.jpg", 500, 350);
 			break;
 		case "7":
-			mapa = new JLabelGraficoAjustado("src/main/resources/bibliotecapas1.jpg", 500, 350);
+			mapa = new JLabelGraficoAjustado("src/main/resources/ubicacion/bibliotecapas1.jpg", 500, 350);
 			break;
 		case "8":
-			mapa = new JLabelGraficoAjustado("src/main/resources/bibliotecapas2.jpg", 500, 350);
+			mapa = new JLabelGraficoAjustado("src/main/resources/ubicacion/bibliotecapas2.jpg", 500, 350);
 			break;
 		case "9":
-			mapa = new JLabelGraficoAjustado("src/main/resources/bibliotecapas3.jpg", 500, 350);
+			mapa = new JLabelGraficoAjustado("src/main/resources/ubicacion/bibliotecapas3.jpg", 500, 350);
 			break;
 		} 
 		

@@ -37,7 +37,7 @@ public class VentanaLibro extends JFrame{
 	public VentanaLibro(Libro libro, Usuario u) {
 		usuario = u;
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logoS.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/logos/logoS.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1200, 800);
 		contentPane = new JPanel();
@@ -90,7 +90,7 @@ public class VentanaLibro extends JFrame{
 		lblBiblioteca.setFont(new Font("Tahoma", Font.BOLD, 24));
 		navBarPanel.add(lblBiblioteca);
 		
-		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/resources/logoS.png", 60, 50);
+		JLabelGraficoAjustado icono = new JLabelGraficoAjustado("src/main/resources/logos/logoS.png", 60, 50);
 		icono.setBounds(10, 13, 60, 50);
 		navBarPanel.add(icono);
 
@@ -274,11 +274,11 @@ public class VentanaLibro extends JFrame{
 			}
 		});
 		
-		JLabelGraficoAjustado fotoAutor = new JLabelGraficoAjustado("src/main/resources/libro.jpg", 170, 175);
+		JLabelGraficoAjustado fotoAutor = new JLabelGraficoAjustado("src/main/resources/libro/libro.jpg", 170, 175);
 		fotoAutor.setLocation(600, 50);
 		bookPanel.add(fotoAutor);
 		
-		like = new JLabelGraficoAjustado("src/main/resources/like.jpg", 65, 65);
+		like = new JLabelGraficoAjustado("src/main/resources/likeDislike/like.jpg", 65, 65);
 		like.setLocation(550, 538);
 		like.addMouseListener(new MouseListener() {
 			
@@ -321,7 +321,7 @@ public class VentanaLibro extends JFrame{
 		});
 		bookPanel.add(like);
 
-		dislike = new JLabelGraficoAjustado("src/main/resources/dislike.jpg", 65, 65);
+		dislike = new JLabelGraficoAjustado("src/main/resources/likeDislike/dislike.jpg", 65, 65);
 		dislike.setLocation(650, 538);
 		dislike.addMouseListener(new MouseListener() {
 
