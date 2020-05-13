@@ -2,7 +2,7 @@ Gestión de Biblioteca
 =====================
 
 ## Ejecutar Proyecto:
-Crear la base de datos mysql con los ficheros que se encuentran en resources (Gestion_Biblioteca/src/main/resources/mysql).
+Crear la base de datos mysql con los ficheros .sql que se encuentran en la carpeta mysql en resources (Gestion_Biblioteca/src/main/resources/mysql).
 Nombre de la base de datos: "gestion_biblioteca_db" <br/>
 Usuario: "root" <br/>
 Contraseña: "admin" <br/>
