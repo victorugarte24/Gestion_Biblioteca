@@ -2,8 +2,17 @@ Gestión de Biblioteca
 =====================
 
 ## Ejecutar Proyecto:
-Instalar la base de datos mysql con los ficheros que se encuentran en resources.
-Ejecutar el comando en la ruta del proyecto:
+Crear la base de datos mysql con los ficheros que se encuentran en resources (Gestion_Biblioteca/src/main/resources/mysql).
+Nombre de la base de datos: "gestion_biblioteca_db"
+Usuario: "root"
+Contraseña: "admin"
+
+Compilar el proyecto ejecutando el comando:
+```
+mvn compile
+```
+
+Ejecutar el proyecto utilizando el comando:
 ```
 mvn exec:java -D"exec.mainClass"="es.deusto.spq.main.main 
 ````
