@@ -438,7 +438,6 @@ public class DB {
 		ArrayList<String> array = new ArrayList<>();
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
-		Usuario u = null;
 		String query = "SELECT * FROM bibliotecario";
 		ResultSet RS = stmt.executeQuery(query);
 		while(RS.next()){
@@ -447,9 +446,28 @@ public class DB {
 		return array;
 	}	
 	
+	public void insertarLikeDislikeUsuarioLibro(String Libro, String usuario, int likeDislike, String BD) throws SQLException { //Like = 0 Dislike = 1
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		String query = "INSERT INTO USUARIO_LIKE_DISLIKE_LIBRO VALUES('" + Libro + "', '" + usuario + "', '"+ likeDislike +  "')";
+		stmt.execute(query);
+	}
+	
+	public int devolverLikeDislikeUsuarioLibro(String Libro, String usuario, String BD) throws SQLException { //Like = 1 Dislike = 2
+		int likeDislike = 0;
+		Connection con = initBD(BD);
+		Statement stmt = con.createStatement();
+		String query = "SELECT LIKE_DISLIKE FROM USUARIO_LIKE_DISLIKE_LIBRO WHERE TITULO = '" + Libro + "'" + "AND USUARIO = '" + usuario + "'";
+		ResultSet RS = stmt.executeQuery(query);
+		while (RS.next()) {
+			likeDislike = RS.getInt("Like_Dislike");
+		}
+        return likeDislike;
+		
+	}
+	
 	public static void main(String[] args) throws SQLException {
 		DB db = new DB();
-		System.out.println(db.getListaAdministradores("gestion_biblioteca_db"));
 	}
 
 }

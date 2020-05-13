@@ -33,6 +33,7 @@ public class VentanaLibro extends JFrame{
 	String titulolibro;
 	private JLabelGraficoAjustado dislike;
 	private JLabelGraficoAjustado like;
+	boolean mouse = true;
 	
 	public VentanaLibro(Libro libro, Usuario u) {
 		usuario = u;
@@ -308,15 +309,18 @@ public class VentanaLibro extends JFrame{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dislike.setVisible(false);
-				try {
-					int likes = db.getLikes(titulolibro, "gestion_biblioteca_db");
-					likes = likes + 1;
-					db.darLike(titulolibro, likes, "gestion_biblioteca_db");
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				
+				if(mouse == true) {
+					dislike.setVisible(false);
+					try {
+						int likes = db.getLikes(titulolibro, "gestion_biblioteca_db");
+						likes = likes + 1;
+						db.darLike(titulolibro, likes, "gestion_biblioteca_db");
+						db.insertarLikeDislikeUsuarioLibro(titulolibro, u.getUsuario(), 1, "gestion_biblioteca_db");
+						mouse = false;
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}			
 			}
 		});
 		bookPanel.add(like);
@@ -351,15 +355,18 @@ public class VentanaLibro extends JFrame{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				like.setVisible(false);
-				try {
-					int dislikes = db.getDislikes(titulolibro, "gestion_biblioteca_db");
-					dislikes = dislikes + 1;
-					db.darDislike(titulolibro, dislikes, "gestion_biblioteca_db");
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				
+				if(mouse == true) {
+					like.setVisible(false);
+					try {
+						int dislikes = db.getDislikes(titulolibro, "gestion_biblioteca_db");
+						dislikes = dislikes + 1;
+						db.darDislike(titulolibro, dislikes, "gestion_biblioteca_db");
+						mouse = false;
+						db.insertarLikeDislikeUsuarioLibro(titulolibro, u.getUsuario(), 2, "gestion_biblioteca_db");
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}						
 			}
 		});
 		bookPanel.add(dislike);
@@ -381,7 +388,21 @@ public class VentanaLibro extends JFrame{
 				v2.setVisible(true);
 			}
 		});
-
+	
+		try {
+			int respuesta = db.devolverLikeDislikeUsuarioLibro(titulolibro, u.getUsuario(), "gestion_biblioteca_db");
+			if( respuesta == 1) {
+				dislike.setVisible(false);
+				mouse = false;
+			}
+			if(respuesta == 2) {
+				like.setVisible(false);
+				mouse = false;
+			}
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 	}
 	
 	public static void main (String [ ] args) {
