@@ -41,13 +41,21 @@ A continuación veremos un pequeño resumen de las ventanas:
 
 ### Modo "Usuario"
 
-* Al acceder a la aplicación, el usuario se encontrará con esta ventana, que será la principal. Aquí, el usuario podrá ver una serie de libros, además de poder hacer búsquedas mediante la barra superior. Podra búscar mediante diferentes criterios: Título, Autor e ISBN. Pulsando uno de los libros y haciendo clic en "Más información", accederemos a la ventana donde aparecen los detalles de los libros.
+* Al acceder a la aplicación, el usuario se encontrará con esta ventana, que será la principal. Aquí, el usuario podrá ver una serie de libros, además de poder hacer búsquedas mediante la barra superior. Podra búscar mediante diferentes criterios: Título, Autor, ISBN y Editorial. Pulsando uno de los libros y haciendo clic en "Más información", accederemos a la ventana donde aparecen los detalles de los libros.
 
-![image](https://user-images.githubusercontent.com/43268879/80314598-c4b12300-87f2-11ea-8982-0ba5fc262a8f.png)
+![Modi1](https://user-images.githubusercontent.com/43268879/81960950-02df7c80-9612-11ea-822b-ea83566fc6da.jpg)
 
-* En esta ventana podemos ver la información sobre el libro seleccionado. Además, podemos acceder a otra ventana donde podemos ver la información del autor.
+* Además, contamos con un botón situado en la parte superior izquierda llamado "TOP 10". Este botón nos proporciona una lista de los 10 libros favoritos de los usuarios.
 
-![ventanalibro](https://user-images.githubusercontent.com/43268879/80314697-51f47780-87f3-11ea-86ea-0b8548faf9da.JPG)
+![Modi2](https://user-images.githubusercontent.com/43268879/81961319-7f725b00-9612-11ea-944b-a1d73486b32a.jpg)
+
+* En esta ventana podemos ver la información sobre el libro seleccionado. Además, podemos acceder a otra ventana donde podemos ver la información del autor. También podemos reservarlo, además de indicar si nos ha gustado el libro o no.
+
+![Modi3](https://user-images.githubusercontent.com/43268879/81961392-9749df00-9612-11ea-9283-655b9e3bf978.jpg)
+
+* Si pinchamos en el botón "Ver opiniones" accederemos a esta ventana. Donde podemos leer las opiniones de otros usuarios y añadir la nuestra. 
+
+![Modi4](https://user-images.githubusercontent.com/43268879/81961660-f4459500-9612-11ea-8ca7-26c286747206.jpg)
 
 * Esta es la ventana que nos ofrece información sobre el autor del libro.
 
@@ -59,7 +67,11 @@ Ahora veremos como funciona el programa en caso de seleccionar la opción "Bibli
 
 * Esta ventana tiene similitud con la pantalla principal del modo "Usuario". Una de las mayores diferencias es que la ventana nos adelanta información sobre los libros en la parte izquierda de la pantalla.
 
-![image](https://user-images.githubusercontent.com/43268879/80314802-f1b20580-87f3-11ea-8ca7-e0f27ee31c20.png)
+![Modi5](https://user-images.githubusercontent.com/43268879/81961749-1808db00-9613-11ea-9742-9a55f8bb6db4.jpg)
+
+* La ventana anterior cuenta con un botón llamado "Estadísticas", el cual nos ofrece información sobre los likes, dislikes y usuarios.
+
+![Modi6](https://user-images.githubusercontent.com/43268879/81962024-6cac5600-9613-11ea-8d62-742fee6c46b5.jpg)
 
 * Para poder saber la ubicación de un libro podemos usar esta ventana, que nos ofrece de manera ilustrativa la información.
 
