@@ -5,7 +5,7 @@ os: linux
 services:
   - mysql
 script: 
-  - mvn test -DargLine="-Dcontiperf.active=false
+  - mvn test -DargLine="-Dcontiperf.active=false"
   - "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
   - "mvn test -B"
 notifications: 
