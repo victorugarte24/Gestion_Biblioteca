@@ -1,6 +1,8 @@
 Gestión de Biblioteca
 =====================
 
+[![Build Status](https://travis-ci.com/victorugarte24/Gestion_Biblioteca.svg?branch=master)](https://travis-ci.com/victorugarte24/Gestion_Biblioteca)
+
 ## Ejecutar Proyecto:
 Crear la base de datos mysql con los ficheros .sql que se encuentran en la carpeta mysql en resources. <br/>
 
