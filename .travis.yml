@@ -1,16 +1,13 @@
 language: java
 jdk:
   - openjdk8
+os: linux
 services:
   - mysql
-before_script:
-  - mysql -u root -e 'CREATE DATABASE gestion_biblioteca_db;'
-  - mysql -u root -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'admin';"
-  - mysql -u root -e "GRANT ALL ON gestion_biblioteca_db.* TO 'root'@'localhost';
-script: 
+  script: 
   - mvn test -DargLine="-Dcontiperf.active=false"
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - mvn test -B
+  - "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
+  - "mvn test -B"
 notifications: 
   email: 
     on_failure: never
