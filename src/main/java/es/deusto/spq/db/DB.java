@@ -35,6 +35,13 @@ public class DB {
 		}
 	}
 
+	/**
+	 * Este metodo inserta un usuario en la base de datos
+	 * 
+	 * @param u Usuario a insertar en la base de datos
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException
+	 */
 	public void insertarUsuario(Usuario u, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
@@ -47,6 +54,14 @@ public class DB {
 		stmt.execute(query);
 	}
 	
+	/**
+	 * Este metodo recibe un usuario en base a su nickname
+	 * 
+	 * @param usuario Nickname del usuario a buscar en la base de datos
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve el usuario encontrado en la base de datos o null si el usuario no se ha encontrado
+	 * @throws SQLException
+	 */
 	public Usuario getUsuario(String usuario, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
@@ -61,8 +76,9 @@ public class DB {
 	}
 
 	/**
-	 * Este método sirve para comprobar si el usuario existe o no existe
-	 * @param usuario Este parámetro es el nombre de usuario
+	 * Este metodo sirve para comprobar si el usuario existe o no existe
+	 * 
+	 * @param usuario Este parametro es el nombre de usuario
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return retorna el resultado booleano (0 o 1) que nos indica si el usuario existe o no
 	 * @throws SQLException Si hay algun problema de acceso a la base de datos
@@ -84,10 +100,11 @@ public class DB {
 	}
 
 	/**
-	 * Este método sirve para comprobar si la contraseña introducida es correcta
-	 * @param Usuario Este parámetro es el nombre de usuario
+	 * Este metodo sirve para comprobar si la contraseña introducida es correcta
+	 * 
+	 * @param Usuario Este parametro es el nombre de usuario
 	 * @param BD Nombre de la base de datos a utilizar
-	 * @return devuelve la contraseña
+	 * @return Devuelve la contraseña
 	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public String comprobarContrasenya(String Usuario, String BD) throws SQLException {
@@ -139,6 +156,13 @@ public class DB {
 		return array;
 	}
 
+	/**
+	 * Este metodo anyade un libro a la base de datos 
+	 * 
+	 * @param l Libro a guardar en la base de datos
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException
+	 */
 	public void AnyadirLibro(Libro l, String BD) throws SQLException {
 		String titulo = l.getTitulo();
 		String autor = l.getAutor();
@@ -154,6 +178,14 @@ public class DB {
 		stmt.execute(query);
 	}
 	
+	/**
+	 * Este metodo compurueba el estado de un libro en cuanto a si esta prestado o no
+	 * 
+	 * @param titulo Titulo del libro a comprobar
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve 1 o 0 en funcion si el libro esta prestado o no. Por defecto devuelve 0
+	 * @throws SQLException
+	 */
 	public int comprobarLibroPrestado(String titulo, String BD) throws SQLException {
 		int prestado = 0;
 		Connection con = initBD(BD);
@@ -166,12 +198,26 @@ public class DB {
 		return prestado;
 	}
 	
+	/**
+	 * Este metodo actualiza el estado del libro poniendolo a "prestado" (prestado = 1)
+	 * 
+	 * @param titulo Titulo del libro a actualizar
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException
+	 */
 	public void tomarPrestadoLibro(String titulo, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		PreparedStatement update = con.prepareStatement("UPDATE LIBRO SET PRESTADO = 1 WHERE TITULO = '" + titulo +"'");
 		int updatep = update.executeUpdate();
 	}
 	
+	/**
+	 * Este metodo actualiza el estado del libro poniendolo a "no prestado" (prestado = 0)
+	 * 
+	 * @param titulo Titulo del libro a actualizar
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException
+	 */
 	public void devolverLibroPrestado(String titulo, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		PreparedStatement update = con.prepareStatement("UPDATE LIBRO SET PRESTADO = 0 WHERE TITULO = '" + titulo +"'");
@@ -240,6 +286,14 @@ public class DB {
         return l;
     }
 	
+	/**
+	 * Este metodo recopila la contraseña del bibliotecario deseado
+	 * 
+	 * @param IDbibliotecario ID del bibliotecario del que se desea la contrasenya
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve la cotrasenya del bibliotecario con el ID igual que el primer parametro
+	 * @throws SQLException
+	 */
 	public String comprobarContrasenyaBibliotecario(String IDbibliotecario, String BD) throws SQLException {
 		String contrasenya = "";
 		Connection con = initBD(BD);
@@ -252,6 +306,14 @@ public class DB {
 		return contrasenya;
 	}
 	
+	/**
+	 * Este metodo recopila la ubicacion del libro deseado
+	 * 
+	 * @param Titulo Titulo del libro del que se desea la ubicacion
+	 * @param BD Nombre de la bd a utilizar
+	 * @return Devuelve la ubicacion del libro con el titulo igual que el primer parametro en formato string
+	 * @throws SQLException
+	 */
 	public String buscarUbicacionLibro(String Titulo, String BD) throws SQLException {
 		String ubicacion = "";
 		Connection con = initBD(BD);
@@ -265,6 +327,14 @@ public class DB {
         return ubicacion;
     }
 	
+	/**
+	 * Este metodo recopila el anyo de nacimiento del autor deseado
+	 * 
+	 * @param Autor Nombre del autor del que se desea el anyo de nacimiento
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve el anyo de nacimiento del autor con el nombre igual al primer parametro en formato int
+	 * @throws SQLException
+	 */
 	public int anyoNacAutor(String Autor, String BD) throws SQLException {
 		int anyo = 0;
 		Connection con = initBD(BD);
@@ -277,6 +347,14 @@ public class DB {
         return anyo;
     }
 	
+	/**
+	 * Este metodo recopila el lugar de nacimiento del autor deseado
+	 * 
+	 * @param Autor Nombre del autor del que se desea el lugar de nacimiento
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve el lugar de nacimiento del autor con el nombre igual que el primer parametro en formato string
+	 * @throws SQLException
+	 */
 	public String LugarNacAutor(String Autor, String BD) throws SQLException {
 		String Lugar = "";
 		Connection con = initBD(BD);
@@ -289,6 +367,14 @@ public class DB {
         return Lugar;
     }
 	
+	/**
+	 * Este metodo recopila en numero de libros publicados del autor deseado
+	 * 
+	 * @param Autor Nombre del autor del que se desea la cantidad de libros publicados
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve la cantidad de libros publicados por el autor con el nombre igual que el primer parametro en formato int
+	 * @throws SQLException
+	 */
 	public int numLibrosPublicados(String Autor, String BD) throws SQLException {
 		int numLibrosPublicados = 0;
 		Connection con = initBD(BD);
@@ -301,6 +387,13 @@ public class DB {
         return numLibrosPublicados;
     }
 	
+	/**
+	 * Este metodo elimina un usuario de la base de datos
+	 * 
+	 * @param Usuario Nickname del usuario a eliminar
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException
+	 */
 	public void eliminarUsuario(String Usuario, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		PreparedStatement update = con.prepareStatement("DELETE FROM usuario WHERE Usuario = '" + Usuario + "'");
@@ -308,6 +401,13 @@ public class DB {
 
     }
 
+	/**
+	 * Este metodo elimina un libro de la base de datos
+	 * 
+	 * @param Libro Titulo del libro a eliminar
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException
+	 */
 	public void eliminarLibro(String Libro, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		PreparedStatement update = con.prepareStatement("DELETE FROM libro WHERE Titulo = '" + Libro + "'");
@@ -442,18 +542,42 @@ public class DB {
 		return opiniones;
 	}
 	
+	/**
+	 * Este metodo modifica la cantidad de likes de un libro
+	 * 
+	 * @param titulo Titulo del libro del que se desea modificar la cantidad de likes
+	 * @param likes Numero de likes actualizado
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException
+	 */
 	public void darLike(String titulo,int likes, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		PreparedStatement update = con.prepareStatement("UPDATE LIKES_DISLIKES SET LIKES = " + likes + " WHERE TITULO = '" + titulo +"'");
 		int updatep = update.executeUpdate();
 	}
 	
+	/**
+	 * Este metodo modifica la cantidad de dislikes de un libro
+	 * 
+	 * @param titulo Titulo del libro del que se desea modificar la cantidad de dislikes
+	 * @param dislikes Numero de dislikes actualizado
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException
+	 */
 	public void darDislike(String titulo, int dislikes, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		PreparedStatement update = con.prepareStatement("UPDATE LIKES_DISLIKES SET DISLIKES = " + dislikes + " WHERE TITULO = '" + titulo +"'");
 		int updatep = update.executeUpdate();
 	}
 	
+	/**
+	 * Este metodo obtiene la cantidad de likes de un libro
+	 * 
+	 * @param titulo Titulo del libro del que se desea obtener la cantidad de likes
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve el numero de likes del libro con el titulo igual al primer parametro
+	 * @throws SQLException
+	 */
 	public int getLikes(String titulo, String BD) throws SQLException {
 		int likes = 0;
 		Connection con = initBD(BD);
@@ -466,6 +590,14 @@ public class DB {
         return likes;
     }
 	
+	/**
+	 * Este metodo obtiene la cantidad de dislikes de un libro
+	 * 
+	 * @param titulo Titulo del libro del que se desea obtener la cantidad de dislikes
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve el numero de dislikes del libro con el titulo igual al primer parametro
+	 * @throws SQLException
+	 */
 	public int getDislikes(String titulo, String BD) throws SQLException {
 		int dislikes = 0;
 		Connection con = initBD(BD);
@@ -479,6 +611,13 @@ public class DB {
         
     }
 	
+	/**
+	 * Este metodo recopila los primeros 10 libros con mejores notas
+	 * 
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve los titulos del top 10 de libros con mayor cantidad de likes en formato de arrayList
+	 * @throws SQLException
+	 */
 	public ArrayList<String> getTop10(String BD) throws SQLException {
 		ArrayList<String> array = new ArrayList<String>();
 		Connection con = initBD(BD);
@@ -490,6 +629,13 @@ public class DB {
 		return array;
 	}
 	
+	/**
+	 * Este metodo recopila la lista de likes de todos los libros
+	 * 
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve la lista de likes de todos los libros en formato arrayList de Integers
+	 * @throws SQLException
+	 */
 	public ArrayList<Integer> getListaLikes(String BD) throws SQLException {
 		ArrayList<Integer> array = new ArrayList<>();
 		Connection con = initBD(BD);
@@ -501,6 +647,13 @@ public class DB {
 		return array;
 	}
 	
+	/**
+	 * Este metodo recopila la lista de dislikes de todos los libros
+	 * 
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve la lista de dislikes de todos los libros en formato arrayList de Integers
+	 * @throws SQLException
+	 */
 	public ArrayList<Integer> getListaDislikes(String BD) throws SQLException {
 		ArrayList<Integer> array = new ArrayList<>();
 		Connection con = initBD(BD);
@@ -512,6 +665,13 @@ public class DB {
 		return array;
 	}
 	
+	/**
+	 * Este metodo recopila la lista de todos los usuarios guardados en la base de datos
+	 * 
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve la lista de todos los usuarios en formato de arrayList de Usuarios
+	 * @throws SQLException
+	 */
 	public ArrayList<Usuario> getListaUsuarios(String BD) throws SQLException {
 		ArrayList<Usuario> array = new ArrayList<>();
 		Connection con = initBD(BD);
@@ -527,6 +687,13 @@ public class DB {
 		return array;
 	}
 	
+	/**
+	 * Este metodo recopila la lista de IDs de todos los administradores guardados en la base de datos
+	 * 
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve la lista de todos los administradores en formato arrayList de String
+	 * @throws SQLException
+	 */
 	public ArrayList<String> getListaAdministradores(String BD) throws SQLException {
 		ArrayList<String> array = new ArrayList<>();
 		Connection con = initBD(BD);
@@ -539,6 +706,15 @@ public class DB {
 		return array;
 	}	
 	
+	/**
+	 * Este metodo inserta en la base de datos el like o dislike de un usuario para un libro concreto
+	 * 
+	 * @param Libro Titulo del libro en el que se desea modificar los likes/dislikes
+	 * @param usuario Nickname del usuario que ejecuta la accion de dar like/dar dislike
+	 * @param likeDislike Like o dislike (like = 0, dislike = 1)
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException
+	 */
 	public void insertarLikeDislikeUsuarioLibro(String Libro, String usuario, int likeDislike, String BD) throws SQLException { //Like = 0 Dislike = 1
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
@@ -546,6 +722,15 @@ public class DB {
 		stmt.execute(query);
 	}
 	
+	/**
+	 * Este metodo recopila el valor de likes/dislikes de un libro en concreto y de un usuario en concreto 
+	 * 
+	 * @param Libro Titulo del libro del que se desea recopilar el valor
+	 * @param usuario Nickname del usuario por el que se desea filtrar el valor
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve el valor del like/dislike del usuario seleccionado en el libro seleccionado (like = 1, dislike = 2, por defecto = 0)
+	 * @throws SQLException
+	 */
 	public int devolverLikeDislikeUsuarioLibro(String Libro, String usuario, String BD) throws SQLException { //Like = 1 Dislike = 2
 		int likeDislike = 0;
 		Connection con = initBD(BD);
