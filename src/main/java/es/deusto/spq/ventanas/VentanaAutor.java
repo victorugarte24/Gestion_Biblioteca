@@ -18,12 +18,24 @@ import es.deusto.spq.clases.Usuario;
 import es.deusto.spq.db.DB;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
 
+/**
+ * VentanaAutor
+ * En esta clase se define la VentanaAutor, nos proporciona la informacion sobre el autor del libro seleccionado
+ * 
+ * @author sergio
+ * 
+ */
 public class VentanaAutor extends JFrame{
 
 	private final JPanel contentPane;
 	private Usuario usuario;
 	static VentanaLibro frame;
 
+	/**
+	 * @param autor -- Es el Autor del libro seleccionado
+	 * @param libro -- Es el libro que se encuentra en VentanaLibro, del cual queremos saber información sobre el autor
+	 * @param u -- Es el usuario que está accediendo a la aplicacion
+	 */
 	public VentanaAutor(String autor, Libro libro, Usuario u) {
 		usuario = u;
 		setResizable(false);
