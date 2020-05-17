@@ -8,7 +8,7 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-/** Clase mejorada de JLabel para gestionar im�genes ajustadas al JLabel
+/** Clase mejorada de JLabel para gestionar imagenes ajustadas al JLabel
  */
 public class JLabelGraficoAjustado extends JLabel {
 	// la posici�n X,Y se hereda de JLabel
@@ -19,11 +19,11 @@ public class JLabelGraficoAjustado extends JLabel {
 	protected BufferedImage imagenObjeto;  // imagen para el escalado
 	private static final long serialVersionUID = 1L;  // para serializar
 
-	/** Crea un nuevo JLabel gr�fico.<br>
-	 * Si no existe el fichero de imagen, se crea un rect�ngulo blanco con borde rojo
-	 * @param nombreImagenObjeto	Nombre fichero donde est� la imagen del objeto. Puede ser tambi�n un nombre de recurso desde el paquete de esta clase.
-	 * @param anchura	Anchura del gr�fico en p�xels (si es <= 0 ocupa todo el ancho)
-	 * @param altura	Altura del gr�fico en p�xels (si es <= 0 ocupa todo el alto)
+	/** Crea un nuevo JLabel grafico.<br>
+	 * Si no existe el fichero de imagen, se crea un rectangulo blanco con borde rojo
+	 * @param nombreImagenObjeto	Nombre fichero donde esta la imagen del objeto. Puede ser tambien un nombre de recurso desde el paquete de esta clase.
+	 * @param anchura	Anchura del grafico en pixels (si es <= 0 ocupa todo el ancho)
+	 * @param altura	Altura del grafico en pixels (si es <= 0 ocupa todo el alto)
 	 */
 	public JLabelGraficoAjustado( String nombreImagenObjeto, int anchura, int altura ) {
 		setName( nombreImagenObjeto );
@@ -155,7 +155,7 @@ public class JLabelGraficoAjustado extends JLabel {
 		}
 	}
 
-	/** M�todo de prueba de label gr�fico
+	/** Metodo de prueba de label grafico
 	 */
 	public static void main(String[] args) {
 		JFrame f = new JFrame( "Prueba JLabelGraficoAjustado" );

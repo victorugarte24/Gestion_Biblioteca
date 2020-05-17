@@ -60,6 +60,13 @@ public class DB {
 		return u;
 	}
 
+	/**
+	 * Este método sirve para comprobar si el usuario existe o no existe
+	 * @param usuario Este parámetro es el nombre de usuario
+	 * @param BD
+	 * @return retorna el resultado booleano (0 o 1) que nos indica si el usuario existe o no
+	 * @throws SQLException
+	 */
 	public boolean comprobarUsuario(String usuario, String BD) throws SQLException {
 		boolean respuesta = false;
 		Connection con = initBD(BD);
@@ -76,6 +83,13 @@ public class DB {
 		return respuesta;
 	}
 
+	/**
+	 * Este método sirve para comprobar si la contraseña introducida es correcta
+	 * @param Usuario Este parámetro es el nombre de usuario
+	 * @param BD
+	 * @return devuelve la contraseña
+	 * @throws SQLException
+	 */
 	public String comprobarContrasenya(String Usuario, String BD) throws SQLException {
 		String contrasenya = "";
 		Connection con = initBD(BD);

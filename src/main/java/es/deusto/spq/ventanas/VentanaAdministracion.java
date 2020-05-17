@@ -38,12 +38,9 @@ import es.deusto.spq.db.DB;
 import es.deusto.spq.interfaces.ILista;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
 
-public class VentanaAdministración extends JFrame{
+public class VentanaAdministracion extends JFrame{
 	
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
@@ -71,7 +68,7 @@ public class VentanaAdministración extends JFrame{
 	JLabel lblNewLabel_9;
 	private ArrayList<Libro> arrayResultado = new ArrayList<Libro>();
 
-	public VentanaAdministración() {
+	public VentanaAdministracion() {
 
 		setResizable(false);
 		setSize(1200, 800);
