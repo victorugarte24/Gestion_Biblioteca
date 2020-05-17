@@ -63,9 +63,9 @@ public class DB {
 	/**
 	 * Este método sirve para comprobar si el usuario existe o no existe
 	 * @param usuario Este parámetro es el nombre de usuario
-	 * @param BD
+	 * @param BD Nombre de la base de datos a utilizar
 	 * @return retorna el resultado booleano (0 o 1) que nos indica si el usuario existe o no
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public boolean comprobarUsuario(String usuario, String BD) throws SQLException {
 		boolean respuesta = false;
@@ -86,9 +86,9 @@ public class DB {
 	/**
 	 * Este método sirve para comprobar si la contraseña introducida es correcta
 	 * @param Usuario Este parámetro es el nombre de usuario
-	 * @param BD
+	 * @param BD Nombre de la base de datos a utilizar
 	 * @return devuelve la contraseña
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public String comprobarContrasenya(String Usuario, String BD) throws SQLException {
 		String contrasenya = "";
@@ -102,6 +102,13 @@ public class DB {
 		return contrasenya;
 	}
 
+	/**
+	 * Este metodo recopila todos los libros guardados en la base de datos
+	 * 
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve el conjunto de libros en la base de datos en formato arrayList
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */
 	public ArrayList<Libro> getLibros(String BD) throws SQLException {
 		ArrayList<Libro> array = new ArrayList<Libro>();
 		Connection con = initBD(BD);
@@ -114,6 +121,13 @@ public class DB {
 		return array;
 	}
 	
+	/**
+	 * Este metodo recopila los titulos de todos los libros guardados en la base de datos
+	 * 
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve el conjunto de titulos en la base de datos en formato de arrayList de Strings  
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */
 	public ArrayList<String> getTituloLibros(String BD) throws SQLException {
 		ArrayList<String> array = new ArrayList<String>();
 		Connection con = initBD(BD);
@@ -164,11 +178,19 @@ public class DB {
 		int updatep = update.executeUpdate();
 	}
 	
-	public Libro buscarLibroTitulo(String s, String BD) throws SQLException {
+	/**
+	 * Este metodo busca un libro en la base de datos con el mismo titulo que el string pasado por parametro
+	 * 
+	 * @param titulo Titulo del libro por el que se desea filtrar
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve el libro con el titulo igual que el primer parametro 
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */
+	public Libro buscarLibroTitulo(String titulo, String BD) throws SQLException {
 		Libro l = null;
         Connection con = initBD(BD);
         Statement stmt = con.createStatement();
-        ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Titulo = '" + s + "'");
+        ResultSet RS = stmt.executeQuery("SELECT * FROM libro WHERE Titulo = '" + titulo + "'");
      
         while(RS.next()) {
         	   l = new Libro(RS.getString(1), RS.getString(2), RS.getInt(3), RS.getInt(4), RS.getString(5), RS.getInt(6), RS.getString(7), RS.getString(8));
@@ -177,6 +199,14 @@ public class DB {
         return l;
     }
 	
+	/**
+	 * Este metodo busca libros en la base de datos con el mismo autor que el string pasado por parametro
+	 * 
+	 * @param Autor Autor del libro por el que se desea filtrar
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve los libros en formato de arrayList con el autor igual que el primer parametro
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */
 	public ArrayList<Libro> buscarLibroAutor(String Autor, String BD) throws SQLException {
         ArrayList<Libro> a = new ArrayList<Libro>();
 		
@@ -190,6 +220,14 @@ public class DB {
         return a;
     }
 	
+	/**
+	 * Este metodo busca un libro en la base de datos con el mismo ISBN que el int pasado por parametro
+	 * 
+	 * @param i ISBN del libro por el que se desea filtrar
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve el libro con el ISBN igual que el primer parametro
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */
 	public Libro buscarLibroISBN(int i, String BD) throws SQLException {
 		Libro l = null;
         Connection con = initBD(BD);
@@ -277,6 +315,13 @@ public class DB {
     }
 	
 	
+	/**
+	 * Este método consulta los ISBN de los libros de los que se tienen opiniones guardadas.
+	 * 
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve arrayList con los ISBN en formato Integer
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */
 	public ArrayList<Integer> getOpISBN(String BD) throws SQLException{
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
@@ -292,6 +337,15 @@ public class DB {
 	}
 	
 	
+	/**
+	 * Este metodo inserta las opiniones en la base de datos para un libro del que no se tiene registro de opiniones
+	 * 
+	 * @param l Libro del que se desea insertar la opinion
+	 * @param usuarios ArrayList de usuarios que han opinado sobre el libro
+	 * @param opiniones ArrayList de opiniones que se han realizado sobre el libro
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */
 	public void insertarOpiniones(Libro l, ArrayList<String> usuarios, ArrayList<String> opiniones, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
@@ -309,6 +363,15 @@ public class DB {
 	}
 	
 	
+	/**
+	 * Este metodo inserta las opiniones en la base de datos para un libro con registro anterior de opiniones
+	 * 
+	 * @param l Libro del que se desea insertar la opinion
+	 * @param usuarios ArrayList de usuarios que han opinado sobre el libro
+	 * @param opiniones ArrayList de opiniones que se han realizado sobre el libro
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */
 	public void modificarOpiniones(Libro l, ArrayList<String> usuarios, ArrayList<String> opiniones, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
@@ -325,6 +388,14 @@ public class DB {
 		stmt.execute(query);
 	}
 	
+	/**
+	 * Este metodo consigue la lista de usuarios que han opinado sobre un libro en concreto
+	 * 
+	 * @param l Libro del que se desea obtener las opiniones
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve un arrayList de Strings con los nombres de los usuarios que han opinado sobre el libro 
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */
 	public ArrayList<String> getOpUsuarios(Libro l, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
@@ -344,6 +415,14 @@ public class DB {
 		return usuarios;
 	}
 	
+	/**
+	 * Este metodo consigue la lista de opiniones sobre un libro en concreto
+	 * 
+	 * @param l Libro del que se desea obtener las opiniones
+	 * @param BD Nombre de la base de datos a utilizar
+	 * @return Devuelve un arrayList de Strings con los nombres de los usuarios que han opinado sobre el libro
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */
 	public ArrayList<String> getOpOpiniones(Libro l, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
