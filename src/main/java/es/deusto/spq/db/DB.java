@@ -40,7 +40,7 @@ public class DB {
 	 * 
 	 * @param u Usuario a insertar en la base de datos
 	 * @param BD Nombre de la base de datos a utilizar
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public void insertarUsuario(Usuario u, String BD) throws SQLException {
 		Connection con = initBD(BD);
@@ -60,7 +60,7 @@ public class DB {
 	 * @param usuario Nickname del usuario a buscar en la base de datos
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve el usuario encontrado en la base de datos o null si el usuario no se ha encontrado
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public Usuario getUsuario(String usuario, String BD) throws SQLException {
 		Connection con = initBD(BD);
@@ -161,7 +161,7 @@ public class DB {
 	 * 
 	 * @param l Libro a guardar en la base de datos
 	 * @param BD Nombre de la base de datos a utilizar
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public void AnyadirLibro(Libro l, String BD) throws SQLException {
 		String titulo = l.getTitulo();
@@ -184,7 +184,7 @@ public class DB {
 	 * @param titulo Titulo del libro a comprobar
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve 1 o 0 en funcion si el libro esta prestado o no. Por defecto devuelve 0
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public int comprobarLibroPrestado(String titulo, String BD) throws SQLException {
 		int prestado = 0;
@@ -203,8 +203,8 @@ public class DB {
 	 * 
 	 * @param titulo Titulo del libro a actualizar
 	 * @param BD Nombre de la base de datos a utilizar
-	 * @throws SQLException
-	 */
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
+	 */ 
 	public void tomarPrestadoLibro(String titulo, String BD) throws SQLException {
 		Connection con = initBD(BD);
 		PreparedStatement update = con.prepareStatement("UPDATE LIBRO SET PRESTADO = 1 WHERE TITULO = '" + titulo +"'");
@@ -216,7 +216,7 @@ public class DB {
 	 * 
 	 * @param titulo Titulo del libro a actualizar
 	 * @param BD Nombre de la base de datos a utilizar
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public void devolverLibroPrestado(String titulo, String BD) throws SQLException {
 		Connection con = initBD(BD);
@@ -292,7 +292,7 @@ public class DB {
 	 * @param IDbibliotecario ID del bibliotecario del que se desea la contrasenya
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve la cotrasenya del bibliotecario con el ID igual que el primer parametro
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public String comprobarContrasenyaBibliotecario(String IDbibliotecario, String BD) throws SQLException {
 		String contrasenya = "";
@@ -312,7 +312,7 @@ public class DB {
 	 * @param Titulo Titulo del libro del que se desea la ubicacion
 	 * @param BD Nombre de la bd a utilizar
 	 * @return Devuelve la ubicacion del libro con el titulo igual que el primer parametro en formato string
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public String buscarUbicacionLibro(String Titulo, String BD) throws SQLException {
 		String ubicacion = "";
@@ -333,7 +333,7 @@ public class DB {
 	 * @param Autor Nombre del autor del que se desea el anyo de nacimiento
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve el anyo de nacimiento del autor con el nombre igual al primer parametro en formato int
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public int anyoNacAutor(String Autor, String BD) throws SQLException {
 		int anyo = 0;
@@ -353,7 +353,7 @@ public class DB {
 	 * @param Autor Nombre del autor del que se desea el lugar de nacimiento
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve el lugar de nacimiento del autor con el nombre igual que el primer parametro en formato string
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public String LugarNacAutor(String Autor, String BD) throws SQLException {
 		String Lugar = "";
@@ -373,7 +373,7 @@ public class DB {
 	 * @param Autor Nombre del autor del que se desea la cantidad de libros publicados
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve la cantidad de libros publicados por el autor con el nombre igual que el primer parametro en formato int
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public int numLibrosPublicados(String Autor, String BD) throws SQLException {
 		int numLibrosPublicados = 0;
@@ -392,7 +392,7 @@ public class DB {
 	 * 
 	 * @param Usuario Nickname del usuario a eliminar
 	 * @param BD Nombre de la base de datos a utilizar
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public void eliminarUsuario(String Usuario, String BD) throws SQLException {
 		Connection con = initBD(BD);
@@ -406,7 +406,7 @@ public class DB {
 	 * 
 	 * @param Libro Titulo del libro a eliminar
 	 * @param BD Nombre de la base de datos a utilizar
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public void eliminarLibro(String Libro, String BD) throws SQLException {
 		Connection con = initBD(BD);
@@ -548,7 +548,7 @@ public class DB {
 	 * @param titulo Titulo del libro del que se desea modificar la cantidad de likes
 	 * @param likes Numero de likes actualizado
 	 * @param BD Nombre de la base de datos a utilizar
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public void darLike(String titulo,int likes, String BD) throws SQLException {
 		Connection con = initBD(BD);
@@ -562,7 +562,7 @@ public class DB {
 	 * @param titulo Titulo del libro del que se desea modificar la cantidad de dislikes
 	 * @param dislikes Numero de dislikes actualizado
 	 * @param BD Nombre de la base de datos a utilizar
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public void darDislike(String titulo, int dislikes, String BD) throws SQLException {
 		Connection con = initBD(BD);
@@ -576,7 +576,7 @@ public class DB {
 	 * @param titulo Titulo del libro del que se desea obtener la cantidad de likes
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve el numero de likes del libro con el titulo igual al primer parametro
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public int getLikes(String titulo, String BD) throws SQLException {
 		int likes = 0;
@@ -596,7 +596,7 @@ public class DB {
 	 * @param titulo Titulo del libro del que se desea obtener la cantidad de dislikes
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve el numero de dislikes del libro con el titulo igual al primer parametro
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public int getDislikes(String titulo, String BD) throws SQLException {
 		int dislikes = 0;
@@ -616,7 +616,7 @@ public class DB {
 	 * 
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve los titulos del top 10 de libros con mayor cantidad de likes en formato de arrayList
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public ArrayList<String> getTop10(String BD) throws SQLException {
 		ArrayList<String> array = new ArrayList<String>();
@@ -634,7 +634,7 @@ public class DB {
 	 * 
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve la lista de likes de todos los libros en formato arrayList de Integers
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public ArrayList<Integer> getListaLikes(String BD) throws SQLException {
 		ArrayList<Integer> array = new ArrayList<>();
@@ -652,7 +652,7 @@ public class DB {
 	 * 
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve la lista de dislikes de todos los libros en formato arrayList de Integers
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public ArrayList<Integer> getListaDislikes(String BD) throws SQLException {
 		ArrayList<Integer> array = new ArrayList<>();
@@ -670,7 +670,7 @@ public class DB {
 	 * 
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve la lista de todos los usuarios en formato de arrayList de Usuarios
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos 
 	 */
 	public ArrayList<Usuario> getListaUsuarios(String BD) throws SQLException {
 		ArrayList<Usuario> array = new ArrayList<>();
@@ -692,7 +692,7 @@ public class DB {
 	 * 
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve la lista de todos los administradores en formato arrayList de String
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public ArrayList<String> getListaAdministradores(String BD) throws SQLException {
 		ArrayList<String> array = new ArrayList<>();
@@ -713,7 +713,7 @@ public class DB {
 	 * @param usuario Nickname del usuario que ejecuta la accion de dar like/dar dislike
 	 * @param likeDislike Like o dislike (like = 0, dislike = 1)
 	 * @param BD Nombre de la base de datos a utilizar
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public void insertarLikeDislikeUsuarioLibro(String Libro, String usuario, int likeDislike, String BD) throws SQLException { //Like = 0 Dislike = 1
 		Connection con = initBD(BD);
@@ -729,7 +729,7 @@ public class DB {
 	 * @param usuario Nickname del usuario por el que se desea filtrar el valor
 	 * @param BD Nombre de la base de datos a utilizar
 	 * @return Devuelve el valor del like/dislike del usuario seleccionado en el libro seleccionado (like = 1, dislike = 2, por defecto = 0)
-	 * @throws SQLException
+	 * @throws SQLException Si hay algun problema de acceso a la base de datos
 	 */
 	public int devolverLikeDislikeUsuarioLibro(String Libro, String usuario, String BD) throws SQLException { //Like = 1 Dislike = 2
 		int likeDislike = 0;
