@@ -3,6 +3,8 @@ language: java
 services:
   - xfvb
   - mysql
+dist: trusty
+sudo: required
 addons:
   apt:
     packages:
