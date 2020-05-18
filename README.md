@@ -19,7 +19,7 @@ mvn compile
 
 Ejecutar el proyecto utilizando el comando:
 ```
-mvn exec:java -D"exec.mainClass"="es.deusto.spq.main.main 
+mvn exec:java -D"exec.mainClass"="es.deusto.spq.main.Main 
 ````
 
 ### Descripción y Contexto
