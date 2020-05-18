@@ -71,10 +71,6 @@ public class Usuario {
 	public void setContrasenya(String contrasenya) {
 		Contrasenya = contrasenya;
 	}
-	
-	public void tomarPrestadoLibro() {
-		
-	}
 
 	@Override
     public String toString() {

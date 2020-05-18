@@ -54,4 +54,14 @@ public class UsuarioTest {
 		u.setDNI(323213);
 		assertEquals(323213, u.getDNI());
 	}
+	
+	@Test
+	public void metodoToString() {
+		u.setNombre("Pepe");
+		u.setApellido("Lopez");
+		u.setContrasenya("12345");
+		u.setUsuario("user1999");
+		System.out.println(u.toString());
+		assertEquals("Usuario: user1999 Nombre: Pepe Apellido: Lopez", u.toString());
+	}
 }

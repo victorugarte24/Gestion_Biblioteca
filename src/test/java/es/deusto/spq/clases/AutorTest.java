@@ -16,7 +16,7 @@ public class AutorTest {
 	
 	@Before
 	public void setUp() {
-		a = new Autor();
+		a = new Autor("aaaa", 1233, "aaaa", 3);
 	}
 	
 	@Test
@@ -44,5 +44,14 @@ public class AutorTest {
 	public void testNumLibros() {
 		a.setnumLibrosPublicados(21);
 		assertEquals(21, a.getnumLibrosPublicados());
+	}
+	
+	@Test
+	public void metodoToString() {
+		a.setNombre("aaaa");
+		a.setanyoNacimiento(1233);
+		a.setlugarNacimiento("aaaa");
+		a.setnumLibrosPublicados(3);
+		assertEquals("Autor [Nombre=aaaa, anyoNacimiento=1233, lugarNacimiento=aaaa, numLibrosPublicados=3]", a.toString());
 	}
 }

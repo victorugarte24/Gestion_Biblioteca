@@ -11,10 +11,6 @@ public class Autor {
 	private String lugarNacimiento;
 	private int numLibrosPublicados;
 
-	public Autor() {
-
-	}
-
 	/** Crea un autor con los distintos parametros que lo forman.
 	 * @param Nombre Nombre del autor
 	 * @param anyoNacimiento Año de nacimiento del autor
