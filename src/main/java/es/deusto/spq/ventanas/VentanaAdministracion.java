@@ -38,6 +38,11 @@ import es.deusto.spq.db.DB;
 import es.deusto.spq.interfaces.ILista;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
 
+/** Ventana utilizada por el bibliotecario para la administración d ela biblioteca, donde se pueden consultar los libros, el panel de estadísticas,
+ * y la ubicación de los libros.
+ * @author Victor
+ *
+ */
 public class VentanaAdministracion extends JFrame{
 	
 

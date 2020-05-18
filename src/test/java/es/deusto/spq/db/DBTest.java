@@ -3,13 +3,6 @@ package es.deusto.spq.db;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import org.databene.contiperf.PerfTest;
-import org.databene.contiperf.Required;
-import org.databene.contiperf.junit.ContiPerfRule;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
 import es.deusto.spq.clases.Libro;
@@ -22,14 +15,11 @@ public class DBTest {
 	private Usuario u = new Usuario();
 	
 	//Anotación, algunos metodos estan probados juntos como eliminar y añadir para evitar fallos en la Base de Datos por el orden de ejecución, es decir duplicar entradas
-	
-	@Rule
-	public ContiPerfRule i = new ContiPerfRule();
 
 	@Test
 	public void insertarUsuario() throws SQLException {
 		db.eliminarUsuario("Victor1", "gestion_biblioteca_db_pruebas");
-		u = new Usuario("Vic", "ug", "Victor1", 1, "1234");
+		u = new Usuario("Victor1", "Vic", "ug", 1, "1234");
 		db.insertarUsuario(u, "gestion_biblioteca_db_pruebas");
 		assertEquals(true, db.comprobarUsuario("Victor1", "gestion_biblioteca_db_pruebas"));
 
@@ -82,11 +72,11 @@ public class DBTest {
 	
 	@Test
 	public void anyadirLibro() throws SQLException {
-		Libro l = new Libro("a", "a", 1, 4321, "", 1, null, null);
+		Libro l = new Libro("a", "a", 1, 4321, "", 1, "g", "e");
 		db.eliminarLibro("a", "gestion_biblioteca_db_pruebas");
 		db.AnyadirLibro(l, "gestion_biblioteca_db_pruebas");
 		assertEquals(l.getTitulo(), db.buscarLibroTitulo("a", "gestion_biblioteca_db_pruebas").getTitulo());
-	} 
+	}
 	
 	@Test
 	public void libroISBN() throws SQLException {

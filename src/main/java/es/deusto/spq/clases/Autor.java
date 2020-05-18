@@ -1,29 +1,39 @@
 package es.deusto.spq.clases;
 
+/** Clase para la creación de los autores
+ * @author Victor
+ *
+ */
 public class Autor {
 
-	private String Nombre;
+	private String nombre;
 	private int anyoNacimiento;
 	private String lugarNacimiento;
 	private int numLibrosPublicados;
 
-    public Autor() {
+	public Autor() {
 
-    }
+	}
 
+	/** Crea un autor con los distintos parametros que lo forman.
+	 * @param Nombre Nombre del autor
+	 * @param anyoNacimiento Año de nacimiento del autor
+	 * @param lugarNacimiento Lugar de nacimiento del autor
+	 * @param numLibrosPublicados Número de Libros publicados por autor 
+	 */
     public Autor(String Nombre, int anyoNacimiento, String lugarNacimiento, int numLibrosPublicados) {
-        this.Nombre = Nombre;
+        this.nombre = Nombre;
         this.anyoNacimiento = anyoNacimiento;
         this.lugarNacimiento = lugarNacimiento;
         this.numLibrosPublicados = numLibrosPublicados;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+        this.nombre = Nombre;
     }
 
 
@@ -53,7 +63,7 @@ public class Autor {
 
     @Override
     public String toString() {
-        return "Autor [Nombre=" + Nombre + ", anyoNacimiento=" + anyoNacimiento
+        return "Autor [Nombre=" + nombre + ", anyoNacimiento=" + anyoNacimiento
                 + ", lugarNacimiento=" + lugarNacimiento + ", numLibrosPublicados=" + numLibrosPublicados + "]";
     }
 

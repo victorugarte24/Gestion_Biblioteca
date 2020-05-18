@@ -50,7 +50,7 @@ public class DB {
 		String nombre = u.getNombre();
 		String apellido = u.getApellido();
 		String contrasenya = u.getContrasenya();
-		String query = "INSERT INTO USUARIO  VALUES('" + usuario + "', "+ dni + ", '"+ nombre + "', '"+  apellido + "', '"+ contrasenya + "')";
+		String query = "INSERT INTO USUARIO  VALUES('" + usuario + "', '" + nombre + "', '" + apellido + "', '"+  dni + "', '"+ contrasenya + "')";
 		stmt.execute(query);
 	}
 	
@@ -111,7 +111,7 @@ public class DB {
 		String contrasenya = "";
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
-		String query = "SELECT CONTRASENYA FROM usuario where usuario = '" + Usuario +"'";
+		String query = "SELECT Contrasenya FROM usuario where Usuario = '" + Usuario +"'";
 		ResultSet RS = stmt.executeQuery(query);
 		while (RS.next()) {
 			contrasenya = RS.getString("Contrasenya");
@@ -171,10 +171,11 @@ public class DB {
 		String sinopsis = l.getSinopsis();
 		int prestado = l.getPrestado();
 		String genero = l.getGenero();
+		String editorial = l.getEditorial();
 
 		Connection con = initBD(BD);
 		Statement stmt = con.createStatement();
-		String query = "INSERT INTO libro VALUES ('" + titulo +"','" + autor + "'," + numPags + "," + ISBN + ",'" + sinopsis + "'," + prestado + "'," + genero + ")";
+		String query = "INSERT INTO libro VALUES ('" + titulo +"','" + autor + "'," + numPags + "," + ISBN + ",'" + sinopsis + "'," + prestado + ",'" + genero + "','" + editorial+ "')";
 		stmt.execute(query);
 	}
 	
@@ -749,3 +750,4 @@ public class DB {
 	}
 
 }
+
