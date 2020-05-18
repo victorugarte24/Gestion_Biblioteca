@@ -13,6 +13,10 @@
 	<!-- FIXME change it to the project's website -->
 	<url>http://www.gestion_biblioteca.com</url>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -87,7 +91,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>es.deusto.spq.main.main</mainClass>
+					<mainClass>es.deusto.spq.main.Main</mainClass>
 				</configuration>
 			</plugin>
 
