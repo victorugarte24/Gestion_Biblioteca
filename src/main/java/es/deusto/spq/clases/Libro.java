@@ -2,6 +2,11 @@ package es.deusto.spq.clases;
 
 import java.util.ArrayList;
 
+/**
+ * Esta clase hace referencia a los libros de la aplicacion
+ * @author sergio
+ *
+ */
 public class Libro {
 
     private String titulo;
@@ -16,6 +21,16 @@ public class Libro {
     private ArrayList<String> opiniones = new ArrayList<String>();
     
 
+	/**
+	 * @param titulo - Titulo del libro
+	 * @param autor - Escritor del libro
+	 * @param numPags - Numero de paginas que tiene el libro
+	 * @param ISBN - Numero ISBN que tiene el libro
+	 * @param sinopsis - Comentario sobre el libro
+	 * @param prestado - Nos dice si el libro se puede reservar o no
+	 * @param genero - Genero del libro
+	 * @param editorial - Editorial del libro
+	 */
 	public Libro (String titulo, String autor, int numPags, int ISBN, String sinopsis, int prestado, String genero, String editorial){
 		this.titulo = titulo;
 		this.autor = autor;

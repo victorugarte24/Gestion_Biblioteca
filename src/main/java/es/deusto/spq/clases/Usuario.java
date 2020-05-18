@@ -1,5 +1,10 @@
 package es.deusto.spq.clases;
 
+/**
+ * Esta clase hace referencia a los usuarios de la aplicacion
+ * @author sergio
+ *
+ */
 public class Usuario {
 
     private String Nombre;
@@ -12,6 +17,13 @@ public class Usuario {
 
     }
 
+    /**
+     * @param Usuario - Nick del usuario
+     * @param Nombre - Nombre del usuario
+     * @param Apellido  Apellido del usuario
+     * @param DNI - DNI del usuario
+     * @param Contrasenya - Contrasenya que usa el usuario en la aplicacion
+     */
     public Usuario(String Usuario,String Nombre, String Apellido, int DNI, String Contrasenya) {
         this.Usuario = Usuario;
         this.Nombre = Nombre;
