@@ -118,7 +118,7 @@ public class VentanaAutor extends JFrame{
 		final JLabel label1 = new JLabel("Nombre: ");
 		label1.setBounds(20, 110, 150, 50);
 		label1.setFont(fuente2);
-		label1.setForeground(Color.WHITE);
+		label1.setForeground(Color.BLACK);
 		bookPanel.add(label1);
 
 		// ResultadoNombre
@@ -129,7 +129,7 @@ public class VentanaAutor extends JFrame{
 		//final JLabel label11 = new JLabel("Prueba");
 		label11.setBounds(125, 110, 400, 50);
 		label11.setFont(fuente2);
-		label11.setForeground(Color.WHITE);
+		label11.setForeground(Color.BLACK);
 		bookPanel.add(label11);
 
 
@@ -137,7 +137,7 @@ public class VentanaAutor extends JFrame{
 		final JLabel label3 = new JLabel("Año de nacimiento: ");
 		label3.setBounds(20, 175, 400, 50);
 		label3.setFont(fuente2);
-		label3.setForeground(Color.WHITE);
+		label3.setForeground(Color.BLACK);
 		bookPanel.add(label3);
 
 		// ResultadoAnyoNacimiento
@@ -152,14 +152,14 @@ public class VentanaAutor extends JFrame{
 		//final JLabel label33 = new JLabel("Prueba");
 		label33.setBounds(220, 175, 150, 50);
 		label33.setFont(fuente2);
-		label33.setForeground(Color.WHITE);
+		label33.setForeground(Color.BLACK);
 		bookPanel.add(label33);
 
 		// Lugar nacimiento
 		final JLabel label4 = new JLabel("Lugar de nacimiento: ");
 		label4.setBounds(20, 240, 400, 50);
 		label4.setFont(fuente2);
-		label4.setForeground(Color.WHITE);
+		label4.setForeground(Color.BLACK);
 		bookPanel.add(label4);
 
 		// ResultadoLugarNacimiento
@@ -174,14 +174,14 @@ public class VentanaAutor extends JFrame{
 		//final JLabel label44 = new JLabel("Prueba");
 		label44.setBounds(240, 240, 400, 50);
 		label44.setFont(fuente2);
-		label44.setForeground(Color.WHITE);
+		label44.setForeground(Color.BLACK);
 		bookPanel.add(label44);
 
 		// Nº libros publicados
 		final JLabel label5 = new JLabel("Nº libros publicados: ");
 		label5.setBounds(20, 305, 400, 50);
 		label5.setFont(fuente2);
-		label5.setForeground(Color.WHITE);
+		label5.setForeground(Color.BLACK);
 		bookPanel.add(label5);
 
 		String librosPublicados = null;
@@ -193,7 +193,7 @@ public class VentanaAutor extends JFrame{
 		final JLabel label55 = new JLabel(librosPublicados);
 		label55.setBounds(230, 305, 400, 50);
 		label55.setFont(fuente2);
-		label55.setForeground(Color.WHITE);
+		label55.setForeground(Color.BLACK);
 		bookPanel.add(label55);
 		
 		JLabelGraficoAjustado fotoAutor = new JLabelGraficoAjustado("src/main/resources/usuario/icono-perfil.png", 160, 165);

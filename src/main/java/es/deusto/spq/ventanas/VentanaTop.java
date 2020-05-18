@@ -20,11 +20,13 @@ import es.deusto.spq.clases.Libro;
 import es.deusto.spq.db.DB;
 import es.deusto.spq.utils.JLabelGraficoAjustado;
 
+
+/** Genera una ventana en la que se muestran los 10 libros con más likes.
+ * @author Victor
+ *
+ */
 public class VentanaTop extends JFrame{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	JList bookPanel = new JList();
 	String like1;
@@ -182,6 +184,9 @@ public class VentanaTop extends JFrame{
 	
 	}
 	
+	/** Carga en el modelo la lista de libros que pertenencen al top 10 y que se visualizará en la ventana.
+	 * @param a arraylist que posee los libros que pertenecen al top 10.
+	 */
 	public void cargarLista(ArrayList<String> a) {
 		modelo = new DefaultListModel<String>();
 		for(String l : a) {

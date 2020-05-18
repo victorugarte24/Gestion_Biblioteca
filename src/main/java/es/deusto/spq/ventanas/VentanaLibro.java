@@ -115,7 +115,7 @@ public class VentanaLibro extends JFrame{
 		final JLabel label1 = new JLabel("Título: ");
 		label1.setBounds(20, 110, 150, 50);
 		label1.setFont(fuente2);
-		label1.setForeground(Color.WHITE);
+		label1.setForeground(Color.BLACK);
 		bookPanel.add(label1);
 		
 		// ResultadoTítulo
@@ -123,14 +123,14 @@ public class VentanaLibro extends JFrame{
 		final JLabel label11 = new JLabel(titulolibro);
 		label11.setBounds(95, 110, 400, 50);
 		label11.setFont(fuente2);
-		label11.setForeground(Color.WHITE);
+		label11.setForeground(Color.BLACK);
 		bookPanel.add(label11);
 
 		// Autor
 		final JLabel label2 = new JLabel("Autor: ");
 		label2.setBounds(20, 175, 150, 50);
 		label2.setFont(fuente2);
-		label2.setForeground(Color.WHITE);
+		label2.setForeground(Color.BLACK);
 		bookPanel.add(label2);
 		
 		// ResultadoAutor
@@ -138,7 +138,7 @@ public class VentanaLibro extends JFrame{
 				final JLabel label22 = new JLabel(AutorLibro);
 				label22.setBounds(90, 175, 400, 50);
 				label22.setFont(fuente2);
-				label22.setForeground(Color.WHITE);
+				label22.setForeground(Color.BLACK);
 				bookPanel.add(label22);
 				//Botón InformaciónAutor
 				final JButton botonAutor = new JButton("Más información");
@@ -169,7 +169,7 @@ public class VentanaLibro extends JFrame{
 		final JLabel labelGenero = new JLabel("Género: ");
 		labelGenero.setBounds(20, 240, 230, 50);
 		labelGenero.setFont(fuente2);
-		labelGenero.setForeground(Color.WHITE);
+		labelGenero.setForeground(Color.BLACK);
 		bookPanel.add(labelGenero);
 		
 		//ResultadoGenero
@@ -177,14 +177,14 @@ public class VentanaLibro extends JFrame{
 		final JLabel labelGeneroRes = new JLabel(genero);
 		labelGeneroRes.setBounds(110, 240, 230, 50);
 		labelGeneroRes.setFont(fuente2);
-		labelGeneroRes.setForeground(Color.WHITE);
+		labelGeneroRes.setForeground(Color.BLACK);
 		bookPanel.add(labelGeneroRes);
 				
 		// Número de páginas
 		final JLabel label3 = new JLabel("Nº de Páginas: ");
 		label3.setBounds(20, 305, 150, 50);
 		label3.setFont(fuente2);
-		label3.setForeground(Color.WHITE);
+		label3.setForeground(Color.BLACK);
 		bookPanel.add(label3);
 		
 		// ResultadoNºPáginas
@@ -192,14 +192,14 @@ public class VentanaLibro extends JFrame{
 		final JLabel label33 = new JLabel(numeroPaginas);
 		label33.setBounds(170, 305, 400, 50);
 		label33.setFont(fuente2);
-		label33.setForeground(Color.WHITE);
+		label33.setForeground(Color.BLACK);
 		bookPanel.add(label33);
 
 		// ISBN
 		final JLabel label4 = new JLabel("ISBN: ");
 		label4.setBounds(20, 370, 150, 50);
 		label4.setFont(fuente2);
-		label4.setForeground(Color.WHITE);
+		label4.setForeground(Color.BLACK);
 		bookPanel.add(label4);
 		
 		// ResultadoISBN
@@ -207,14 +207,14 @@ public class VentanaLibro extends JFrame{
 		final JLabel label44 = new JLabel(numeroISBN);
 		label44.setBounds(95, 370, 400, 50);
 		label44.setFont(fuente2);
-		label44.setForeground(Color.WHITE);
+		label44.setForeground(Color.BLACK);
 		bookPanel.add(label44);
 
 		// Editorial
 		final JLabel labelEditorial = new JLabel("Editorial: ");
 		labelEditorial.setBounds(20, 435, 150, 50);
 		labelEditorial.setFont(fuente2);
-		labelEditorial.setForeground(Color.WHITE);
+		labelEditorial.setForeground(Color.BLACK);
 		bookPanel.add(labelEditorial);
 				
 				
@@ -223,14 +223,14 @@ public class VentanaLibro extends JFrame{
 		final JLabel labelEdi = new JLabel(editorialLibro);
 		labelEdi.setBounds(125, 435, 400, 50);
 		labelEdi.setFont(fuente2);
-		labelEdi.setForeground(Color.WHITE);
+		labelEdi.setForeground(Color.BLACK);
 		bookPanel.add(labelEdi);
 		
 		// Sinopsis
 		final JLabel label5 = new JLabel("Sinopsis: ");
 		label5.setBounds(20, 500, 150, 50);
 		label5.setFont(fuente2);
-		label5.setForeground(Color.WHITE);
+		label5.setForeground(Color.BLACK);
 		bookPanel.add(label5);
 		
 		
@@ -246,7 +246,7 @@ public class VentanaLibro extends JFrame{
 		
 		// Botón Reservar
 		final JButton botonR = new JButton("Reservar Libro");
-		botonR.setBounds(575, 305, 200, 50); // 170, 305, 400, 50
+		botonR.setBounds(575, 245, 200, 50); // 170, 305, 400, 50
 		botonR.setFont(new Font("Rockwell Extra Bold", Font.PLAIN, 17));
 		botonR.setForeground(Color.BLACK);
 		botonR.setContentAreaFilled(false);
@@ -280,7 +280,7 @@ public class VentanaLibro extends JFrame{
 		bookPanel.add(fotoAutor);
 		
 		like = new JLabelGraficoAjustado("src/main/resources/likeDislike/like.jpg", 65, 65);
-		like.setLocation(550, 538);
+		like.setLocation(550, 565);
 		like.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -326,7 +326,7 @@ public class VentanaLibro extends JFrame{
 		bookPanel.add(like);
 
 		dislike = new JLabelGraficoAjustado("src/main/resources/likeDislike/dislike.jpg", 65, 65);
-		dislike.setLocation(650, 538);
+		dislike.setLocation(650, 565);
 		dislike.addMouseListener(new MouseListener() {
 
 			@Override
@@ -377,7 +377,7 @@ public class VentanaLibro extends JFrame{
 		btnOpinion.setFocusable(false);
 		btnOpinion.setContentAreaFilled(false);
 		btnOpinion.setBorder(new LineBorder(new Color (0,0,0),3));
-		btnOpinion.setBounds(298, 639, 200, 50);
+		btnOpinion.setBounds(298, 570, 200, 50);
 		bookPanel.add(btnOpinion);
 		
 		btnOpinion.addActionListener(new ActionListener() {

@@ -12,6 +12,10 @@ import es.deusto.spq.utils.JLabelGraficoAjustado;
 import java.awt.Color;
 import java.awt.Font;
 
+/** Ventana donde se muestra la ubicación de cada libro.
+ * @author Victor
+ *
+ */
 public class VentanaUbicacion extends JFrame{
 	
 	String Ubicacion = "";
@@ -100,6 +104,10 @@ public class VentanaUbicacion extends JFrame{
 
 	}
 
+	/**  Método que divide el string de la ubicación completa para devolver el pasillo donde se ubica libro.
+	 * @param Ubicacion String que posee la ubicación completa del libro.
+	 * @return Se devolverá el pasillo correspondiente al libro.
+	 */
 	public String cortarPalabra (String Ubicacion){ 
 		String s = "";
 		String[] arrOfStr = Ubicacion.split(" ", 5);
