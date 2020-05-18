@@ -2,3 +2,7 @@ language: java
 
 services:
   - xfvb
+before_script:
+  - mysql -u root -e 'CREATE DATABASE gestion_biblioteca_db;'
+  - mysql -u root -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';"
+  - mysql -u root -e "GRANT ALL ON gestion_biblioteca_db.* TO 'root'@'localhost';
