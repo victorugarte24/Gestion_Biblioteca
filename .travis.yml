@@ -1,12 +1,9 @@
 language: java
+
 services:
-  - xfvb
   - mysql
+
 before_script:
-  - mysql -u root -e 'CREATE DATABASE gestion_biblioteca_db;'
-  - mysql -u root -e 'CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';'
-  - mysql -u root -e "GRANT ALL ON gestion_biblioteca_db.* TO 'root'@'localhost';"
-script: 
-  - mvn test -DargLine="-Dcontiperf.active=false"
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - mvn test -B
+  - mysql -u root -e 'CREATE DATABASE productsDB;'
+  - mysql -u root -e "CREATE USER 'spq'@'localhost' IDENTIFIED BY 'spq';"
+  - mysql -u root -e "GRANT ALL ON productsDB.* TO 'spq'@'localhost';"
