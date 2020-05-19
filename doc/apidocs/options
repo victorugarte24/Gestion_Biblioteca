@@ -1,0 +1,25 @@
+-classpath
+'C:/Users/Victor/.m2/repository/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1.jar;C:/Users/Victor/.m2/repository/org/mockito/mockito-all/1.9.5/mockito-all-1.9.5.jar;C:/Users/Victor/.m2/repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar;C:/Users/Victor/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar'
+-encoding
+'UTF-8'
+-private
+-sourcepath
+'C:/Users/Victor/git/Gestion_Biblioteca/src/main/java/es/deusto/spq'
+-author
+-bottom
+'Copyright &#169; 2020. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Victor/git/Gestion_Biblioteca/doc/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'proyecto-spq 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'C:/Users/Victor/git/Gestion_Biblioteca/target/javadoc-bundle-options'
+-nohelp
+-use
+-version
+-windowtitle
+'proyecto-spq 1.0-SNAPSHOT API'
