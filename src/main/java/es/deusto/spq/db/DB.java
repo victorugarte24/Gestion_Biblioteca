@@ -13,7 +13,7 @@ import es.deusto.spq.clases.Libro;
 import es.deusto.spq.clases.Usuario;
 
 public class DB {
-
+	
 	public static Connection initBD(String BD) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -743,10 +743,6 @@ public class DB {
 		}
         return likeDislike;
 		
-	}
-	
-	public static void main(String[] args) throws SQLException {
-		DB db = new DB();
 	}
 
 }
